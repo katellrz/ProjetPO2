@@ -1,7 +1,10 @@
+package Gestion;
 
 
 //IMPORT____________________________________
 import Librairies.StdDraw;
+import Map.Carte;
+
 import java.awt.Color;
 import Librairies.Point;
 
@@ -44,7 +47,13 @@ public abstract class Interface{
     /**
      * Fonction qui a pour role d'afficher les elemnt suceptible de changer durant le jeux 
      */
+    public static void AfficheDynamique(String nom){
+        System.out.println("ici");
+        afficheCarte(nom);
 
+        
+        
+    }
     
 
     
@@ -58,6 +67,16 @@ public abstract class Interface{
 
         StdDraw.setPenColor(Color.BLACK);
         StdDraw.rectangle(center.getX(), center.getY(), halfDist.getX(), halfDist.getY());
+    }
+
+    public static void afficheCarte (String nom){
+        System.out.println("la");
+        Carte c = new Carte(nom);
+        System.out.println(c.toString());
+        c.afficheCarte();
+        System.out.println("tj la ");
+
+        StdDraw.show();
     }
     
     //ZONE PLAYER__________________________________________________________________________________________________

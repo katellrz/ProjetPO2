@@ -15,9 +15,11 @@ public class Case {
     protected int rows;
     protected int cols;
     protected Point centre;
+    protected char lettre;
 
 
     public Case(char c, int rows, int cols,int centerX,int centerY){
+        this.lettre=c;
         this.type = TypedeCase(c);
         this.couleur = SetCouleur(c);
         this.rows = rows;
@@ -27,6 +29,11 @@ public class Case {
 
 
 //GETTEUR & SETTEUR
+
+    public char getLettre(){
+        return lettre;
+    }
+    
     public Casetype getType() {
         return type;
     }
@@ -114,25 +121,27 @@ public class Case {
         }
     }
 
-        /**
+    /**
      * Cette fontion permet d'afficher chaque case indépendament si la case est cliquer alors la cose devien jaune 
      * @param size correspond a 
      * @return un parmatre de type Color 
      */
-    public void afficheCase(double size){
+    public void afficheCase(){
         Color couleur = this.couleur;//couleur de base 
 
         if(SourisCliqueCase()) couleur = Color.YELLOW;//Si la case est cliquer
         //dessin de la case
         StdDraw.setPenColor(couleur);
-        StdDraw.filledSquare(this.centre.getX(), this.centre.getY(), size / 2.0);
+        StdDraw.filledSquare(this.centre.getX(), this.centre.getY(), Omnicient.getSize() / 2.0);
 
         
 
         //dessine le tour de la case et en couleur si clique
         couleur = Color.BLACK;
         StdDraw.setPenColor(couleur);
-        StdDraw.square(this.centre.getX(), this.centre.getY(), size / 2.0);
+        StdDraw.square(this.centre.getX(), this.centre.getY(), (Omnicient.getSize() / 2.0));
+
+        StdDraw.show();
     }
 
 

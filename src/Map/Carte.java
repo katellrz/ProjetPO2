@@ -13,7 +13,7 @@ public class Carte {
     private int size;
     //private List<Case> Chemin;
 
-    
+
     
     public Carte(String nom){
         this.nom = nom;
@@ -30,7 +30,9 @@ public class Carte {
     public List<List<Case>> ConvertiCase(){
 
         String filePath="resources/maps/"+this.nom+".mtp";
-        List <String> tabStrings = FileExtraction.ExtraireFichier(filePath); 
+        List <String> tabStrings = FileExtraction.ExtraireFichier(filePath);
+        
+        System.out.println(tabStrings.toString());
         
         if (tabStrings == null || tabStrings.isEmpty()) {//verification si la carte est null ou vide 
             System.out.println("Erreur: fichier de carte introuvable ou vide.");
@@ -73,6 +75,33 @@ public class Carte {
             return null;
         } 
         return Carte;
+    }
+
+
+
+    /**
+     * Affiche la carte en appelant un fonction qui dessine chaque cas
+     * 
+     */
+    public void afficheCarte(){ 
+        for (List<Case> l : CarteJeu) {//pour chaque ligne 
+            for(Case c : l){// pour chaque colone 
+                c.afficheCase();
+                System.out.println("Case afficher : "+c.toString());
+            }
+        }       
+    }
+
+    @Override
+    public String toString(){
+        String retour = "";
+        for (List<Case> l : CarteJeu) {
+            for (Case c : l){
+                retour+= c.getLettre();
+            }
+            retour+="\t";   
+        }
+        return retour; 
     }
     
     
