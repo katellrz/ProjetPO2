@@ -12,6 +12,8 @@ public class Carte {
     private String nom;
     private int size;
     //private List<Case> Chemin;
+
+    
     
     public Carte(String nom){
         this.nom = nom;
