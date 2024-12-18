@@ -1,15 +1,17 @@
-package Outil;
+package outils;
 
 
 import Map.Case;
+
+import java.util.LinkedList;
 import java.util.List;
-// import entites.Enemi;
-// import entites.Tour;
+import entites.Enemi;
+import entites.Tour;
 
 public abstract class Omnicient {
 
-    //private static List<Enemi> positionMonstre = new LinkedList<>();
-    //private static List<Tour> positionTours = new LinkedList<>();
+    private static List<Enemi> positionMonstre = new LinkedList<>();
+    private static List<Tour> positionTours = new LinkedList<>();
     private static Case Spawn;
     private static Case Base;
     private static List<Case> Chemin;
@@ -26,13 +28,13 @@ public abstract class Omnicient {
         Carte=carte;
     }
 
-    // public static void SavetoOmni(Enemi e) {
-    //     positionMonstre.add(e);
-    // }
+    public static void SavetoOmni(Enemi e) {
+        positionMonstre.add(e);
+    }
 
-    // public static void SavetoOmni(Tour e) {
-    //     positionTours.add(e);
-    // }
+    public static void SavetoOmni(Tour e) {
+        positionTours.add(e);
+    }
 
     public static void SavetoOmniBase(Case base) {
         Base = base;
@@ -50,13 +52,13 @@ public abstract class Omnicient {
         return Size;
     }
     
-    // public static List<Enemi> getPositionMonstre() {
-    //     return positionMonstre;
-    // }
+    public static List<Enemi> getPositionMonstre() {
+        return positionMonstre;
+    }
 
-    // public static List<Tour> getPositionTours() {
-    //     return positionTours;
-    // }
+    public static List<Tour> getPositionTours() {
+        return positionTours;
+    }
 
     public static Case getSpawn() {
         return Spawn;
@@ -73,14 +75,6 @@ public abstract class Omnicient {
     public static List<List<Case>> getCarte(){
         return Carte;
     }
-
-    // public static void AddTour(Tour tour){
-    //     positionTours.add(tour);
-    // }
-
-    // public static void AddEnemi(Enemi enemi){
-    //     positionMonstre.add(enemi);
-    // }
 
     
 

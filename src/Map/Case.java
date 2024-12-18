@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import Librairies.Point;
 import Librairies.StdDraw;
-import Outil.Omnicient;
+import outils.Omnicient;
 
 public class Case {
 

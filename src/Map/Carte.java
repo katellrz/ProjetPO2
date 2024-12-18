@@ -5,7 +5,7 @@ import java.util.List;
 
 import Librairies.FileExtraction;
 import Map.Case.Casetype;
-import Outil.Omnicient;
+import outils.Omnicient;
 
 public class Carte {
 
