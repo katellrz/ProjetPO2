@@ -1,5 +1,7 @@
 package Gestion;
 
+import Librairies.StdDraw;
+
 public abstract class Game {
 
     public static void Start(){
@@ -7,6 +9,7 @@ public abstract class Game {
         Interface.AfficheInterface();
         Interface.AfficheStatique();
         Interface.AfficheDynamique("10-10");
+        StdDraw.show();
 
 
     }

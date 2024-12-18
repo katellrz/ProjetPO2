@@ -33,7 +33,7 @@ public class Case {
     public char getLettre(){
         return lettre;
     }
-    
+
     public Casetype getType() {
         return type;
     }
@@ -134,14 +134,13 @@ public class Case {
         StdDraw.setPenColor(couleur);
         StdDraw.filledSquare(this.centre.getX(), this.centre.getY(), Omnicient.getSize() / 2.0);
 
-        
+        System.out.println(Omnicient.getSize());
 
-        //dessine le tour de la case et en couleur si clique
+
         couleur = Color.BLACK;
         StdDraw.setPenColor(couleur);
         StdDraw.square(this.centre.getX(), this.centre.getY(), (Omnicient.getSize() / 2.0));
 
-        StdDraw.show();
     }
 
 

@@ -45,6 +45,7 @@ public class Carte {
 
         //CALCUL SIZE
         this.size = 700 / Math.max(rows, cols);//divise la taille de l'espace ou est afficher la carte par le max de case ente la largeur et la longueur
+        Omnicient.SaveToOmni(size);
 
         //CALCUL START
         int startX = (cols < rows) ? (Math.abs(cols - rows) / 2) * this.size : 0;//determine le depard de la premier case afin que la carte soit center et dans le cadre prévus a cette effet 
@@ -63,10 +64,10 @@ public class Carte {
                     int centerX = startX + j * size + size / 2;
                     int centerY = startY + (rows - 1 - i) * size + size / 2;
 
-                    lignCases.add(new Case(ligne.charAt(j), i, j, centerX, centerY));//TODO definir case
+                    Case c = new Case(ligne.charAt(j), i, j, centerX, centerY); 
+                    lignCases.add(c);
                 }
                 Carte.add(lignCases);
-                lignCases.clear();
             }
     
         } catch (Exception e) {
@@ -87,7 +88,6 @@ public class Carte {
         for (List<Case> l : CarteJeu) {//pour chaque ligne 
             for(Case c : l){// pour chaque colone 
                 c.afficheCase();
-                System.out.println("Case afficher : "+c.toString());
             }
         }       
     }

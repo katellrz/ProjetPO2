@@ -4,7 +4,6 @@ package Gestion;
 //IMPORT____________________________________
 import Librairies.StdDraw;
 import Map.Carte;
-
 import java.awt.Color;
 import Librairies.Point;
 
@@ -22,7 +21,8 @@ public abstract class Interface{
         StdDraw.setXscale(-12, 1012);
         StdDraw.setYscale(-10, 710);
         StdDraw.enableDoubleBuffering();
-        StdDraw.show();
+
+
        
     }
 
@@ -40,7 +40,7 @@ public abstract class Interface{
 
         AfficheCadreBOUTIQUE();
 
-        StdDraw.show();
+        
 
     }
 
@@ -48,6 +48,8 @@ public abstract class Interface{
      * Fonction qui a pour role d'afficher les elemnt suceptible de changer durant le jeux 
      */
     public static void AfficheDynamique(String nom){
+
+
         System.out.println("ici");
         afficheCarte(nom);
 
@@ -76,7 +78,7 @@ public abstract class Interface{
         c.afficheCarte();
         System.out.println("tj la ");
 
-        StdDraw.show();
+        
     }
     
     //ZONE PLAYER__________________________________________________________________________________________________
