@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Librairies.FileExtraction;
+import Map.Case.Casetype;
 import Outil.Omnicient;
 
 public class Carte {
@@ -11,7 +12,7 @@ public class Carte {
     private List<List<Case>> CarteJeu;
     private String nom;
     private int size;
-    //private List<Case> Chemin;
+    private List<Case> Chemin;
 
 
     
@@ -19,7 +20,8 @@ public class Carte {
         this.nom = nom;
         this.CarteJeu = ConvertiCase();
         Omnicient.SaveToOmni(CarteJeu);
-        //this.chemin = 
+        this.Chemin = ConstruitChemin();
+        Omnicient.SavetoOmni(Chemin);
     }
 
 
@@ -31,8 +33,6 @@ public class Carte {
 
         String filePath="resources/maps/"+this.nom+".mtp";
         List <String> tabStrings = FileExtraction.ExtraireFichier(filePath);
-        
-        System.out.println(tabStrings.toString());
         
         if (tabStrings == null || tabStrings.isEmpty()) {//verification si la carte est null ou vide 
             System.out.println("Erreur: fichier de carte introuvable ou vide.");
@@ -104,6 +104,99 @@ public class Carte {
         return retour; 
     }
     
+    /**
+     * Cherche la case suivate a partitr d'un tableaux de case cette direction est chercher sur les case autour de la case actuelle sans prendre en compte le diagonale 
+     * @param current case actuelle dont on veux trouver la case suivante
+     * @param chemin liste des case deja visité (qui corrspondent au case du chamin déja construit )
+     * @return la case suivante a devoir être ajouté au chemin
+     * Cette fonction a été soumise a l'IA pour la structure et l'utilisation du tableau de direction qui ne fonctionait pas en raison d'une mauvais initialisation et utilisation par la suite 
+     *
+     */
+    private Case TrouveCaseSuivante(Case current, List<Case> chemin) {
+        int row = current.rows; // Coordonnées actuelles
+        int col = current.cols;
     
+        // Directions possibles : Haut, Bas, Gauche, Droite
+        int[][] directions = {
+            {-1, 0}, {1, 0}, {0, -1}, {0, 1}
+        };
+    
+        for (int[] dir : directions) {
+            int newRow = row + dir[0];
+            int newCol = col + dir[1];
+    
+            // Vérifie si la case voisine est valide (pas forcement nécéssaire car les case sont entoure er de decor)
+            if (newRow >= 0 && newRow < CarteJeu.size() && newCol >= 0 && newCol < CarteJeu.get(0).size()) {
+                Case nextCase = CarteJeu.get(newRow).get(newCol);
+                if ((!chemin.contains(nextCase)) && nextCase.getType() == Casetype.ROUTE||nextCase.getType() == Casetype.BASE ) {
+                    return nextCase; // Retourne la première case valide
+                }
+            }
+        }
+        return null; // Aucun voisin route ou base trouvé
+    }
+
+
+    public List<Case> ConstruitChemin(){
+        List<Case> chemin = new ArrayList<>();
+
+        Case start = Spawn();//Trouve la case depart
+        Omnicient.SavetoOmniSpawn(start);
+
+        if (start == null) {    
+            System.out.println("Pas de case SPAW trouvée la carte n'est pas valide");
+            return chemin;
+        }
+
+        chemin.add(start);
+        return ConstruitCheminRecursive(start, chemin);
+    }
+
+    /**
+     * Fonction recursive qui construit le chemin petit a petit, 
+     * @return la liste chemin 
+     */
+    private List<Case> ConstruitCheminRecursive(Case current, List<Case> chemin) {
+        if(current.getType()==Casetype.BASE){
+            //System.out.println("Arrive la ");
+            Omnicient.SavetoOmniBase(current);
+            return chemin;
+        }else{
+            //System.out.println("Arrive la ");
+            Case nextCase = TrouveCaseSuivante(current, chemin);
+            if (nextCase != null) {
+                //System.out.println("Arrive la vrl");
+                chemin.add(nextCase);
+                return ConstruitCheminRecursive(nextCase, chemin);
+            }else{
+                return null;
+            }
+        }
+    }
+    
+    /**
+     * Trouve le spawn de la map et le return 
+     * Cette fonction e été soumise a chat GPT pour la solifier( géré les cas ou )
+     * @return une case de type Spawn
+     */
+    public Case Spawn() {
+        if (CarteJeu == null) {
+            System.out.println("CarteJeu est null");
+            return null;
+        }
+    
+        for (int i = 0; i < CarteJeu.size(); i++) {
+            if (CarteJeu.get(i)==null) continue; // Vérifiez si la ligne est null
+    
+            for (int j = 0; j < CarteJeu.get(0).size(); j++) {
+                if (CarteJeu.get(i).get(j) != null && CarteJeu.get(i).get(j).getType() == Casetype.SPAWN) {
+                    //System.out.println("trouvé");
+                    return CarteJeu.get(i).get(j);
+                }
+            }
+        }
+        //System.out.println("null");
+        return null;
+    }
 
 }

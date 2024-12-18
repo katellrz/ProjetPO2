@@ -11,6 +11,11 @@ public abstract class Game {
         Interface.AfficheDynamique("10-10");
         StdDraw.show();
 
+        while(true){
+            Interface.AfficheDynamique("10-10");
+            StdDraw.show();
+        }
+
 
     }
 

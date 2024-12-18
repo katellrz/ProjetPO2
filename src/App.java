@@ -2,7 +2,8 @@
 //IMPORT____________________________________
 
 import Gestion.Game;
-import Gestion.Interface;
+
+//__________________________________________
 
 public class App {
     public static void main(String[] args) throws Exception {

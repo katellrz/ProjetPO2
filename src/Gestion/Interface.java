@@ -48,13 +48,8 @@ public abstract class Interface{
      * Fonction qui a pour role d'afficher les elemnt suceptible de changer durant le jeux 
      */
     public static void AfficheDynamique(String nom){
-
-
-        System.out.println("ici");
         afficheCarte(nom);
 
-        
-        
     }
     
 
@@ -72,13 +67,8 @@ public abstract class Interface{
     }
 
     public static void afficheCarte (String nom){
-        System.out.println("la");
         Carte c = new Carte(nom);
-        System.out.println(c.toString());
         c.afficheCarte();
-        System.out.println("tj la ");
-
-        
     }
     
     //ZONE PLAYER__________________________________________________________________________________________________

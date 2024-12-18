@@ -10,17 +10,17 @@ public abstract class Omnicient {
 
     //private static List<Enemi> positionMonstre = new LinkedList<>();
     //private static List<Tour> positionTours = new LinkedList<>();
-    //private static Case Spawn;
-    //private static Case Base;
-    //private static List<Case> Chemin;
+    private static Case Spawn;
+    private static Case Base;
+    private static List<Case> Chemin;
     private static List<List<Case>> Carte;
     public static int Size;
      
 
     
-    // public static void SavetoOmni(List<Case> chemin) {
-    //     Chemin = chemin;
-    // }
+    public static void SavetoOmni(List<Case> chemin) {
+        Chemin = chemin;
+    }
 
     public static void SaveToOmni(List<List<Case>> carte ){
         Carte=carte;
@@ -34,13 +34,13 @@ public abstract class Omnicient {
     //     positionTours.add(e);
     // }
 
-    // public static void SavetoOmniBase(Case base) {
-    //     Base = base;
-    // }
+    public static void SavetoOmniBase(Case base) {
+        Base = base;
+    }
 
-    // public static void SavetoOmniSpawn(Case spawn) {
-    //     Spawn = spawn;
-    // }
+    public static void SavetoOmniSpawn(Case spawn) {
+        Spawn = spawn;
+    }
     
     public static void SaveToOmni(int size){
         Size=size;
@@ -58,17 +58,17 @@ public abstract class Omnicient {
     //     return positionTours;
     // }
 
-    // public static Case getSpawn() {
-    //     return Spawn;
-    // }
+    public static Case getSpawn() {
+        return Spawn;
+    }
 
-    // public static Case getBase() {
-    //     return Base;
-    // }
+    public static Case getBase() {
+        return Base;
+    }
 
-    // public static List<Case> getChemin() {
-    //     return Chemin;
-    // }
+    public static List<Case> getChemin() {
+        return Chemin;
+    }
 
     public static List<List<Case>> getCarte(){
         return Carte;

@@ -134,9 +134,6 @@ public class Case {
         StdDraw.setPenColor(couleur);
         StdDraw.filledSquare(this.centre.getX(), this.centre.getY(), Omnicient.getSize() / 2.0);
 
-        System.out.println(Omnicient.getSize());
-
-
         couleur = Color.BLACK;
         StdDraw.setPenColor(couleur);
         StdDraw.square(this.centre.getX(), this.centre.getY(), (Omnicient.getSize() / 2.0));
@@ -155,23 +152,35 @@ public class Case {
     }
 
 
+    public boolean contains(double mouseX, double mouseY, double tailleCase) {
+        return mouseX >= centre.getX() - tailleCase / 2 && mouseX <= centre.getX() + tailleCase / 2 && mouseY >= centre.getY() - tailleCase / 2
+                && mouseY <= centre.getY() + tailleCase / 2;
+    }
+
     /**
      * Pour une case dit si la souris clique dans cette case 
      * 
      * @return true ou flase 
      */
-    public boolean SourisCliqueCase() {
-        if (StdDraw.isMousePressed()) { // Détecte un clic
-            double mouseX = StdDraw.mouseX(); // Récupère la position X de la souris
-            double mouseY = StdDraw.mouseY(); // Récupère la position Y de la souris
-            // Vérifie si la souris est dans les limites de cette case
-            System.out.println("Clic détecté sur la case : " + this.toString());
-            return mouseX > this.centre.getX() - Omnicient.getSize() / 2.0 && 
-                   mouseX < this.centre.getX() + Omnicient.getSize() / 2.0 &&
-                   mouseY > this.centre.getY() - Omnicient.getSize() / 2.0 &&
-                   mouseY < this.centre.getY() + Omnicient.getSize() / 2.0;
-        }
-        return false;
-    }
 
+    boolean dejaClique = false;
+
+    public boolean SourisCliqueCase() {//TODO detecte plein de fois la même case 
+        // Vérifie si la souris est pressée, que ce n'est pas un clic maintenu, et si la souris est bien dans cette case
+        if (StdDraw.isMousePressed() && !dejaClique && this.contains(StdDraw.mouseX(), StdDraw.mouseY(), Omnicient.getSize())) {
+            dejaClique = true; // Marque que ce clic est enregistré
+            System.out.println("Clic détecté sur la case : " + this.toString());
+            return true; // Indique qu'un clic valide a eu lieu
+        }
+    
+        // Réinitialise l'état quand la souris est relâchée
+        if (!StdDraw.isMousePressed()) {
+            dejaClique = false;
+        }
+    
+        return false; // Aucun clic détecté
+    }
+    
+
+    
 }
