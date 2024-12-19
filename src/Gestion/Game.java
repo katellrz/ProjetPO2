@@ -1,11 +1,8 @@
 package Gestion;
 
-
-
-import entites.Entite.Element;
-import entites.enemies.Minion;
 import Librairies.StdDraw;
 import entites.Enemi;
+import entites.Minion;
 
 public abstract class Game {
 

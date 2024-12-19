@@ -9,13 +9,13 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import Librairies.FileExtraction;
+import entites.Boss;
+import entites.EarthBrute;
 import entites.Enemi;
-import entites.enemies.Boss;
-import entites.enemies.EarthBrute;
-import entites.enemies.FireGrognard;
-import entites.enemies.Minion;
-import entites.enemies.WaterBrute;
-import entites.enemies.WindGrognard;
+import entites.FireGrognard;
+import entites.Minion;
+import entites.WaterBrute;
+import entites.WindGrognard;
 
 
 

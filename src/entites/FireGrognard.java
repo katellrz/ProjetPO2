@@ -1,6 +1,4 @@
-package entites.enemies;
-
-import entites.Enemi;
+package entites;
 
 public class FireGrognard extends Enemi {
     

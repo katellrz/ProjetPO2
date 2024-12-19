@@ -1,7 +1,6 @@
-package entites.Tours;
+package entites;
 
 
-import entites.Tour;
 import Librairies.Point;
 
 public class Archer extends Tour{

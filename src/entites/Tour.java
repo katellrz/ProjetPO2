@@ -6,8 +6,6 @@ import java.awt.Color;
 import java.util.List;
 
 import Librairies.Point;
-
-import entites.Tours.Archer;
 import outils.Omnicient;
 import Map.Case;
 import Librairies.StdDraw;
@@ -19,11 +17,11 @@ public abstract class Tour extends Entite {
     protected int MaxPV;
 
     // Constructeur de la classe TOURS
-    public Tour(int PV, int ATK, double ATKSpeed, int Range, Element Element,int cost, Point Position) {
-        super(PV, ATK, ATKSpeed, Range, Element);
-        this.position = Position;
-        this.Cost = cost;
-        this.MaxPV = PV;
+    public Tour() {
+        super();
+        // this.position = Position;
+        // this.Cost = cost;
+        // this.MaxPV = PV;
     }
 
     // Getters et setters
