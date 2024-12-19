@@ -1,14 +1,12 @@
 package entites;
 
-import static outils.Omnicient.*;
-
+import Librairies.Point;
+import Librairies.StdDraw;
+import Map.Case;
 import java.awt.Color;
 import java.util.List;
-
-import Librairies.Point;
 import outils.Omnicient;
-import Map.Case;
-import Librairies.StdDraw;
+import static outils.Omnicient.*;
 
 
 public abstract class Tour extends Entite {
@@ -33,7 +31,7 @@ public abstract class Tour extends Entite {
         return position;
     }
 
-    public static void PlacerTour(){
+    public static void PlacerTour(){  // placer tour a revoir 
         for (List<Case> c : Omnicient.getCarte()) {
             for (Case cs : c) {
                 if(cs.SourisCliqueCase()){
