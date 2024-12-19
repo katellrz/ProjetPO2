@@ -17,9 +17,9 @@ public abstract class Tour extends Entite {
     protected int MaxPV;
 
     // Constructeur de la classe TOURS
-    public Tour() {
+    public Tour(Point position) {
         super();
-        // this.position = Position;
+        this.position = position;
         // this.Cost = cost;
         // this.MaxPV = PV;
     }
@@ -37,7 +37,7 @@ public abstract class Tour extends Entite {
         for (List<Case> c : Omnicient.getCarte()) {
             for (Case cs : c) {
                 if(cs.SourisCliqueCase()){
-                    Archer t = new Archer(12,1,1,1,Element.NONE,30,cs.getCenterCase());
+                    Archer t = new Archer(cs.getCenterCase());
                     SavetoOmni(t);
                 }                
             }
