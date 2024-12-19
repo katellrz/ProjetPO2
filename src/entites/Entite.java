@@ -3,28 +3,32 @@ package entites;
 
 import java.awt.Color;
 
+import Librairies.Point;
+
 public abstract class Entite {
 
     public enum Element{
         NONE,WIND,FIRE,WATER,EARTH
     }
 
-    private int PV;
-    private int ATK;
-    private double ATKSpeed;
-    private int Range;
-    private Element element;
+    protected int PV;
+    protected int ATK;
+    protected double ATKSpeed;
+    protected int Range;
+    protected Element element;
+    protected Point position;
+    protected int PVmax;
     //private Point Position;
-    private String Icone;
+    
 
     // Constructeur de la classse Entite
-    public Entite(int PV, int ATK, double ATKSpeed, int Range, Element Element) {
+    /* public Entite(int PV, int ATK, double ATKSpeed, int Range, Element Element) {
         this.PV = PV;
         this.ATK = ATK;
         this.ATKSpeed = ATKSpeed;
         this.Range = Range;
         this.element = Element;
-    }
+    } */
     // Getters et setters
     public int getPV() {
         return PV;
@@ -73,14 +77,6 @@ public abstract class Entite {
     public void setPosition(Point Position) {
         this.Position = Position;
     }*/
-
-    public String getIcone() {
-        return Icone;
-    }
-
-    public void setIcone(String Icone) {
-        this.Icone = Icone;
-    }
 
     protected Color getColorByElement(Element element) {
         switch (element) {

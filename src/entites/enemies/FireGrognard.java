@@ -1,13 +1,17 @@
 package entites.enemies;
 
 import entites.Enemi;
-import map.Point;
 
 public class FireGrognard extends Enemi {
-
     
-    public FireGrognard(int PV, int ATK, int ATKSpeed, int Range, Element Element, int Speed, int Reward)  {
-        super(PV, ATK, ATKSpeed, Range, Element, Speed, Reward);
+    public FireGrognard() {
+        this.PV = 1;
+        this.ATK = 7;
+        this.ATKSpeed = 2;
+        this.Range = 3;
+        this.element = Element.FIRE;
+        this.Speed = 2;
+        this.Reward = 1;
+        this.PVmax = PV;
     }
-    
 }

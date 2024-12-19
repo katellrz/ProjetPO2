@@ -10,16 +10,13 @@ import java.awt.Color;
 import java.util.List;
 
 public class Enemi extends Entite {
-    private double Speed;
-    private int Reward;
-    private Point position;
-    public int currentIndex;
+    protected double Speed;
+    protected int Reward;
+    protected int currentIndex;//TODO en publique jsp pas pourquoi peut poser problème
 
     // Constructeur de la classe Enemi
-    public Enemi(int PV, int ATK, double ATKSpeed, int Range, Element Element, double Speed, int Reward) {
-        super(PV, ATK, ATKSpeed, Range, Element);
-        this.Speed = Speed;
-        this.Reward = Reward;
+    public Enemi() {
+        super();
         this.position= getChemin().get(0).getCenterCase();
         this.currentIndex = 0;
     }
@@ -64,7 +61,20 @@ public class Enemi extends Entite {
 
         List<Case>path = getChemin();//On recupere le chemin dans la classe omniciente
 
-        if (currentIndex >= path.size() - 1) { // On arrète si le monstre a atteint la fin du chemin
+        Case d = path.get(path.size()-1);
+        Case ad =path.get(path.size()-2);
+
+        double PF = Math.sqrt((Math.pow((d.getCenterX()-ad.getCenterX()),2))+(Math.pow((d.getCenterY()-ad.getCenterY()),2)))/2;
+
+        Point A = null;
+
+        if(d.getCenterX()==ad.getCenterX()){
+            A = new Point(d.getCenterX(),d.getCenterY()+PF);
+        }else{
+            A = new Point(d.getCenterX()+PF,d.getCenterY());
+        }
+
+        if (this.position.equals(A)||currentIndex>=path.size()-1){ // On arrète si le monstre a atteint la fin du chemin
             System.out.println("Le monstre est arrivé à la base !");
             return;
         }

@@ -31,4 +31,9 @@ public class Point {
         return " (x=" + x + ", y=" + y + ")";
     }
 
+    
+    public boolean equals(Point B){
+        return this.x==B.getX()&&this.y==B.getY();
+    }
+
 }

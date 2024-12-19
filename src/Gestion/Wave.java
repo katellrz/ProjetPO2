@@ -10,7 +10,6 @@ import java.util.TreeMap;
 
 import Librairies.FileExtraction;
 import entites.Enemi;
-import entites.Entite.Element;
 import entites.enemies.Boss;
 import entites.enemies.EarthBrute;
 import entites.enemies.FireGrognard;
@@ -46,17 +45,17 @@ public class Wave {
     public static Enemi creeEnemi (String enemie){
         switch (enemie) {
             case "Earth Brute":
-                return new EarthBrute(30,5,1,3, Element.EARTH,1,3);//TODO modifier les positions
+                return new EarthBrute();
             case "Minion":
-                return new Minion(10,3,0,0,Element.NONE,1,1);//TODO modifier les positions
+                return new Minion();
             case "Wind Grognard":
-                return new WindGrognard(1, 7, 2, 2, Element.WIND, 2, 1);//TODO modifier les positions
+                return new WindGrognard();
             case "Fire Grognard":
-                return new FireGrognard(1, 7, 2, 3, Element.FIRE, 2, 1);//TODO modifier les positions
+                return new FireGrognard();
             case "Water Brute":
-                return new WaterBrute(30, 5, 1, 3, Element.WATER, 1, 3);//TODO modifier les positions
+                return new WaterBrute();
             case "Boss":
-                return new Boss(150, 100, 10, 2, Element.FIRE, 0.5, 100);//TODO modifier les positions
+                return new Boss();
             default:
                 return null;
         }

@@ -1,26 +1,17 @@
 package entites.enemies;
 
 import entites.Enemi;
-import map.Point;
 
 public class WindGrognard extends Enemi {
-    private int resistanceAuVent;
-
     
-    public WindGrognard(int PV, int ATK, int ATKSpeed, int Range, Element Element, int Speed, int Reward) {
-        super(PV, ATK, ATKSpeed, Range, Element, Speed, Reward);
-    }
+    public WindGrognard() {
+        this.PV = 1;
+        this.ATK = 7;
+        this.ATKSpeed = 2;
+        this.Range = 5;
+        this.element = Element.WIND;
+        this.Speed = 2;
+        this.Reward = 1;
 
-    public int getResistanceAuVent() {
-        return resistanceAuVent;
-    }
-
-    public void setResistanceAuVent(int resistanceAuVent) {
-        this.resistanceAuVent = resistanceAuVent;
-    }
-
-    
-    public void augmenterVitesse() {
-        System.out.println("Augmenter la vitesse grâce à la résistance au vent !");
     }
 }

@@ -1,12 +1,17 @@
 package entites.enemies;
 
 import entites.Enemi;
-import map.Point;
 
 public class EarthBrute extends Enemi {
-
-    public EarthBrute(int PV, int ATK, int ATKSpeed, int Range, Element Element, int Speed, int Reward) {
-        super(PV, ATK, ATKSpeed, Range, Element,Speed, Reward);
-    }
     
+    public EarthBrute() {
+        this.PV = 30;
+        this.ATK = 5;
+        this.ATKSpeed = 1;
+        this.Range = 3;
+        this.element = Element.EARTH;
+        this.Speed = 1;
+        this.Reward = 3;
+        this.PVmax = PV;
+    }
 }

@@ -1,24 +1,17 @@
 package entites.enemies;
 
 import entites.Enemi;
-import map.Point;
-
 
 public class Boss extends Enemi {
-    private String field;
-
-    // Constructeur
-    public Boss(int PV, int ATK, int ATKSpeed, int Range, Element Element, double Speed, int Reward) {
-        super(PV, ATK, ATKSpeed, Range, Element, Speed, Reward);
+    
+    public Boss() {
+        this.PV = 150;
+        this.ATK = 100;
+        this.ATKSpeed = 10.;
+        this.Range = 2;
+        this.element = Element.FIRE;
+        this.Speed = 0.5;
+        this.Reward = 100;
+        this.PVmax = PV;
     }
-
-    // Getter et setter
-    public String getField() {
-        return field;
-    }
-
-    public void setField(String field) {
-        this.field = field;
-    }
-
 }
