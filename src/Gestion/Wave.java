@@ -21,8 +21,16 @@ import entites.WindGrognard;
 
 public class Wave {
 
-    protected String nom;
-    protected Map<Long ,String> vague;
+    private String nom;
+    private Map<Long ,String> vague;
+    private boolean VagueestFini;
+
+    public Wave(String nom){
+        this.nom=nom;
+        this.vague=ConstruitVague();
+        this.VagueestFini = false;
+
+    }
 
 
     public Map<Long,String> ConstruitVague(){ //il faut mieux avoir ne nom de l'enemie ou l'enemie déja creé
@@ -37,10 +45,9 @@ public class Wave {
             Long temps = Long.parseLong(tab[0]);
             vague.put(temps*1000, tab[1]);/*1000 car  on met en milli seconde   */
         }
-
         return vague;
-
     }
+
 
     public static Enemi creeEnemi (String enemie){
         switch (enemie) {

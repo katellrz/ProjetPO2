@@ -11,6 +11,5 @@ public class Minion extends Enemi {
         this.Speed = 1;
         this.Reward = 1;
         this.PVmax = PV;
-
     }
 }

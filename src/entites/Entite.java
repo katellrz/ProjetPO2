@@ -4,7 +4,6 @@ package entites;
 import java.awt.Color;
 
 import Librairies.Point;
-import Librairies.StdDraw;
 
 public abstract class Entite {
 

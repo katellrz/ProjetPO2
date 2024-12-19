@@ -12,4 +12,6 @@ public class FireGrognard extends Enemi {
         this.Reward = 1;
         this.PVmax = PV;
     }
+
+    
 }
