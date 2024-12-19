@@ -31,7 +31,7 @@ public abstract class Tour extends Entite {
         return position;
     }
 
-    public static void PlacerTour(){  // placer tour a revoir 
+    public static void PlacerTour(){//TODO a revoir
         for (List<Case> c : Omnicient.getCarte()) {
             for (Case cs : c) {
                 if(cs.SourisCliqueCase()){
