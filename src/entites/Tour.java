@@ -47,12 +47,12 @@ public abstract class Tour extends Entite {
 
     public void afficheTour(double tailleCase) {
         // Dessine la tour
-        Color tourColor = this.getColorByElement(this.getElement());
+        Color tourColor = this.getColorByElement();
         StdDraw.setPenColor(tourColor);
         StdDraw.filledCircle(position.getX(), position.getY(), tailleCase / 4.0); // Ajuster la taille selon besoin
         
         // Dessine la barre de vie au-dessus
-        StdDraw.setPenColor(Color.RED); // Barre de vie (rouge)
+        StdDraw.setPenColor(Color.GREEN); // Barre de vie (rouge)
         double lifePercentage = (double) getPV() / getMaxPV(); // TODO definir le max PV de chaque tours Fraction de la vie
         double barWidth = tailleCase * 0.8; // Largeur de la barre
         double barHeight = tailleCase * 0.1; // Hauteur de la barre

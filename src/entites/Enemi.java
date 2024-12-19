@@ -1,6 +1,7 @@
 package entites;
 
 import Map.Case;
+import outils.Omnicient;
 import Librairies.Point;
 import Librairies.StdDraw;
 
@@ -107,8 +108,23 @@ public class Enemi extends Entite {
     public void apparait(){
         
         StdDraw.setPenColor(Color.BLACK);
-        StdDraw.filledCircle(position.getX(), position.getY(), 20);
+        StdDraw.filledCircle(position.getX(), position.getY(), 10);
         StdDraw.show();
+
+        // Dessine la barre de vie
+        StdDraw.setPenColor(Color.RED); 
+        double lifePercentage = (double) getPV() / this.PVmax;
+        double barWidth = Omnicient.getSize() * 0.4; // Largeur de la barre proportienelle a la taille de la bare 
+        double barHeight = Omnicient.getSize() * 0.05; // Hauteur de la barre proportionelle a la taille de  la bar 
+        double barX = position.getX() - barWidth / 2.0; //Permet de placer laa bare au dessus de l'enemie centrer
+        double barY = position.getY() + Omnicient.getSize() / 6.0;// distance en tre le cante de l'enemi et la bare
+
+        StdDraw.filledRectangle(barX + barWidth * lifePercentage / 2.0, barY, barWidth * lifePercentage / 2.0, barHeight / 2.0);
+
+        // Dessine le contour de la barre de vie
+        StdDraw.setPenColor(Color.BLACK);
+        StdDraw.rectangle(position.getX(), barY, barWidth / 2.0, barHeight / 2.0);
+        
         
     }
 

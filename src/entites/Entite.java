@@ -4,6 +4,7 @@ package entites;
 import java.awt.Color;
 
 import Librairies.Point;
+import Librairies.StdDraw;
 
 public abstract class Entite {
 
@@ -18,6 +19,7 @@ public abstract class Entite {
     protected Element element;
     protected Point position;
     protected int PVmax;
+
     //private Point Position;
     
 
@@ -78,8 +80,8 @@ public abstract class Entite {
         this.Position = Position;
     }*/
 
-    protected Color getColorByElement(Element element) {
-        switch (element) {
+    protected Color getColorByElement() {
+        switch (this.element) {
             case FIRE:
                 return new Color(184, 22, 1);
             case EARTH:
