@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import Librairies.FileExtraction;
-import entites.Boss;
+import Librairies.FileExtraction;      
+import entites.Boss;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 n                
 import entites.EarthBrute;
 import entites.Enemi;
 import entites.FireGrognard;
@@ -25,14 +25,22 @@ public class Wave {
     private String nom;
     private Map<Long ,String> vague;
     public boolean VagueestFini;
-    //jsp 
+    public LocalTime time;
+
 
     public Wave(String nom){
         this.nom=nom;
         this.vague=ConstruitVague();
         this.VagueestFini = false;
+        this.time=LocalTime.now();
+    }
 
+    public void setVaguefini(){
+        VagueestFini=true;
+    }
 
+    public void setVagueStart(){
+        VagueestFini=false;
     }
 
 
@@ -71,29 +79,20 @@ public class Wave {
         }
     }
 
-    
-        // Fonction pour calculer la différence en millisecondes entre T0 et le temps actuel
-    public static long calculerDifferenceEnMillisecondes(LocalDateTime T0) {
-        LocalDateTime tempsActuel = LocalDateTime.now(); // Temps actuel en millisecondes
-        return Duration.between(T0, tempsActuel).toMillis(); // Différence entre T0 et le temps actuel
-    }
-
     public void creeEnemi(){
         
-        double sec = Math.round((d.toMillis() / 1000.0)*10.0)/10.0;// la division sert à transformer les milisecondes en seconde
+        Duration d = Duration.between(time, LocalTime.now());
+        double sec = d.toMillis() / 1000.0;// la division sert à transformer les milisecondes en seconde
         System.out.println(sec);
-        if (v.containsKey(sec)) {//c good
-            v.get(sec).seDeplacer2(chemin, game);
-            e.add(v.get(sec));
-            v.get(sec).setPositionX(chemin.get(0).getX());
-            v.get(sec).setPositionY(chemin.get(0).getY());
-            System.out.println(v.get(sec).getPositionY());
-            v.remove(sec);
-        } 
-        
-        if(sec == last){
-            setVaguefini(true);
+        if(vague.isEmpty()){
+            setVaguefini();
+            return;
         }
+        if (sec>=vague.firstkey()) {
+            Enemi ennemie = vague.getValue().creeEnemi();
+            SavetoOmni(ennemie);
+            vague.remove(vague.firstKey());
+        }  
     }
 
     
