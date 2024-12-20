@@ -3,14 +3,13 @@ package Gestion;
 import static outils.Omnicient.*;
 
 import java.time.Duration;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 import Librairies.FileExtraction;      
-import entites.Boss;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 n                
+import entites.Boss;
 import entites.EarthBrute;
 import entites.Enemi;
 import entites.FireGrognard;
@@ -30,6 +29,7 @@ public class Wave {
 
     public Wave(String nom){
         this.nom=nom;
+        this.vague = new TreeMap<>();//sugjestion de chat GPT car ca beug 
         this.vague=ConstruitVague();
         this.VagueestFini = false;
         this.time=LocalTime.now();
@@ -79,7 +79,7 @@ public class Wave {
         }
     }
 
-    public void creeEnemi(){
+    public void Vaguedemonstre(){
         
         Duration d = Duration.between(time, LocalTime.now());
         double sec = d.toMillis() / 1000.0;// la division sert à transformer les milisecondes en seconde
@@ -88,20 +88,13 @@ public class Wave {
             setVaguefini();
             return;
         }
-        if (sec>=vague.firstkey()) {
-            Enemi ennemie = vague.getValue().creeEnemi();
+
+        Long firstKey = ((TreeMap<Long, String>) vague).firstKey(); // Cast suggerer par CHATGPT car la methode firtkey de l'implementation map de java ne fonctionanait pas 
+
+        if (sec>=firstKey) {
+            Enemi ennemie = creeEnemi(vague.get(firstKey));
             SavetoOmni(ennemie);
-            vague.remove(vague.firstKey());
+            vague.remove(firstKey);
         }  
     }
-
-    
-
-    }
-    
-
-
-    
-
-
 }
