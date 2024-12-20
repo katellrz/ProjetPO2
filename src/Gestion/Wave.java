@@ -4,6 +4,7 @@ import static outils.Omnicient.*;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -23,12 +24,14 @@ public class Wave {
 
     private String nom;
     private Map<Long ,String> vague;
-    private boolean VagueestFini;
+    public boolean VagueestFini;
+    //jsp 
 
     public Wave(String nom){
         this.nom=nom;
         this.vague=ConstruitVague();
         this.VagueestFini = false;
+
 
     }
 
@@ -42,8 +45,8 @@ public class Wave {
 
         for (String ligne : fichier) {
             String[] tab = ligne.split("\\|");
-            Long temps = Long.parseLong(tab[0]);
-            vague.put(temps*1000, tab[1]);/*1000 car  on met en milli seconde   */
+            Long temps = Long.parseLong(tab[0]);// Long.parseLong -> transforme un String en Long la premiere case du tableux qui contient le temps auquel le monstre doit apparaitre 
+            vague.put(temps*1000, tab[1]);/*1000 car  on met en milli seconde  ----- tab[1] contient le nom de l'enemie qui doit etre crée au tempemp tab[1] */
         }
         return vague;
     }
@@ -75,16 +78,25 @@ public class Wave {
         return Duration.between(T0, tempsActuel).toMillis(); // Différence entre T0 et le temps actuel
     }
 
-    public void autoVague(){
-        LocalDateTime T0 = LocalDateTime.now();
-        while(true){
-            Long a = calculerDifferenceEnMillisecondes(T0);
-            if(vague.get(a)!=null){
-                Enemi e = creeEnemi(vague.get(a));
-                SavetoOmni(e);
-            }
-
+    public void creeEnemi(){
+        
+        double sec = Math.round((d.toMillis() / 1000.0)*10.0)/10.0;// la division sert à transformer les milisecondes en seconde
+        System.out.println(sec);
+        if (v.containsKey(sec)) {//c good
+            v.get(sec).seDeplacer2(chemin, game);
+            e.add(v.get(sec));
+            v.get(sec).setPositionX(chemin.get(0).getX());
+            v.get(sec).setPositionY(chemin.get(0).getY());
+            System.out.println(v.get(sec).getPositionY());
+            v.remove(sec);
+        } 
+        
+        if(sec == last){
+            setVaguefini(true);
         }
+    }
+
+    
 
     }
     

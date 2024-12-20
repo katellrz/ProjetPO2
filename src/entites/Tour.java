@@ -65,8 +65,5 @@ public abstract class Tour extends Entite {
     }
 
     public abstract int getMaxPV();
-
-
-
-  
+     
 }
