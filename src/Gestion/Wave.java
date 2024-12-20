@@ -57,7 +57,7 @@ public class Wave {
 
             String[] tab = ligne.split("\\|");
             double temps = Double.parseDouble(tab[0]);// Long.parseLong -> transforme un String en Long la premiere case du tableux qui contient le temps auquel le monstre doit apparaitre 
-            vague.put(temps*1000, tab[1]);/*1000 car  on met en milli seconde  ----- tab[1] contient le nom de l'enemie qui doit etre crée au tempemp tab[1] */
+            vague.put(temps, tab[1]);/*1000 car  on met en milli seconde  ----- tab[1] contient le nom de l'enemie qui doit etre crée au tempemp tab[1] */
         }
         return vague;
     }
@@ -97,7 +97,7 @@ public class Wave {
 
         double firstKey = ((TreeMap<Double,String>) vague).firstKey(); // Cast suggerer par CHATGPT car la methode firtkey de l'implementation map de java ne fonctionanait pas il m'a donc suggerer de fair un cast en tree map afin de gagner tous 
 
-        if (sec>=firstKey) {//TODO ca ne fonctione pas 
+        if (sec>=firstKey) {
             Enemi ennemie = creeEnemi(vague.get(firstKey));
 
             if (ennemie == null) {

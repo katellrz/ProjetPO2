@@ -109,8 +109,8 @@ public class Enemi extends Entite {
 
         System.out.println("L'ennemi apparaît : " + this);
         
-        StdDraw.setPenColor(Color.BLACK);
-        StdDraw.filledCircle(position.getX(), position.getY(), 10);
+        StdDraw.setPenColor(this.getColorByElement());
+        StdDraw.filledCircle(position.getX(), position.getY(), 5);
         StdDraw.show();
 
         // Dessine la barre de vie
@@ -121,7 +121,7 @@ public class Enemi extends Entite {
         double barX = position.getX() - barWidth / 2.0; //Permet de placer laa bare au dessus de l'enemie centrer
         double barY = position.getY() + Omnicient.getSize() / 6.0;// distance en tre le cante de l'enemi et la bare
 
-        StdDraw.filledRectangle(barX + barWidth * lifePercentage / 2.0, barY, barWidth * lifePercentage / 2.0, barHeight / 2.0);
+        //StdDraw.filledRectangle(barX + barWidth * lifePercentage / 2.0, barY, barWidth * lifePercentage / 2.0, barHeight / 2.0);
 
         // Dessine le contour de la barre de vie
         StdDraw.setPenColor(Color.BLACK);
