@@ -28,8 +28,13 @@ public abstract class Omnicient {
         Carte=carte;
     }
 
-    public static void SavetoOmni(Enemi e) {
-        positionMonstre.add(e);
+    public static void SavetoOmni(Enemi ennemie) {
+        if (ennemie != null) {
+            positionMonstre.add(ennemie); // Ajouter l'ennemi à la liste
+            System.out.println("Ennemi ajouté : " + ennemie); // Debugging
+        } else {
+            System.out.println("Ennemi non ajouté, valeur nulle.");
+        }
     }
 
     public static void SavetoOmni(Tour e) {

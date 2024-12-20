@@ -106,6 +106,8 @@ public class Enemi extends Entite {
     }
 
     public void apparait(){
+
+        System.out.println("L'ennemi apparaît : " + this);
         
         StdDraw.setPenColor(Color.BLACK);
         StdDraw.filledCircle(position.getX(), position.getY(), 10);

@@ -1,8 +1,9 @@
 package Gestion;
 
+import static outils.Omnicient.getPositionMonstre;
+
 import Librairies.StdDraw;
 import entites.Enemi;
-import entites.Minion;
 
 public abstract class Game {
 
@@ -15,13 +16,17 @@ public abstract class Game {
 
         //Archer a1 = new Archer(1, 1, 1, 1, ElementType.NONE, 1,)
 
-        Enemi monstre = new Minion();
+        Wave test = new Wave("waveBoss");
 
         while(true){
+            test.Vaguedemonstre();
             Interface.AfficheDynamique("10-10");
 
-            monstre.avance();
-            monstre.apparait();
+            for(Enemi monstre : getPositionMonstre()){
+                System.out.println("Monstre en position : " + monstre);
+                monstre.avance();
+                monstre.apparait();
+            }       
 
 
             StdDraw.show();
