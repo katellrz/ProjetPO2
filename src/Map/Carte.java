@@ -1,10 +1,9 @@
 package Map;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import Librairies.FileExtraction;
 import Map.Case.Casetype;
+import java.util.ArrayList;
+import java.util.List;
 import outils.Omnicient;
 
 public class Carte {

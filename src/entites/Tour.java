@@ -6,7 +6,7 @@ import Map.Case;
 import java.awt.Color;
 import java.util.List;
 import outils.Omnicient;
-import static outils.Omnicient.*;
+
 
 
 public abstract class Tour extends Entite {
@@ -31,17 +31,48 @@ public abstract class Tour extends Entite {
         return position;
     }
 
-    public static void PlacerTour(){//TODO a revoir
-        for (List<Case> c : Omnicient.getCarte()) {
-            for (Case cs : c) {
-                if(cs.SourisCliqueCase()){
-                    Archer t = new Archer(cs.getCenterCase());
-                    SavetoOmni(t);
-                }                
-            }
+    // public static void PlacerTour(){//TODO a revoir
+    //     for (List<Case> c : Omnicient.getCarte()) {
+    //         for (Case cs : c) {
+    //             if(cs.SourisCliqueCase()){
+    //                 Archer t = new Archer(cs.getCenterCase());
+    //                 SavetoOmni(t);
+    //             }                
+    //         }
             
+    //     }
+    // }
+
+
+public static void PlacerTour() {
+    List<List<Case>> carte = Omnicient.getCarte();
+    if (carte == null || carte.isEmpty()) {
+        System.out.println("Erreur : La carte n'a pas été initialisée.");
+        return;
+    }
+    for (List<Case> ligne : carte) {
+        for (Case cs : ligne) {
+             //TODO  Pour verifier  si la souris clique sur cette case
+            if (cs.SourisCliqueCase()) {
+        Archer t = new Archer(cs.getCenterCase());
+                Omnicient.SavetoOmni(t);
+                System.out.println("Tour ajoutée à la position : " + cs.getCenterCase());
+            }
         }
     }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void afficheTour(double tailleCase) {
         // Dessine la tour
