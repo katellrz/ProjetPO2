@@ -96,8 +96,5 @@ public static void PlacerTour() {
     }
 
     public abstract int getMaxPV();
-
-
-
-  
+     
 }
