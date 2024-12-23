@@ -53,7 +53,7 @@ public class Wave {
 
         for (String ligne : fichier) {
 
-            System.out.println("Ligne extraite : " + ligne); 
+            //System.out.println("Ligne extraite : " + ligne); 
 
             String[] tab = ligne.split("\\|");
             double temps = Double.parseDouble(tab[0]);// Long.parseLong -> transforme un String en Long la premiere case du tableux qui contient le temps auquel le monstre doit apparaitre 
@@ -64,7 +64,6 @@ public class Wave {
 
 
     public static Enemi creeEnemi (String enemie){
-        System.out.println("Tentative de création d'un ennemi de type : " + enemie);
         switch (enemie) {
             case "Earth Brute":
                 return new EarthBrute();
@@ -84,13 +83,11 @@ public class Wave {
     }
 
     public void Vaguedemonstre(){
-        System.out.println("Vaguedemonstre appelée.");
         
         Duration d = Duration.between(time, LocalTime.now());
         double sec = d.toMillis() / 1000.0;// la division sert à transformer les milisecondes en seconde
         System.out.println(sec);
         if(vague.isEmpty()){
-            System.out.println("La vague est vide.");
             setVaguefini();
             return;
         }
@@ -101,10 +98,10 @@ public class Wave {
             Enemi ennemie = creeEnemi(vague.get(firstKey));
 
             if (ennemie == null) {
-                System.out.println("Erreur : L'ennemi n'a pas été créé pour le type : " + vague.get(firstKey));
+                //System.out.println("Erreur : L'ennemi n'a pas été créé pour le type : " + vague.get(firstKey));
             } else {
 
-                System.out.println("arrive la ");
+                
                 SavetoOmni(ennemie);
                 vague.remove(firstKey);
             }

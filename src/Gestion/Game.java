@@ -16,14 +16,14 @@ public abstract class Game {
 
         //Archer a1 = new Archer(1, 1, 1, 1, ElementType.NONE, 1,)
 
-        Wave test = new Wave("waveBoss");
+        Wave test = new Wave("waveMinion");
 
         while(true){
             test.Vaguedemonstre();
             Interface.AfficheDynamique("10-10");
 
             for(Enemi monstre : getPositionMonstre()){
-                System.out.println("Monstre en position : " + monstre);
+                //System.out.println("Monstre en position : " + monstre);
                 monstre.avance();
                 monstre.apparait();
             }       
