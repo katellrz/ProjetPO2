@@ -16,6 +16,7 @@ public class Case {
     protected int cols;
     protected Point centre;
     protected char lettre;
+    protected boolean sel = false;
 
 
     public Case(char c, int rows, int cols,int centerX,int centerY){
@@ -62,6 +63,10 @@ public class Case {
 
     public Point getCenterCase(){
         return this.centre;
+    }
+
+    public void setSel(boolean sel) {
+        this.sel = sel;
     }
 
 //Fonction de chaque case 
@@ -129,7 +134,7 @@ public class Case {
     public void afficheCase(){
         Color couleur = this.couleur;//couleur de base 
 
-        if(SourisCliqueCase()) couleur = Color.YELLOW;//Si la case est cliquer
+        if(sel) couleur = Color.YELLOW;//Si la case est cliquer
         //dessin de la case
         StdDraw.setPenColor(couleur);
         StdDraw.filledSquare(this.centre.getX(), this.centre.getY(), Omnicient.getSize() / 2.0);
@@ -163,23 +168,23 @@ public class Case {
      * @return true ou flase 
      */
 
-    boolean dejaClique = false;
-
-    public boolean SourisCliqueCase() {//TODO detecte plein de fois la même case 
+     /* boolean dejaClique = false;
+     boolean etatPrecedentSouris = false;
+     
+     public boolean SourisCliqueCase(double mouseX, double mouseY) {
+        boolean etatActuelSouris = StdDraw.isMousePressed();
+    
         // Vérifie si la souris est pressée, que ce n'est pas un clic maintenu, et si la souris est bien dans cette case
-        if (StdDraw.isMousePressed() && !dejaClique && this.contains(StdDraw.mouseX(), StdDraw.mouseY(), Omnicient.getSize())) {
-            dejaClique = true; // Marque que ce clic est enregistré
+        if (etatActuelSouris && !etatPrecedentSouris && this.contains(mouseX, mouseY, Omnicient.getSize())) {
             System.out.println("Clic détecté sur la case : " + this.toString());
+            etatPrecedentSouris = etatActuelSouris;
             return true; // Indique qu'un clic valide a eu lieu
         }
     
-        // Réinitialise l'état quand la souris est relâchée
-        if (!StdDraw.isMousePressed()) {
-            dejaClique = false;
-        }
-    
+        // Réinitialise l'état précédent de la souris
+        etatPrecedentSouris = etatActuelSouris;
         return false; // Aucun clic détecté
-    }
+    } */
     
 
     

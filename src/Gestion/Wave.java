@@ -86,7 +86,7 @@ public class Wave {
         
         Duration d = Duration.between(time, LocalTime.now());
         double sec = d.toMillis() / 1000.0;// la division sert à transformer les milisecondes en seconde
-        System.out.println(sec);
+        //System.out.println(sec);
         if(vague.isEmpty()){
             setVaguefini();
             return;

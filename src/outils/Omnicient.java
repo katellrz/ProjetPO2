@@ -31,7 +31,7 @@ public abstract class Omnicient {
     public static void SavetoOmni(Enemi ennemie) {
         if (ennemie != null) {
             positionMonstre.add(ennemie); // Ajouter l'ennemi à la liste
-            System.out.println("Ennemi ajouté : " + ennemie); // Debugging
+            //System.out.println("Ennemi ajouté : " + ennemie); // Debugging
         } else {
             System.out.println("Ennemi non ajouté, valeur nulle.");
         }
