@@ -14,7 +14,7 @@ public abstract class Game {
         Interface.AfficheInterface();
         Interface.AfficheStatique();
         Interface.AfficheDynamique("10-10");
-        DetectionSouris.DetectionSourisCase(StdDraw.mouseX(),StdDraw.mouseY());
+       
         StdDraw.show();
 
         //Archer a1 = new Archer(1, 1, 1, 1, ElementType.NONE, 1,)
@@ -22,6 +22,8 @@ public abstract class Game {
         Wave test = new Wave("waveMinion");
 
         while(true){
+
+            DetectionSouris.DetectionSourisCase(StdDraw.mouseX(),StdDraw.mouseY()); 
             test.Vaguedemonstre();
             Interface.AfficheDynamique("10-10");
 

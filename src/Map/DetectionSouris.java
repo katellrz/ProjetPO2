@@ -13,7 +13,7 @@ public class DetectionSouris {
     private static Case Caseprecedente;
 
 
-    public static Case DetectionSourisCase(double mouseX, double mouseY) {
+    /* public static Case DetectionSourisCase(double mouseX, double mouseY) {
         for (List<Case> ligne : getCarte()) {
             for (Case c : ligne) {
                 if (c.contains(mouseX, mouseY, getSize())) {
@@ -27,6 +27,20 @@ public class DetectionSouris {
                 return c;
             }  
         }
+        return null; 
+    }*/
+
+    public static Case DetectionSourisCase(double mouseX, double mouseY) {
+        System.out.println("Détection de la souris aux coordonnées : (" + mouseX + ", " + mouseY + ")");
+        for (List<Case> ligne : getCarte()) {
+            for (Case c : ligne) {
+                if (c.contains(mouseX, mouseY, getSize())) {
+                    System.out.println("La souris est sur la case : " + c.toString());
+                    return c;
+                }
+            }
+        }
+        System.out.println("Aucune case détectée sous la souris.");
         return null;
     }
 
