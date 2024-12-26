@@ -42,8 +42,14 @@ public abstract class Game {
                 TOURS.afficheTour(getSize());
             }  
 
+            if(StdDraw.isMousePressed()){
+                System.out.println(DetectionZone(StdDraw.mouseX(), StdDraw.mouseY()));
+            }
+
 
             StdDraw.show();
+
+            
         }
 
 

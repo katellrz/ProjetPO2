@@ -22,7 +22,7 @@ public class DetectionSouris {
                     while ((StdDraw.isMousePressed())) {
                         c.setSel(true);
                         Interface.AfficheDynamique("10-10");
-                        StdDraw.pause(10);
+                        
                     }
                     c.setSel(false);
                     return c;
@@ -34,10 +34,24 @@ public class DetectionSouris {
     }
 
     public static boolean DetectionSourisCaseBool(Case c) {
-        if(c.contains(getSize(), getSize(), getSize())&&StdDraw.isMousePressed()) {
+        if(c.contains(StdDraw.mouseX(), StdDraw.mouseY(), getSize())&&StdDraw.isMousePressed()) {
             return true;
         }else{
             return false;
+        }
+    }
+
+    public static String DetectionZone(double mouseX, double mouseY) {
+        if (mouseX > 0 && mouseX < 700 && mouseY > 0 && mouseY < 700) {
+            return "Zone Map";
+        } else if (mouseX > 721 && mouseX < 1009 && mouseY > 676 && mouseY < 700) {
+            return "Zone Level";
+        } else if (mouseX > 721 && mouseX < 1009 && mouseY > 616 && mouseY < 666) {
+            return "Zone Player";
+        } else if (mouseX > 721 && mouseX < 1009 && mouseY > 0 && mouseY < 606) {
+            return "Zone Store";
+        } else {
+            return "Zone Autre";
         }
     }
 

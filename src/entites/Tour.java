@@ -65,18 +65,6 @@ public static void PlacerTour() {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
     public void afficheTour(double tailleCase) {
         // Dessine la tour
         Color tourColor = this.getColorByElement();
