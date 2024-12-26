@@ -6,44 +6,40 @@ import static outils.Omnicient.getSize;
 import java.awt.Color;
 import java.util.List;
 
+import Gestion.Interface;
 import Librairies.StdDraw;
+import entites.Tour;
 
 public class DetectionSouris {
 
-    private static Case Caseprecedente;
-
-
-    /* public static Case DetectionSourisCase(double mouseX, double mouseY) {
-        for (List<Case> ligne : getCarte()) {
-            for (Case c : ligne) {
-                if (c.contains(mouseX, mouseY, getSize())) {
-                    if (Caseprecedente != null) {
-                        Caseprecedente.setSel(false);
-                    }
-                }
-
-                c.setSel(true);
-                Caseprecedente = c;
-                return c;
-            }  
-        }
-        return null; 
-    }*/
 
     public static Case DetectionSourisCase(double mouseX, double mouseY) {
-        System.out.println("Détection de la souris aux coordonnées : (" + mouseX + ", " + mouseY + ")");
+        //System.out.println("Détection de la souris aux coordonnées : (" + mouseX + ", " + mouseY + ")");
         for (List<Case> ligne : getCarte()) {
             for (Case c : ligne) {
-                if (c.contains(mouseX, mouseY, getSize())) {
-                    System.out.println("La souris est sur la case : " + c.toString());
+                if (c.contains(mouseX, mouseY, getSize())&&StdDraw.isMousePressed()) {
+                    System.out.println("Click sur la case : " + c.toString()); 
+                    while ((StdDraw.isMousePressed())) {
+                        c.setSel(true);
+                        Interface.AfficheDynamique("10-10");
+                        StdDraw.pause(10);
+                    }
+                    c.setSel(false);
                     return c;
                 }
             }
         }
-        System.out.println("Aucune case détectée sous la souris.");
+        //System.out.println("Aucune case détectée sous la souris.");
         return null;
     }
 
+    public static boolean DetectionSourisCaseBool(Case c) {
+        if(c.contains(getSize(), getSize(), getSize())&&StdDraw.isMousePressed()) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
 }
-
-

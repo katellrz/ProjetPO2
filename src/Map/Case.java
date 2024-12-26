@@ -1,5 +1,7 @@
 package Map;
 
+import static outils.Omnicient.getSize;
+
 import java.awt.Color;
 
 import Librairies.Point;
@@ -134,7 +136,7 @@ public class Case {
     public void afficheCase(){
         Color couleur = this.couleur;//couleur de base 
 
-        if(sel) couleur = Color.YELLOW;//Si la case est cliquer
+        if(this.contains(StdDraw.mouseX(), StdDraw.mouseY(), getSize())&&StdDraw.isMousePressed()) couleur = Color.YELLOW;//Si la case est cliquer
         //dessin de la case
         StdDraw.setPenColor(couleur);
         StdDraw.filledSquare(this.centre.getX(), this.centre.getY(), Omnicient.getSize() / 2.0);

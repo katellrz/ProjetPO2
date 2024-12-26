@@ -3,6 +3,10 @@ package entites;
 import Librairies.Point;
 import Librairies.StdDraw;
 import Map.Case;
+
+import static Map.DetectionSouris.DetectionSourisCase;
+import static Map.DetectionSouris.DetectionSourisCaseBool;
+
 import java.awt.Color;
 import java.util.List;
 import outils.Omnicient;
@@ -46,17 +50,16 @@ public abstract class Tour extends Entite {
 
 public static void PlacerTour() {
     List<List<Case>> carte = Omnicient.getCarte();
-    if (carte == null || carte.isEmpty()) {
+    /* if (carte == null || carte.isEmpty()) {
         System.out.println("Erreur : La carte n'a pas été initialisée.");
         return;
-    }
+    } */
     for (List<Case> ligne : carte) {
-        for (Case cs : ligne) {
-             //TODO  Pour verifier  si la souris clique sur cette case
-            if (cs.SourisCliqueCase()) {
-        Archer t = new Archer(cs.getCenterCase());
+        for (Case c : ligne) {
+            if (DetectionSourisCaseBool(c)) {
+                Archer t = new Archer(c.getCenterCase());
                 Omnicient.SavetoOmni(t);
-                System.out.println("Tour ajoutée à la position : " + cs.getCenterCase());
+                System.out.println("Tour ajoutée à la position : " + c.getCenterCase());
             }
         }
     }
@@ -88,7 +91,7 @@ public static void PlacerTour() {
         double barX = position.getX() - barWidth / 2.0; // Position en X de la barre
         double barY = position.getY() + tailleCase / 2.0; // Position en Y de la barre
 
-        StdDraw.filledRectangle(barX + barWidth * lifePercentage / 2.0, barY, barWidth * lifePercentage / 2.0, barHeight / 2.0);
+        //StdDraw.filledRectangle(barX + barWidth * lifePercentage / 2.0, barY, barWidth * lifePercentage / 2.0, barHeight / 2.0);
 
         // Dessine le contour de la barre de vie
         StdDraw.setPenColor(Color.BLACK);

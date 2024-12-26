@@ -1,10 +1,11 @@
 package Gestion;
 
-import static outils.Omnicient.getPositionMonstre;
+import static outils.Omnicient.*;
 import static Map.DetectionSouris.*;
 import Librairies.StdDraw;
 import Map.DetectionSouris;
 import entites.Enemi;
+import entites.Tour;
 
 public abstract class Game {
 
@@ -27,11 +28,19 @@ public abstract class Game {
             test.Vaguedemonstre();
             Interface.AfficheDynamique("10-10");
 
+            Tour.PlacerTour();
+
             for(Enemi monstre : getPositionMonstre()){
                 //System.out.println("Monstre en position : " + monstre);
                 monstre.avance();
                 monstre.apparait();
-            }       
+            }  
+            
+            for(Tour TOURS : getPositionTours()){
+                //System.out.println("Monstre en position : " + monstre);
+                
+                TOURS.afficheTour(getSize());
+            }  
 
 
             StdDraw.show();
