@@ -4,6 +4,7 @@ import static outils.Omnicient.*;
 import static Map.DetectionSouris.*;
 import Librairies.StdDraw;
 import Map.DetectionSouris;
+import entites.Archer;
 import entites.Enemi;
 import entites.Tour;
 
@@ -11,22 +12,26 @@ public abstract class Game {
 
     public static void Start(){
 
-        
+        StdDraw.enableDoubleBuffering();
+
         Interface.AfficheInterface();
         Interface.AfficheStatique();
         Interface.AfficheDynamique("10-10");
        
-        StdDraw.show();
 
         //Archer a1 = new Archer(1, 1, 1, 1, ElementType.NONE, 1,)
 
         Wave test = new Wave("waveMinion");
+
+        
 
         while(true){
 
             DetectionSouris.DetectionSourisCase(StdDraw.mouseX(),StdDraw.mouseY()); 
             test.Vaguedemonstre();
             Interface.AfficheDynamique("10-10");
+
+            Archer.afficheTourBoutique(50);
 
             Tour.PlacerTour();
 
@@ -48,6 +53,8 @@ public abstract class Game {
 
 
             StdDraw.show();
+
+            StdDraw.pause(20);
 
             
         }

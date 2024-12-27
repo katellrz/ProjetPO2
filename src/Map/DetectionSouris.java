@@ -55,5 +55,9 @@ public class DetectionSouris {
         }
     }
 
+    public static void DetectionSourisTour() {
+        
+    }
+
 
 }
