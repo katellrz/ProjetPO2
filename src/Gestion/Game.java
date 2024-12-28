@@ -5,8 +5,11 @@ import static Map.DetectionSouris.*;
 import Librairies.StdDraw;
 import Map.DetectionSouris;
 import entites.Archer;
+import entites.EarthCaster;
 import entites.Enemi;
+import entites.FireCaster;
 import entites.Tour;
+import entites.WaterCaster;
 import entites.WindCaster;
 
 public abstract class Game {
@@ -34,7 +37,9 @@ public abstract class Game {
 
             Archer.afficheTourBoutique(50);
             WindCaster.afficheTourBoutique(50);
-            
+            WaterCaster.afficheTourBoutique(50);
+            EarthCaster.afficheTourBoutique(50);
+            FireCaster.afficheTourBoutique(50);
 
             Tour.PlacerTour();
 

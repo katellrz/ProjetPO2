@@ -14,7 +14,7 @@ public abstract class Entite {
     protected int PV;
     protected int ATK;
     protected double ATKSpeed;
-    protected int Range;
+    protected double Range;
     protected Element element;
     protected Point position;
     protected int PVmax;
@@ -55,7 +55,7 @@ public abstract class Entite {
         this.ATKSpeed = ATKSpeed;
     }
 
-    public int getRange() {
+    public double getRange() {
         return Range;
     }
 

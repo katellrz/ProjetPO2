@@ -2,9 +2,13 @@ package entites;
 
 import Librairies.Point;
 import Librairies.StdDraw;
+
+import java.awt.Color;
 import java.awt.Font;
 
 public class Archer extends Tour{
+
+    private static Color couleur = new Color(107, 106, 105);
 
     public Archer(Point position){
         super(position);
@@ -33,7 +37,9 @@ public class Archer extends Tour{
         
         StdDraw.setPenColor(StdDraw.BLACK);
         StdDraw.rectangle(785, 571, 64, 25);
+        StdDraw.setPenColor(couleur);
         StdDraw.filledCircle(745, 571, 15);
+        StdDraw.setPenColor(StdDraw.BLACK);
         Font font1 = new Font("Arial", Font.PLAIN, 20);
         StdDraw.setFont(font1);
         StdDraw.text(805, 581, "Archer");

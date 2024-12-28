@@ -6,61 +6,53 @@ import java.awt.Font;
 import Librairies.Point;
 import Librairies.StdDraw;
 
-public class WindCaster extends Tour {
+public class WaterCaster extends Tour {
 
-    private static Color couleur = new Color(167, 194, 200);
+    private static Color couleur = new Color(24, 108, 151);
 
-
-    public WindCaster(Point position) {
+    public WaterCaster(Point position) {
         super(position);
         this.PV=30;
-        this.ATK=5;
-        this.ATKSpeed=1.5;
-        this.Range=6;
-        this.element=Element.WIND;
+        this.ATK=3;
+        this.ATKSpeed=1;
+        this.Range=4;
+        this.element=Element.WATER;
         this.Cost=50;
         this.MaxPV = PV;
     }
 
-    public void afficheTour(int size) {
-        StdDraw.setPenColor(Color.GRAY);
-        StdDraw.filledCircle(position.getX(), position.getY(), size / 2);
+     @Override
+    public int getMaxPV() {
+        return MaxPV;
     }
 
     public static void afficheTourBoutique(int Money){
 
         if(Money<50){
             StdDraw.setPenColor(StdDraw.GRAY);
-            StdDraw.filledRectangle(923, 571, 64, 25);
+            StdDraw.filledRectangle(785, 511, 64, 25);
         }else{
             StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
-            StdDraw.filledRectangle(923, 571, 64, 25);
+            StdDraw.filledRectangle(785, 511, 64, 25);
         }
         
         StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.rectangle(923, 571, 64, 25);
+        StdDraw.rectangle(785, 511, 64, 25);
         StdDraw.setPenColor(couleur);
-        StdDraw.filledCircle(883, 571, 15);
+        StdDraw.filledCircle(745, 511, 15);
         StdDraw.setPenColor(StdDraw.BLACK);
         Font font1 = new Font("Arial", Font.PLAIN, 17);
         StdDraw.setFont(font1);
-        StdDraw.text(940, 581, "WindCaster");
+        StdDraw.text(805, 521, "WaterCaster");
             
 
         Font font = new Font("Arial", Font.PLAIN, 10); // Arial, taille 20
         StdDraw.setFont(font);
-        StdDraw.text(943, 561, "PV : 30    ATK : 5");
+        StdDraw.text(805, 501, "PV : 30    ATK : 3");
 
         StdDraw.setPenColor(StdDraw.WHITE);
-        StdDraw.text(883, 571, "50");
+        StdDraw.text(745, 511, "50");
 
     }
-
-    @Override
-    public int getMaxPV() {
-        return MaxPV;
-    }
-
-
 
 }

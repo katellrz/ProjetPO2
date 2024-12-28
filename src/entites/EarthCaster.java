@@ -6,20 +6,20 @@ import java.awt.Font;
 import Librairies.Point;
 import Librairies.StdDraw;
 
-public class WindCaster extends Tour {
+public class EarthCaster extends Tour {
 
-    private static Color couleur = new Color(167, 194, 200);
+    private static Color couleur = new Color(139,69,19);
 
-
-    public WindCaster(Point position) {
+    public EarthCaster(Point position) {
         super(position);
-        this.PV=30;
-        this.ATK=5;
-        this.ATKSpeed=1.5;
-        this.Range=6;
-        this.element=Element.WIND;
-        this.Cost=50;
+        this.PV=50;
+        this.ATK=7;
+        this.ATKSpeed=0.5;
+        this.Range=2.5;
+        this.element=Element.EARTH;
+        this.Cost=100;
         this.MaxPV = PV;
+        
     }
 
     public void afficheTour(int size) {
@@ -29,30 +29,30 @@ public class WindCaster extends Tour {
 
     public static void afficheTourBoutique(int Money){
 
-        if(Money<50){
+        if(Money<100){
             StdDraw.setPenColor(StdDraw.GRAY);
-            StdDraw.filledRectangle(923, 571, 64, 25);
+            StdDraw.filledRectangle(923, 511, 64, 25);
         }else{
             StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
-            StdDraw.filledRectangle(923, 571, 64, 25);
+            StdDraw.filledRectangle(923, 511, 64, 25);
         }
         
         StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.rectangle(923, 571, 64, 25);
+        StdDraw.rectangle(923, 511, 64, 25);
         StdDraw.setPenColor(couleur);
-        StdDraw.filledCircle(883, 571, 15);
+        StdDraw.filledCircle(883, 511, 15);
         StdDraw.setPenColor(StdDraw.BLACK);
         Font font1 = new Font("Arial", Font.PLAIN, 17);
         StdDraw.setFont(font1);
-        StdDraw.text(940, 581, "WindCaster");
+        StdDraw.text(940, 521, "EarthCaster");
             
 
         Font font = new Font("Arial", Font.PLAIN, 10); // Arial, taille 20
         StdDraw.setFont(font);
-        StdDraw.text(943, 561, "PV : 30    ATK : 5");
+        StdDraw.text(943, 501, "PV : 50    ATK : 7");
 
         StdDraw.setPenColor(StdDraw.WHITE);
-        StdDraw.text(883, 571, "50");
+        StdDraw.text(883, 511, "100");
 
     }
 
@@ -60,7 +60,4 @@ public class WindCaster extends Tour {
     public int getMaxPV() {
         return MaxPV;
     }
-
-
-
 }
