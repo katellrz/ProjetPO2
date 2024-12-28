@@ -4,11 +4,12 @@ import Librairies.Point;
 import Librairies.StdDraw;
 import Map.Case;
 
-import static Map.DetectionSouris.DetectionSourisCase;
-import static Map.DetectionSouris.DetectionSourisCaseBool;
+import static Map.DetectionSouris.*;
 
 import java.awt.Color;
 import java.util.List;
+
+import Gestion.Interface;
 import outils.Omnicient;
 
 
@@ -35,57 +36,103 @@ public abstract class Tour extends Entite {
         return position;
     }
 
-    // public static void PlacerTour(){//TODO a revoir
-    //     for (List<Case> c : Omnicient.getCarte()) {
-    //         for (Case cs : c) {
-    //             if(cs.SourisCliqueCase()){
-    //                 Archer t = new Archer(cs.getCenterCase());
-    //                 SavetoOmni(t);
-    //             }                
-    //         }
-            
-    //     }
-    // }
-
-
-public static void PlacerTour() {
-    List<List<Case>> carte = Omnicient.getCarte();
-    /* if (carte == null || carte.isEmpty()) {
-        System.out.println("Erreur : La carte n'a pas été initialisée.");
-        return;
-    } */
-    for (List<Case> ligne : carte) {
-        for (Case c : ligne) {
-            if (DetectionSourisCaseBool(c)) {
-                Archer t = new Archer(c.getCenterCase());
+    public static void PlacerTour(){
+        double x = StdDraw.mouseX();
+        double y = StdDraw.mouseY();    
+        if(DetectionZone(x, y).equals("Zone Boutique")){
+            if((x<849&&x>721)&&(y<546&&y>596)){
+                Case c = null;
+                while(c==null){
+                    c = DetectionSourisCase(StdDraw.mouseX(), StdDraw.mouseX());
+                }
+                if(c.getType()==Case.Casetype.CONSTRUCTIBLE){//TODO completer avec la money
+                    Tour t = new Archer(c.getCenterCase());
+                    Omnicient.SavetoOmni(t);
+                }else{
+                    //Interface.MessageErrCaseNonConstructible();
+                }
+            }
+        }else if((x<987&&x>859)&&(y<546&&y>596)){
+            Case c = null;
+            while(c==null){
+                c = DetectionSourisCase(StdDraw.mouseX(), StdDraw.mouseX());
+            }
+            if(c.getType()==Case.Casetype.CONSTRUCTIBLE){//TODO completer avec la money
+                Tour t = new WindCaster(c.getCenterCase());
                 Omnicient.SavetoOmni(t);
-                System.out.println("Tour ajoutée à la position : " + c.getCenterCase());
+            }else{
+                //Interface.MessageErrCaseNonConstructible();
+            }
+        }else if((x<849&&x>721)&&(y<486&&y>536)){
+            Case c = null;
+            while(c==null){
+                c = DetectionSourisCase(StdDraw.mouseX(), StdDraw.mouseX());
+            }
+            if(c.getType()==Case.Casetype.CONSTRUCTIBLE){//TODO completer avec la money
+                Tour t = new WaterCaster(c.getCenterCase());
+                Omnicient.SavetoOmni(t);
+            }else{
+                //Interface.MessageErrCaseNonConstructible();
+            }
+        }else if((x<987&&x>859)&&(y<486&&y>536)){
+            Case c = null;
+            while(c==null){
+                c = DetectionSourisCase(StdDraw.mouseX(), StdDraw.mouseX());
+            }
+            if(c.getType()==Case.Casetype.CONSTRUCTIBLE){//TODO completer avec la money
+                Tour t = new EarthCaster(c.getCenterCase());
+                Omnicient.SavetoOmni(t);
+            }else{
+                //Interface.MessageErrCaseNonConstructible();
+            }
+        }else if((x<849&&x>721)&&(y<476&&y>426)){
+            Case c = null;
+            while(c==null){
+                c = DetectionSourisCase(StdDraw.mouseX(), StdDraw.mouseX());
+            }
+            if(c.getType()==Case.Casetype.CONSTRUCTIBLE){//TODO completer avec la money
+                Tour t = new FireCaster(c.getCenterCase());
+                Omnicient.SavetoOmni(t);
+            }else{
+                //Interface.MessageErrCaseNonConstructible();
             }
         }
     }
-}
+
 
     public void afficheTour(double tailleCase) {
         // Dessine la tour
-        Color tourColor = this.getColorByElement();
+        Color tourColor = this.getColor();
         StdDraw.setPenColor(tourColor);
         StdDraw.filledCircle(position.getX(), position.getY(), tailleCase / 4.0); // Ajuster la taille selon besoin
-        
-        // Dessine la barre de vie au-dessus
-        StdDraw.setPenColor(Color.GREEN); // Barre de vie (rouge)
-        double lifePercentage = (double) getPV() / getMaxPV(); // TODO definir le max PV de chaque tours Fraction de la vie
-        double barWidth = tailleCase * 0.8; // Largeur de la barre
-        double barHeight = tailleCase * 0.1; // Hauteur de la barre
-        double barX = position.getX() - barWidth / 2.0; // Position en X de la barre
-        double barY = position.getY() + tailleCase / 2.0; // Position en Y de la barre
+    
+        this.afficherVieT();
+    }
 
-        //StdDraw.filledRectangle(barX + barWidth * lifePercentage / 2.0, barY, barWidth * lifePercentage / 2.0, barHeight / 2.0);
+    public void afficherVieT() {
 
-        // Dessine le contour de la barre de vie
+        // Calculer la largeur actuelle en fonction des points de vie
+        double largeurActuelle = (double)this.getPV() /this.getMaxPV() * 50;
+
+        // Dessiner le fond de la barre (gris)
+        StdDraw.setPenColor(Color.LIGHT_GRAY);
+        StdDraw.filledRectangle(this.getPosition().getX(),this.getPosition().getY() - 25, 50 / 2, 7 / 2);
+
+        // Dessiner la barre de vie (verte)
+        StdDraw.setPenColor(Color.GREEN);
+        StdDraw.filledRectangle(this.getPosition().getX() - (50 - largeurActuelle) / 2,this.getPosition().getY() - 25,
+                largeurActuelle / 2, 7 / 2);
+
+        // Contour de la barre (noir)
         StdDraw.setPenColor(Color.BLACK);
-        StdDraw.rectangle(position.getX(), barY, barWidth / 2.0, barHeight / 2.0);
+        StdDraw.rectangle(this.getPosition().getX(),this.getPosition().getX() - 25, 50 / 2, 7 / 2);
+
+        StdDraw.show();
+
     }
 
     public abstract int getMaxPV();
+
+    public abstract Color getColor();
      
 }

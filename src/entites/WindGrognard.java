@@ -12,4 +12,9 @@ public class WindGrognard extends Enemi {
         this.Reward = 1;
 
     }
+
+    @Override
+    public int getMaxPV() {
+        return PVmax;
+    }  
 }

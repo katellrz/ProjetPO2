@@ -10,7 +10,7 @@ import static outils.Omnicient.*;
 import java.awt.Color;
 import java.util.List;
 
-public class Enemi extends Entite {
+public abstract class Enemi extends Entite {
     protected double Speed;
     protected int Reward;
     protected int currentIndex;//TODO en publique jsp pas pourquoi peut poser problème
@@ -111,24 +111,35 @@ public class Enemi extends Entite {
         
         StdDraw.setPenColor(this.getColorByElement());
         StdDraw.filledCircle(position.getX(), position.getY(), 5);
-        StdDraw.show();
-
-        // Dessine la barre de vie
-        StdDraw.setPenColor(Color.RED); 
-        double lifePercentage = (double) getPV() / this.PVmax;
-        double barWidth = Omnicient.getSize() * 0.4; // Largeur de la barre proportienelle a la taille de la bare 
-        double barHeight = Omnicient.getSize() * 0.05; // Hauteur de la barre proportionelle a la taille de  la bar 
-        double barX = position.getX() - barWidth / 2.0; //Permet de placer laa bare au dessus de l'enemie centrer
-        double barY = position.getY() + Omnicient.getSize() / 6.0;// distance en tre le cante de l'enemi et la bare
-
-        //StdDraw.filledRectangle(barX + barWidth * lifePercentage / 2.0, barY, barWidth * lifePercentage / 2.0, barHeight / 2.0);
-
-        // Dessine le contour de la barre de vie
-        StdDraw.setPenColor(Color.BLACK);
-        StdDraw.rectangle(position.getX(), barY, barWidth / 2.0, barHeight / 2.0);
+        StdDraw.show();     
         
+        this.afficherVieE();
         
     }
+
+    public void afficherVieE() {
+
+        // Calculer la largeur actuelle en fonction des points de vie
+        double largeurActuelle = (double)this.getPV() /this.getMaxPV() * 50;
+
+        // Dessiner le fond de la barre (gris)
+        StdDraw.setPenColor(Color.LIGHT_GRAY);
+        StdDraw.filledRectangle(this.getPosition().getX(),this.getPosition().getY() - 25, 50 / 2, 7 / 2);
+
+        // Dessiner la barre de vie (verte)
+        StdDraw.setPenColor(Color.GREEN);
+        StdDraw.filledRectangle(this.getPosition().getX() - (50 - largeurActuelle) / 2,this.getPosition().getY() - 25,
+                largeurActuelle / 2, 7 / 2);
+
+        // Contour de la barre (noir)
+        StdDraw.setPenColor(Color.BLACK);
+        StdDraw.rectangle(this.getPosition().getX(),this.getPosition().getX() - 25, 50 / 2, 7 / 2);
+
+        StdDraw.show();
+
+    }
+
+    public abstract int getMaxPV();
 
     
 }

@@ -12,4 +12,10 @@ public class Boss extends Enemi {
         this.Reward = 100;
         this.PVmax = PV;
     }
+
+    @Override
+    public int getMaxPV() {
+        return PVmax;
+    }   
 }
+

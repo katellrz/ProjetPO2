@@ -12,4 +12,9 @@ public class Minion extends Enemi {
         this.Reward = 1;
         this.PVmax = PV;
     }
+
+    @Override
+    public int getMaxPV() {
+        return PVmax;
+    }  
 }

@@ -35,6 +35,7 @@ public class DetectionSouris {
 
     public static boolean DetectionSourisCaseBool(Case c) {
         if(c.contains(StdDraw.mouseX(), StdDraw.mouseY(), getSize())&&StdDraw.isMousePressed()) {
+            System.out.println("Souris sur la case : " + c.toString());
             return true;
         }else{
             return false;

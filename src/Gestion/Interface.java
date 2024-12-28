@@ -150,4 +150,19 @@ public abstract class Interface{
         StdDraw.setPenColor(Color.BLACK);
         StdDraw.rectangle(center.getX(), center.getY(), halfDist.getX(), halfDist.getY());
     }
+
+    public static void MessageErrCaseNonConstructible(){
+
+        Point center = new Point(856,303);
+
+        StdDraw.setPenColor(Color.YELLOW);
+        StdDraw.filledRectangle(center.getX(), center.getY(), 40, 15);
+
+        StdDraw.setPenColor(Color.BLACK);
+        StdDraw.rectangle(center.getX(), center.getY(), 40, 15);
+        StdDraw.text(500, 500, "Case non constructible");
+
+        StdDraw.show();
+        StdDraw.pause(1000);
+    }
 }

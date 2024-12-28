@@ -22,9 +22,9 @@ public class EarthCaster extends Tour {
         
     }
 
-    public void afficheTour(int size) {
-        StdDraw.setPenColor(Color.GRAY);
-        StdDraw.filledCircle(position.getX(), position.getY(), size / 2);
+    @Override
+    public Color getColor() {
+        return couleur;
     }
 
     public static void afficheTourBoutique(int Money){

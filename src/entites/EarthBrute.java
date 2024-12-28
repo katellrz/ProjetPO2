@@ -12,4 +12,9 @@ public class EarthBrute extends Enemi {
         this.Reward = 3;
         this.PVmax = PV;
     }
+
+    @Override
+    public int getMaxPV() {
+        return PVmax;
+    }  
 }

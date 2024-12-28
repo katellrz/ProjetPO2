@@ -12,4 +12,9 @@ public class WaterBrute extends Enemi {
         this.Reward = 3;
 
     }
+
+    @Override
+    public int getMaxPV() {
+        return PVmax;
+    }  
 }

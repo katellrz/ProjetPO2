@@ -25,6 +25,11 @@ public class Archer extends Tour{
         return MaxPV;
     }
 
+    @Override
+    public Color getColor() {
+        return couleur;
+    }
+
     public static void afficheTourBoutique(int Money){
 
         if(Money<20){

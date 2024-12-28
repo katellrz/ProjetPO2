@@ -26,6 +26,11 @@ public class WaterCaster extends Tour {
         return MaxPV;
     }
 
+    @Override
+    public Color getColor() {
+        return couleur;
+    }
+
     public static void afficheTourBoutique(int Money){
 
         if(Money<50){
