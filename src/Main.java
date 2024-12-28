@@ -1,5 +1,5 @@
 import Librairies.StdDraw;
-import entites.Joueur;
+
 import java.awt.Color;
 
 public class Main {
