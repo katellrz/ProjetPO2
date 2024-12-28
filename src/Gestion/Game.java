@@ -7,6 +7,7 @@ import Map.DetectionSouris;
 import entites.Archer;
 import entites.Enemi;
 import entites.Tour;
+import entites.WindCaster;
 
 public abstract class Game {
 
@@ -32,6 +33,8 @@ public abstract class Game {
             Interface.AfficheDynamique("10-10");
 
             Archer.afficheTourBoutique(50);
+            WindCaster.afficheTourBoutique(50);
+            
 
             Tour.PlacerTour();
 
