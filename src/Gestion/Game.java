@@ -33,11 +33,13 @@ public abstract class Game {
 
         while(true){
 
+            Interface.AfficheDynamique("10-10", joueur.getArgent(), joueur.getVie());
+
+            
+
             DetectionSouris.DetectionSourisCase(StdDraw.mouseX(),StdDraw.mouseY());
 
             test.Vaguedemonstre();
-
-            Interface.AfficheDynamique("10-10", joueur.getArgent(), joueur.getVie());
 
             
 
@@ -54,10 +56,6 @@ public abstract class Game {
                 
                 TOURS.afficheTour(getSize());
             }  
-
-            if(StdDraw.isMousePressed()){
-                System.out.println(DetectionZone(StdDraw.mouseX(), StdDraw.mouseY()));
-            }
 
 
             StdDraw.show();

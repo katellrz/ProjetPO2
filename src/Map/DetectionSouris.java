@@ -3,12 +3,12 @@ package Map;
 import static outils.Omnicient.getCarte;
 import static outils.Omnicient.getSize;
 
-import java.awt.Color;
+
 import java.util.List;
 
-import Gestion.Interface;
+
 import Librairies.StdDraw;
-import entites.Tour;
+
 
 public class DetectionSouris {
 
