@@ -2,9 +2,11 @@ package entites;
 
 import Librairies.Point;
 import Librairies.StdDraw;
+import outils.Omnicient;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.List;
 
 public class Archer extends Tour{
 
@@ -58,6 +60,20 @@ public class Archer extends Tour{
         StdDraw.text(745, 571, "20");
 
     }
+
+    @Override
+    public void attaquer() {
+        List<Enemi> EnemiAportee = MonstreAportee(Omnicient.getPositionMonstre(), this.Range);
+        Enemi attaquer = PlusAvancer(EnemiAportee);
+        if (attaquer != null) {
+            attaquer.setPV(attaquer.getPV() - this.ATK);
+        }
+        afficheattaque(attaquer);
+    }
+
+
+
+
 
 
 

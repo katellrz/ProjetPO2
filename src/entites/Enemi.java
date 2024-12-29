@@ -29,6 +29,10 @@ public abstract class Enemi extends Entite {
         return Speed;
     }
 
+    public int getCurrentIndex() {
+        return currentIndex;
+    }
+
     public void setSpeed(int Speed) {
         this.Speed = Speed;
     }

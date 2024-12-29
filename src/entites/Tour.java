@@ -7,6 +7,7 @@ import Map.Case;
 import static Map.DetectionSouris.*;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 
 import Gestion.Interface;
@@ -130,5 +131,51 @@ public abstract class Tour extends Entite {
     public abstract int getMaxPV();
 
     public abstract Color getColor();
+
+    public abstract void attaquer();
+
+    public List<Enemi>  MonstreAportee(List<Enemi> monstres, double portee) {
+        List<Enemi> monstresAportee = new ArrayList<>();
+        for (Enemi m : monstres) {
+            if (m.getPosition().distance(this.position)/Omnicient.getSize() <= portee) {
+                monstresAportee.add(m);
+            }
+        }
+        return monstresAportee;
+    }
+
+    public Enemi PlusAvancer (List<Enemi> monstres) {
+        Enemi plusAvancer = monstres.get(0);
+        for (Enemi m : monstres) {
+            if (m.getCurrentIndex() > plusAvancer.getCurrentIndex()) {
+                plusAvancer = m;
+            }else if (m.getCurrentIndex() == plusAvancer.getCurrentIndex()){
+                List<Case> chemin = Omnicient.getChemin();
+                if (m.getPosition().distance(chemin.get(m.getCurrentIndex()+1).getCenterCase()) < plusAvancer.getPosition().distance(chemin.get(plusAvancer.getCurrentIndex()+1).getCenterCase())){
+                    plusAvancer = m;
+                }
+            }
+        }
+        return plusAvancer;
+    }
+
+    public Enemi PlusProche (List<Enemi> monstres) {
+        Enemi plusProche = monstres.get(0);
+        for (Enemi m : monstres) {
+            if (m.getPosition().distance(this.position) < plusProche.getPosition().distance(this.position)) {
+                plusProche = m;
+            }
+        }
+        return plusProche;
+    }
+
+    public void afficheattaque(Enemi e){
+        StdDraw.setPenColor(Color.RED);
+        StdDraw.line(this.position.getX(), this.position.getY(), e.getPosition().getX(), e.getPosition().getY());
+    }
+
+
+
+
      
 }

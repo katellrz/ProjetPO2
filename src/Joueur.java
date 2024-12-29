@@ -9,8 +9,6 @@ public class Joueur {
     public Joueur(int vie, int argent, double x, double y) {
         this.vie = vie;
         this.argent = argent;
-        this.x = x;
-        this.y = y;
     }
 
     
@@ -33,14 +31,7 @@ public class Joueur {
         }
         return false;
     }
-
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
 }
+
 
 
