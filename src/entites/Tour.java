@@ -36,68 +36,64 @@ public abstract class Tour extends Entite {
         return position;
     }
 
-    public static void PlacerTour(){
+    public static void PlacerTour() {
         double x = StdDraw.mouseX();
-        double y = StdDraw.mouseY();    
-        if(DetectionZone(x, y).equals("Zone Boutique")){
-            if((x<849&&x>721)&&(y<546&&y>596)){
-                Case c = null;
-                while(c==null){
-                    c = DetectionSourisCase(StdDraw.mouseX(), StdDraw.mouseX());
-                }
-                if(c.getType()==Case.Casetype.CONSTRUCTIBLE){//TODO completer avec la money
+        double y = StdDraw.mouseY();
+    
+        if (StdDraw.isMousePressed()) {
+            if ((x < 849 && x > 721) && (y < 596 && y > 546)) { // Archer
+                System.out.println("Archer sélectionné");
+                Case c = attendreCaseConstructible();
+                if (c != null) {
                     Tour t = new Archer(c.getCenterCase());
                     Omnicient.SavetoOmni(t);
-                }else{
-                    //Interface.MessageErrCaseNonConstructible();
                 }
-            }
-        }else if((x<987&&x>859)&&(y<546&&y>596)){
-            Case c = null;
-            while(c==null){
-                c = DetectionSourisCase(StdDraw.mouseX(), StdDraw.mouseX());
-            }
-            if(c.getType()==Case.Casetype.CONSTRUCTIBLE){//TODO completer avec la money
-                Tour t = new WindCaster(c.getCenterCase());
-                Omnicient.SavetoOmni(t);
-            }else{
-                //Interface.MessageErrCaseNonConstructible();
-            }
-        }else if((x<849&&x>721)&&(y<486&&y>536)){
-            Case c = null;
-            while(c==null){
-                c = DetectionSourisCase(StdDraw.mouseX(), StdDraw.mouseX());
-            }
-            if(c.getType()==Case.Casetype.CONSTRUCTIBLE){//TODO completer avec la money
-                Tour t = new WaterCaster(c.getCenterCase());
-                Omnicient.SavetoOmni(t);
-            }else{
-                //Interface.MessageErrCaseNonConstructible();
-            }
-        }else if((x<987&&x>859)&&(y<486&&y>536)){
-            Case c = null;
-            while(c==null){
-                c = DetectionSourisCase(StdDraw.mouseX(), StdDraw.mouseX());
-            }
-            if(c.getType()==Case.Casetype.CONSTRUCTIBLE){//TODO completer avec la money
-                Tour t = new EarthCaster(c.getCenterCase());
-                Omnicient.SavetoOmni(t);
-            }else{
-                //Interface.MessageErrCaseNonConstructible();
-            }
-        }else if((x<849&&x>721)&&(y<476&&y>426)){
-            Case c = null;
-            while(c==null){
-                c = DetectionSourisCase(StdDraw.mouseX(), StdDraw.mouseX());
-            }
-            if(c.getType()==Case.Casetype.CONSTRUCTIBLE){//TODO completer avec la money
-                Tour t = new FireCaster(c.getCenterCase());
-                Omnicient.SavetoOmni(t);
-            }else{
-                //Interface.MessageErrCaseNonConstructible();
+            } else if ((x < 987 && x > 859) && (y < 596 && y > 546)) { // WindCaster
+                System.out.println("WindCaster sélectionné");
+                Case c = attendreCaseConstructible();
+                if (c != null) {
+                    Tour t = new WindCaster(c.getCenterCase());
+                    Omnicient.SavetoOmni(t);
+                }
+            } else if ((x < 849 && x > 721) && (y < 536 && y > 486)) { // WaterCaster
+                System.out.println("WaterCaster sélectionné");
+                Case c = attendreCaseConstructible();
+                if (c != null) {
+                    Tour t = new WaterCaster(c.getCenterCase());
+                    Omnicient.SavetoOmni(t);
+                }
+            } else if ((x < 987 && x > 859) && (y < 536 && y > 486)) { // EarthCaster
+                System.out.println("EarthCaster sélectionné");
+                Case c = attendreCaseConstructible();
+                if (c != null) {
+                    Tour t = new EarthCaster(c.getCenterCase());
+                    Omnicient.SavetoOmni(t);
+                }
+            } else if ((x < 849 && x > 721) && (y < 476 && y > 426)) { // FireCaster
+                System.out.println("FireCaster sélectionné");
+                Case c = attendreCaseConstructible();
+                if (c != null) {
+                    Tour t = new FireCaster(c.getCenterCase());
+                    Omnicient.SavetoOmni(t);
+                }
             }
         }
     }
+    
+    // Fonction pour attendre que l'utilisateur clique sur une case constructible
+    private static Case attendreCaseConstructible() {
+        Case c = null;
+        while (c == null) {
+            if (StdDraw.isMousePressed()) {
+                c = DetectionSourisCase(StdDraw.mouseX(), StdDraw.mouseY());
+                if (c != null && c.getType() == Case.Casetype.CONSTRUCTIBLE) {
+                    return c;
+                }
+            }
+        }
+        return null;
+    }
+    
 
 
     public void afficheTour(double tailleCase) {
@@ -106,7 +102,7 @@ public abstract class Tour extends Entite {
         StdDraw.setPenColor(tourColor);
         StdDraw.filledCircle(position.getX(), position.getY(), tailleCase / 4.0); // Ajuster la taille selon besoin
     
-        this.afficherVieT();
+        //this.afficherVieT();
     }
 
     public void afficherVieT() {

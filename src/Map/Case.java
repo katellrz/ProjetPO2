@@ -164,30 +164,5 @@ public class Case {
                 && mouseY <= centre.getY() + tailleCase / 2;
     }
 
-    /**
-     * Pour une case dit si la souris clique dans cette case 
-     * 
-     * @return true ou flase 
-     */
-
-     /* boolean dejaClique = false;
-     boolean etatPrecedentSouris = false;
-     
-     public boolean SourisCliqueCase(double mouseX, double mouseY) {
-        boolean etatActuelSouris = StdDraw.isMousePressed();
-    
-        // Vérifie si la souris est pressée, que ce n'est pas un clic maintenu, et si la souris est bien dans cette case
-        if (etatActuelSouris && !etatPrecedentSouris && this.contains(mouseX, mouseY, Omnicient.getSize())) {
-            System.out.println("Clic détecté sur la case : " + this.toString());
-            etatPrecedentSouris = etatActuelSouris;
-            return true; // Indique qu'un clic valide a eu lieu
-        }
-    
-        // Réinitialise l'état précédent de la souris
-        etatPrecedentSouris = etatActuelSouris;
-        return false; // Aucun clic détecté
-    } */
-    
-
     
 }

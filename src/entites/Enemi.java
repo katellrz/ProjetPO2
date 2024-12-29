@@ -113,7 +113,7 @@ public abstract class Enemi extends Entite {
         StdDraw.filledCircle(position.getX(), position.getY(), 5);
         StdDraw.show();     
         
-        this.afficherVieE();
+        //this.afficherVieE();
         
     }
 

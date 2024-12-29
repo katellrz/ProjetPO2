@@ -21,7 +21,7 @@ public class DetectionSouris {
                     System.out.println("Click sur la case : " + c.toString()); 
                     while ((StdDraw.isMousePressed())) {
                         c.setSel(true);
-                        Interface.AfficheDynamique("10-10");
+                        //Interface.AfficheDynamique("10-10");
                         
                     }
                     c.setSel(false);

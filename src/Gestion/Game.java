@@ -12,7 +12,12 @@ import entites.Tour;
 import entites.WaterCaster;
 import entites.WindCaster;
 
+
 public abstract class Game {
+
+    public static String Map; 
+    public static String Wave;
+    public static String Level;
 
     public static void Start(){
 
@@ -20,26 +25,21 @@ public abstract class Game {
 
         Interface.AfficheInterface();
         Interface.AfficheStatique();
-        Interface.AfficheDynamique("10-10");
-       
-
-        //Archer a1 = new Archer(1, 1, 1, 1, ElementType.NONE, 1,)
+        
 
         Wave test = new Wave("waveMinion");
+        Joueur joueur = new Joueur();
 
-        
 
         while(true){
 
-            DetectionSouris.DetectionSourisCase(StdDraw.mouseX(),StdDraw.mouseY()); 
-            test.Vaguedemonstre();
-            Interface.AfficheDynamique("10-10");
+            DetectionSouris.DetectionSourisCase(StdDraw.mouseX(),StdDraw.mouseY());
 
-            Archer.afficheTourBoutique(50);
-            WindCaster.afficheTourBoutique(50);
-            WaterCaster.afficheTourBoutique(50);
-            EarthCaster.afficheTourBoutique(50);
-            FireCaster.afficheTourBoutique(50);
+            test.Vaguedemonstre();
+
+            Interface.AfficheDynamique("10-10", joueur.getArgent(), joueur.getVie());
+
+            
 
             Tour.PlacerTour();
 
@@ -69,6 +69,25 @@ public abstract class Game {
 
 
     }
+
+    public static void dessinerTours() {
+        for (Tour tour : getPositionTours()) { // Parcourez toutes les tours
+            //if (tour.estActive()) { // Redessinez uniquement si nécessaire
+                tour.afficheTour(getSize());
+            //}
+        }
+    }
+
+    public static void dessinerMonstres() {
+        for (Enemi monstre : getPositionMonstre()) { // Parcourez tous les monstres
+            //if (monstre.estActif()) { // Redessinez uniquement si nécessaire
+                monstre.apparait();
+            //}
+        }
+    }   
+
+    
+    
 
 
 

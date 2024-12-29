@@ -4,6 +4,12 @@ package Gestion;
 //IMPORT____________________________________
 import Librairies.StdDraw;
 import Map.Carte;
+import entites.Archer;
+import entites.EarthCaster;
+import entites.FireCaster;
+import entites.WaterCaster;
+import entites.WindCaster;
+
 import java.awt.Color;
 import Librairies.Point;
 
@@ -47,8 +53,16 @@ public abstract class Interface{
     /**
      * Fonction qui a pour role d'afficher les elemnt suceptible de changer durant le jeux 
      */
-    public static void AfficheDynamique(String nom){
+    public static void AfficheDynamique(String nom, int Money, int vie){
         afficheCarte(nom);
+
+        Archer.afficheTourBoutique(Money);
+        WindCaster.afficheTourBoutique(Money);
+        WaterCaster.afficheTourBoutique(Money);
+        EarthCaster.afficheTourBoutique(Money);
+        FireCaster.afficheTourBoutique(Money);
+
+        afficheinfoJoueur(vie, Money);
 
     }
     
@@ -128,6 +142,14 @@ public abstract class Interface{
         StdDraw.setPenColor(new Color(192, 192,192));
         StdDraw.filledCircle(centerC.getX(), centerC.getY(), 0.7 * radius);
     }
+
+    public static void afficheinfoJoueur(int vie, int argent){
+        StdDraw.setPenColor(Color.BLACK);
+        StdDraw.text(100, 950, "Vie: " + vie);
+        StdDraw.text(300, 950, "Argent: " + argent);
+    }
+
+
 
     //ZONE LEVEL___________________________________________________________________________________________________
 
