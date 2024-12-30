@@ -8,6 +8,9 @@ import Librairies.StdDraw;
 import static outils.Omnicient.*;
 
 import java.awt.Color;
+import java.time.Duration;
+import java.time.LocalTime;
+import java.util.Comparator;
 import java.util.List;
 
 public abstract class Enemi extends Entite {
@@ -60,6 +63,14 @@ public abstract class Enemi extends Entite {
 
     public void setY(double x){
             this.position.setY(x);
+    }
+
+    @Override
+    public void estMort() {
+        if (PV <= 0) {
+            System.out.println("L'ennemi est mort !");
+            Omnicient.removeEnemi(this);
+        }
     }
 
     public void avance(){
@@ -144,6 +155,41 @@ public abstract class Enemi extends Entite {
     }
 
     public abstract int getMaxPV();
+
+    protected LocalTime derniereAttaque = LocalTime.now();
+    protected double tempsDepuisDerniereAttaque = 0.0;
+
+    public abstract void attaquer();
+
+    protected boolean peutAttaquer() {
+        Duration d = Duration.between(derniereAttaque, LocalTime.now());
+        tempsDepuisDerniereAttaque = d.toMillis();
+        if (tempsDepuisDerniereAttaque >= ATKSpeed) {
+            tempsDepuisDerniereAttaque = 0.0;
+            derniereAttaque = LocalTime.now();
+            return true;
+        }
+        return false;
+    }
+
+    protected Tour PlusProche(List<Tour> tours) {
+        Tour plusProche = tours.get(0);
+        for (Tour t : tours) {
+            if (t.getPosition().distance(this.position) < plusProche.getPosition().distance(this.position)) {
+                plusProche = t;
+            }
+        }
+        return plusProche;
+    }
+
+    protected Tour MoinsDePV(List<Tour> tours) {
+        return tours.stream().min(Comparator.comparingInt(Tour::getPV)).orElse(null);
+    }
+
+    public void afficheattaque(Tour t) {
+        StdDraw.setPenColor(Color.ORANGE);
+        StdDraw.line(this.position.getX(), this.position.getY(), t.getPosition().getX(), t.getPosition().getY());
+    }
 
     
 }

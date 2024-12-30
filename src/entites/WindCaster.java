@@ -2,9 +2,11 @@ package entites;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.List;
 
 import Librairies.Point;
 import Librairies.StdDraw;
+import outils.Omnicient;
 
 public class WindCaster extends Tour {
 
@@ -61,6 +63,17 @@ public class WindCaster extends Tour {
         return MaxPV;
     }
 
+    @Override
+    public void attaquer() {
+        List<Enemi> cibles = MonstreAportee(Omnicient.getPositionMonstre(), this.Range);
+        if (cibles == null || cibles.isEmpty()) {
+            return; // Pas de cible, arrêt de l'attaque
+        }
 
-
+        Enemi cible = PlusAvancer(cibles);
+        if (cible != null) {
+            attaqueSimple(cible);
+            afficheattaque(cible);
+        }
+    }
 }

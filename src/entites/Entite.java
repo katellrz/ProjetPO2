@@ -37,7 +37,10 @@ public abstract class Entite {
 
     public void setPV(int PV) {
         this.PV = PV;
+        estMort();
     }
+
+    public abstract void estMort();
 
     public int getATK() {
         return ATK;

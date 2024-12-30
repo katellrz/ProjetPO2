@@ -1,10 +1,12 @@
 package entites;
 
 import java.awt.Font;
+import java.util.List;
 import java.awt.Color;
 
 import Librairies.Point;
 import Librairies.StdDraw;
+import outils.Omnicient;
 
 public class FireCaster extends Tour{
 
@@ -58,6 +60,25 @@ public class FireCaster extends Tour{
         StdDraw.text(745, 451, "100");
 
     }
+
+    @Override
+    public void attaquer() {
+        if (peutAttaquer()) {
+            List<Enemi> cibles = MonstreAportee(Omnicient.getPositionMonstre(), this.Range);
+            if (!cibles.isEmpty()) {
+                Enemi cible = PlusProche(cibles);
+                if (cible != null) {
+                    for (Enemi m : cibles) {
+                        if (m.getPosition().distance(cible.getPosition()) <= 0.75) {
+                            m.setPV(m.getPV() - this.ATK);
+                        }
+                    }
+                    afficheattaque(cible);
+                }
+            }
+        }
+    }
+
 
 
 }

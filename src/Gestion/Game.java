@@ -55,6 +55,7 @@ public abstract class Game {
                 //System.out.println("Monstre en position : " + monstre);
                 
                 TOURS.afficheTour(getSize());
+                TOURS.attaquer();
             }  
 
 

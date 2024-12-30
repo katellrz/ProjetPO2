@@ -82,6 +82,14 @@ public abstract class Omnicient {
         return Carte;
     }
 
+    public static void removeEnemi(Enemi ennemi) {
+        positionMonstre.remove(ennemi);
+    }
+
+    public static void removeTour(Tour tour) {
+        positionTours.remove(tour);
+    }
+
     
 
 

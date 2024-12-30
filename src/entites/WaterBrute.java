@@ -1,5 +1,9 @@
 package entites;
 
+import java.util.List;
+
+import outils.Omnicient;
+
 public class WaterBrute extends Enemi {
     
     public WaterBrute() {
@@ -17,4 +21,26 @@ public class WaterBrute extends Enemi {
     public int getMaxPV() {
         return PVmax;
     }  
+
+    @Override
+    public void attaquer() {
+        if (peutAttaquer()) {
+            List<Tour> tours = Omnicient.getPositionTours();
+            List<Tour> cibles = tours.stream()
+                .filter(t -> t.getPosition().distance(this.position) <= this.Range)
+                .toList();
+
+            if (!cibles.isEmpty()) {
+                Tour cible = MoinsDePV(cibles);
+                if (cible != null) {
+                    for (Tour t : cibles) {
+                        if (t.getPosition().distance(cible.getPosition()) <= 1.5) {
+                            t.setPV(t.getPV() - this.ATK);
+                        }
+                    }
+                    afficheattaque(cible);
+                }
+            }
+        }
+    }
 }

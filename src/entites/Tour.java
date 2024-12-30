@@ -7,10 +7,11 @@ import Map.Case;
 import static Map.DetectionSouris.*;
 
 import java.awt.Color;
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import Gestion.Interface;
 import outils.Omnicient;
 
 
@@ -36,6 +37,15 @@ public abstract class Tour extends Entite {
     public Point getPosition(){
         return position;
     }
+
+    @Override
+    public void estMort(){
+        if(this.PV <= 0){
+            Omnicient.removeTour(this);
+        }
+    }
+
+
 
     public static void PlacerTour() {
         double x = StdDraw.mouseX();
@@ -132,46 +142,87 @@ public abstract class Tour extends Entite {
 
     public abstract Color getColor();
 
+    protected double tempsDepuisDerniereAttaque = 0.0; // Chronométrage des attaques
+    protected LocalTime derniereAttaque = LocalTime.now(); // Chronométrage des attaques
+
     public abstract void attaquer();
 
-    public List<Enemi>  MonstreAportee(List<Enemi> monstres, double portee) {
+    protected boolean peutAttaquer() {
+        Duration d = Duration.between(derniereAttaque, LocalTime.now());
+        tempsDepuisDerniereAttaque = d.toMillis();
+        if (tempsDepuisDerniereAttaque >= ATKSpeed) {
+            tempsDepuisDerniereAttaque = 0.0;
+            derniereAttaque = LocalTime.now();
+            return true;
+        }
+        return false;
+    }
+
+    public List<Enemi> MonstreAportee(List<Enemi> monstres, double portee) {
+        if (monstres == null || monstres.isEmpty()) {
+            return new ArrayList<>(); // Retourne une liste vide si aucun monstre
+        }
+    
         List<Enemi> monstresAportee = new ArrayList<>();
         for (Enemi m : monstres) {
-            if (m.getPosition().distance(this.position)/Omnicient.getSize() <= portee) {
+            if (m.getPosition().distance(this.position) / Omnicient.getSize() <= portee) {
                 monstresAportee.add(m);
             }
         }
         return monstresAportee;
     }
 
-    public Enemi PlusAvancer (List<Enemi> monstres) {
-        Enemi plusAvancer = monstres.get(0);
-        for (Enemi m : monstres) {
-            if (m.getCurrentIndex() > plusAvancer.getCurrentIndex()) {
-                plusAvancer = m;
-            }else if (m.getCurrentIndex() == plusAvancer.getCurrentIndex()){
-                List<Case> chemin = Omnicient.getChemin();
-                if (m.getPosition().distance(chemin.get(m.getCurrentIndex()+1).getCenterCase()) < plusAvancer.getPosition().distance(chemin.get(plusAvancer.getCurrentIndex()+1).getCenterCase())){
+    public Enemi PlusAvancer(List<Enemi> monstres) {
+        if(!monstres.isEmpty()) {
+            Enemi plusAvancer = monstres.get(0);
+            for (Enemi m : monstres) {
+                if (m.getCurrentIndex() > plusAvancer.getCurrentIndex()) {
                     plusAvancer = m;
+                } else if (m.getCurrentIndex() == plusAvancer.getCurrentIndex()) {
+                    List<Case> chemin = Omnicient.getChemin();
+                    if (m.getPosition().distance(chemin.get(m.getCurrentIndex() + 1).getCenterCase()) <
+                        plusAvancer.getPosition().distance(chemin.get(plusAvancer.getCurrentIndex() + 1).getCenterCase())) {
+                        plusAvancer = m;
+                    }
                 }
             }
+            return plusAvancer;
+        }else{
+            return null;
         }
-        return plusAvancer;
     }
 
-    public Enemi PlusProche (List<Enemi> monstres) {
-        Enemi plusProche = monstres.get(0);
-        for (Enemi m : monstres) {
-            if (m.getPosition().distance(this.position) < plusProche.getPosition().distance(this.position)) {
-                plusProche = m;
+    public Enemi PlusProche(List<Enemi> monstres) {
+        if(!monstres.isEmpty()) {
+            Enemi plusProche = monstres.get(0);
+            for (Enemi m : monstres) {
+                if (m.getPosition().distance(this.position) < plusProche.getPosition().distance(this.position)) {
+                    plusProche = m;
+                }
             }
+            return plusProche;
+        }else{
+            return null;
         }
-        return plusProche;
     }
 
-    public void afficheattaque(Enemi e){
-        StdDraw.setPenColor(Color.RED);
-        StdDraw.line(this.position.getX(), this.position.getY(), e.getPosition().getX(), e.getPosition().getY());
+    public void afficheattaque(Enemi e) {
+        if(e == null){
+            return;
+        }else{
+            StdDraw.setPenColor(Color.RED);
+            StdDraw.line(this.position.getX(), this.position.getY(), e.getPosition().getX(), e.getPosition().getY());
+        }
+    }
+
+    protected void attaqueSimple(Enemi cible) {
+        System.out.println("Attaque simple");
+        if (cible != null) {
+            cible.setPV(cible.getPV() - this.ATK);
+            System.out.println("PV de "+cible+" : " + cible.getPV());
+
+            afficheattaque(cible);
+        }
     }
 
 

@@ -17,4 +17,12 @@ public class Minion extends Enemi {
     public int getMaxPV() {
         return PVmax;
     }  
+
+    
+    @Override
+    public void attaquer() {
+        // Les Minions ne peuvent pas attaquer
+    }
 }
+
+

@@ -1,5 +1,9 @@
 package entites;
 
+import java.util.List;
+
+import outils.Omnicient;
+
 public class Boss extends Enemi {
     
     public Boss() {
@@ -16,6 +20,24 @@ public class Boss extends Enemi {
     @Override
     public int getMaxPV() {
         return PVmax;
+    }
+
+    @Override
+    public void attaquer() {
+        if (peutAttaquer()) {
+            List<Tour> tours = Omnicient.getPositionTours();
+            List<Tour> cibles = tours.stream()
+                .filter(t -> t.getPosition().distance(this.position) <= this.Range)
+                .toList();
+
+            if (!cibles.isEmpty()) {
+                Tour cible = PlusProche(cibles);
+                if (cible != null) {
+                    cible.setPV(cible.getPV() - this.ATK);
+                    afficheattaque(cible);
+                }
+            }
+        }
     }   
 }
 

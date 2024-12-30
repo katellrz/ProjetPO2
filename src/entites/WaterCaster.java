@@ -2,9 +2,11 @@ package entites;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.List;
 
 import Librairies.Point;
 import Librairies.StdDraw;
+import outils.Omnicient;
 
 public class WaterCaster extends Tour {
 
@@ -59,5 +61,21 @@ public class WaterCaster extends Tour {
         StdDraw.text(745, 511, "50");
 
     }
+
+    @Override
+    public void attaquer() {
+        if (peutAttaquer()) {
+            List<Enemi> cibles = MonstreAportee(Omnicient.getPositionMonstre(), this.Range);
+            if (!cibles.isEmpty()) {
+                Enemi cible = PlusAvancer(cibles);
+                if (cible != null) {
+                    attaqueSimple(cible);
+                }
+            }
+        }
+    }
+
+    
+
 
 }

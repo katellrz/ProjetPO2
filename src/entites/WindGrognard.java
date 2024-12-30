@@ -1,5 +1,9 @@
 package entites;
 
+import java.util.List;
+
+import outils.Omnicient;
+
 public class WindGrognard extends Enemi {
     
     public WindGrognard() {
@@ -17,4 +21,23 @@ public class WindGrognard extends Enemi {
     public int getMaxPV() {
         return PVmax;
     }  
+
+    @Override
+    public void attaquer() {
+        if (peutAttaquer()) {
+
+            List<Tour> tours = Omnicient.getPositionTours();
+            List<Tour> cibles = tours.stream()
+                .filter(t -> t.getPosition().distance(this.position) <= this.Range)
+                .toList();
+
+            if (!cibles.isEmpty()) {
+                Tour cible = MoinsDePV(cibles);
+                if (cible != null) {
+                    cible.setPV(cible.getPV() - this.ATK);
+                    afficheattaque(cible);
+                }
+            }
+        }
+    }
 }

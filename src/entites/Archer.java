@@ -6,6 +6,7 @@ import outils.Omnicient;
 
 import java.awt.Color;
 import java.awt.Font;
+
 import java.util.List;
 
 public class Archer extends Tour{
@@ -63,19 +64,17 @@ public class Archer extends Tour{
 
     @Override
     public void attaquer() {
-        List<Enemi> EnemiAportee = MonstreAportee(Omnicient.getPositionMonstre(), this.Range);
-        Enemi attaquer = PlusAvancer(EnemiAportee);
-        if (attaquer != null) {
-            attaquer.setPV(attaquer.getPV() - this.ATK);
+        if (peutAttaquer()) {
+            List<Enemi> cibles = MonstreAportee(Omnicient.getPositionMonstre(), this.Range);
+            if (!cibles.isEmpty()) {
+                Enemi cible = PlusAvancer(cibles);
+                if (cible != null) {
+                    attaqueSimple(cible);
+                    afficheattaque(cible);
+                }
+            }
         }
-        afficheattaque(attaquer);
     }
-
-
-
-
-
-
 
 
 }

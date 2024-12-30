@@ -2,9 +2,12 @@ package entites;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Comparator;
+import java.util.List;
 
 import Librairies.Point;
 import Librairies.StdDraw;
+import outils.Omnicient;
 
 public class EarthCaster extends Tour {
 
@@ -60,4 +63,23 @@ public class EarthCaster extends Tour {
     public int getMaxPV() {
         return MaxPV;
     }
+
+    @Override
+    public void attaquer() {
+        if (peutAttaquer()) {
+            List<Enemi> cibles = MonstreAportee(Omnicient.getPositionMonstre(), this.Range);
+            if (!cibles.isEmpty()) {
+                Enemi cible = cibles.stream().max(Comparator.comparingInt(Enemi::getPV)).orElse(null);
+                if (cible != null) {
+                    for (Enemi m : cibles) {
+                        if (m.getPosition().distance(cible.getPosition()) <= 1.0) {
+                            m.setPV(m.getPV() - this.ATK);
+                        }
+                    }
+                    afficheattaque(cible);
+                }
+            }
+        }
+    }
+
 }
