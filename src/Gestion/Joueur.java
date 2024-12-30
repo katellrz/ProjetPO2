@@ -1,5 +1,9 @@
 package Gestion;
 
+import java.awt.Font;
+
+import Librairies.StdDraw;
+
 public class Joueur {
     private int vie;
     private int argent;
@@ -39,6 +43,23 @@ public class Joueur {
 
     public boolean peutAcheter(int montant) {
         return argent >= montant;
+    }
+
+    public String toStingVie(){
+        return Integer.toString(vie);
+    }
+
+    public String toStringArgent(){
+        return Integer.toString(argent);
+    }
+
+
+    public void afficheInfo() {
+        StdDraw.setPenColor(StdDraw.BLACK);
+        Font front = new Font("Arial", Font.PLAIN, 30);
+        StdDraw.setFont(front);
+        StdDraw.text(911,636, this.toStingVie()); // Exemple de position et texte
+        StdDraw.text(796,636, this.toStringArgent());
     }
 
 }

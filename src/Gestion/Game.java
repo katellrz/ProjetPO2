@@ -1,16 +1,11 @@
 package Gestion;
 
 import static outils.Omnicient.*;
-import static Map.DetectionSouris.*;
+
 import Librairies.StdDraw;
 import Map.DetectionSouris;
-import entites.Archer;
-import entites.EarthCaster;
 import entites.Enemi;
-import entites.FireCaster;
 import entites.Tour;
-import entites.WaterCaster;
-import entites.WindCaster;
 
 
 public abstract class Game {
@@ -27,14 +22,14 @@ public abstract class Game {
         Interface.AfficheStatique();
         
 
-        Wave test = new Wave("waveMinion");
+        Wave test = new Wave("waveBoss");
         Joueur joueur = new Joueur();
 
 
         while(true){
 
             Interface.AfficheDynamique("10-10", joueur.getArgent(), joueur.getVie());
-
+            joueur.afficheInfo();
             
 
             DetectionSouris.DetectionSourisCase(StdDraw.mouseX(),StdDraw.mouseY());
@@ -49,6 +44,7 @@ public abstract class Game {
                 //System.out.println("Monstre en position : " + monstre);
                 monstre.avance();
                 monstre.apparait();
+                monstre.attaquer();
             }  
             
             for(Tour TOURS : getPositionTours()){
@@ -81,13 +77,8 @@ public abstract class Game {
         for (Enemi monstre : getPositionMonstre()) { // Parcourez tous les monstres
             //if (monstre.estActif()) { // Redessinez uniquement si nécessaire
                 monstre.apparait();
+
             //}
         }
     }   
-
-    
-    
-
-
-
 }
