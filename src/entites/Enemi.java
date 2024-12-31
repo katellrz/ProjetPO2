@@ -48,16 +48,6 @@ public abstract class Enemi extends Entite {
         return Speed;
     }
 
-    
-     /**
-     * Définit la vitesse de déplacement de l'ennemi.
-     * 
-     * @param Speed La nouvelle vitesse de l'ennemi.
-     */
-
-    public void setSpeed(int Speed) {
-        this.Speed = Speed;
-    }
 
     /**
      * Obtient l'index actuel sur le chemin.
