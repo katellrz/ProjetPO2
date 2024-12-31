@@ -8,6 +8,7 @@ import java.util.List;
 import entites.Enemi;
 import entites.Tour;
 
+
 public abstract class Omnicient {
 
     private static List<Enemi> positionMonstre = new LinkedList<>();

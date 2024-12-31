@@ -1,12 +1,20 @@
 package entites;
 
 import java.util.List;
-
 import outils.Omnicient;
 
+/**
+ * Classe représentant un ennemi de type Boss.
+ * Le Boss possède des statistiques plus élevées que les ennemis classiques,
+ * comme des points de vie élevés, une forte attaque, et des capacités spécifiques.
+ */
+
 public class Boss extends Enemi {
-    
-    public Boss() {
+
+    /**
+     * Constructeur pour créer un ennemi de type Boss avec des caractéristiques par défaut.
+     */
+      public Boss() {
         this.PV = 150;
         this.ATK = 100;
         this.ATKSpeed = 10.;
@@ -17,11 +25,21 @@ public class Boss extends Enemi {
         this.PVmax = PV;
     }
 
+    /**
+     *  Fonction getMaxPV()
+     *
+     * @return les points de vie maximum du Boss.
+     */
     @Override
     public int getMaxPV() {
         return PVmax;
     }
 
+    /**
+     * Permet au Boss d'attaquer les tours à portée.
+     * Le Boss attaque la tour la plus proche à sa portée et réduit ses points de vie
+     * selon sa puissance d'attaque (ATK).
+     */
     @Override
     public void attaquer() {
         if (peutAttaquer()) {

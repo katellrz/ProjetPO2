@@ -1,12 +1,18 @@
 package entites;
 
-import java.awt.Font;
-import java.util.List;
-import java.awt.Color;
-
 import Librairies.Point;
 import Librairies.StdDraw;
+import java.awt.Color;
+import java.awt.Font;
+import java.util.List;
 import outils.Omnicient;
+
+/**
+ * Classe représentant une tour de type FireCaster.
+ * La FireCaster est une tour qui utilise l'élément FEU pour attaquer les ennemis
+ * dans une certaine portee. Elle est caractérisée par ses PV, ATK, vitesse d'attaque,
+ * portée, coût et couleur spécifique.
+ */
 
 public class FireCaster extends Tour{
 
@@ -22,15 +28,33 @@ public class FireCaster extends Tour{
         this.Cost=100;       
     }
 
+    /**
+     * Obtient les points de vie maximum de la FireCaster.
+     * 
+     * @return Les points de vie maximum.
+     */
     @Override
     public int getMaxPV() {
         return MaxPV;
     }
 
+
+    /**
+     * Obtient la couleur spécifique de la FireCaster.
+     * 
+     * @return La couleur de la FireCaster.
+     */
     @Override
     public Color getColor() {
         return couleur;
     }
+
+     /**
+     * Affiche les informations de la FireCaster dans la boutique.
+     * 
+     * @param Money Le montant d'argent disponible du joueur.
+     *              Si le joueur n'a pas assez d'argent, le bouton sera grisé.
+     */
 
     public static void afficheTourBoutique(int Money){
 
@@ -60,6 +84,12 @@ public class FireCaster extends Tour{
         StdDraw.text(745, 451, "100");
 
     }
+
+    /**
+     * Attaque les ennemis à portée de la FireCaster.
+     * Les ennemis proches de la cible principale (distance <= 0.75) subissent
+     * également des dégâts.
+     */
 
     @Override
     public void attaquer() {

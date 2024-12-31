@@ -1,11 +1,23 @@
 package entites;
 
 import java.util.List;
-
 import outils.Omnicient;
 
+/**
+ * Représente un ennemi de type WindGrognard dans le jeu.
+ * Hérite de la classe Enemi
+ * 
+ * Le WindGrognard est un ennemi rapide avec une attaque modérée et une portée d'attaque relativement élevée.
+ * Il appartient à l'élément Vent et peut attaquer les tours proches dans son rayon d'action.
+ * 
+ */
+
 public class WindGrognard extends Enemi {
-    
+    /**
+     * Constructeur de l'ennemi WindGrognard.
+     * Initialise les caractéristiques de l'ennemi (PV, ATK, ATKSpeed, Range, Speed, Reward)
+     * spécifiques au WindGrognard.
+     */
     public WindGrognard() {
         this.PV = 1;
         this.ATK = 7;
@@ -21,6 +33,11 @@ public class WindGrognard extends Enemi {
     public int getMaxPV() {
         return PVmax;
     }  
+     /**
+     * Effectue l'attaque du WindGrognard contre les tours proches dans sa portée.
+     * Si des tours sont dans sa portée, l'ennemi attaque la tour ayant les moins de points de vie.
+     * Après l'attaque, la méthode afficheattaque est appelée pour afficher l'attaque.
+     */
 
     @Override
     public void attaquer() {
