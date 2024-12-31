@@ -39,12 +39,14 @@ public abstract class Game {
             
 
             Tour.PlacerTour();
+            StdDraw.show();
 
             for(Enemi monstre : getPositionMonstre()){
                 //System.out.println("Monstre en position : " + monstre);
                 monstre.avance();
                 monstre.apparait();
                 monstre.attaquer();
+                StdDraw.show();
             }  
             
             for(Tour TOURS : getPositionTours()){
@@ -52,6 +54,7 @@ public abstract class Game {
                 
                 TOURS.afficheTour(getSize());
                 TOURS.attaquer();
+                StdDraw.show();
             }  
 
 
