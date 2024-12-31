@@ -1,11 +1,22 @@
 package entites;
 
 import java.util.List;
-
 import outils.Omnicient;
+
+/**
+ * Classe representant un ennemi de type FireGrognard.
+ * Le FireGrognard est un ennemi utilisant l'élément FEU pour attaquer les tours
+ * à portée. Il possède des caractéristiques spécifiques comme ses points de vie (PV),
+ * attaque (ATK), vitesse d'attaque, portée, vitesse de déplacement, et récompense.
+ */
 
 public class FireGrognard extends Enemi {
     
+
+    /**
+     * Constructeur de la classe FireGrognard.
+     * Initialise les attributs specifiques de l'ennemi.
+     */
     public FireGrognard() {
         this.PV = 1;
         this.ATK = 7;
@@ -17,6 +28,12 @@ public class FireGrognard extends Enemi {
     }
     
 
+     /**
+     * Attaque les tours à portée du FireGrognard.
+     * Le FireGrognard inflige des dégâts à la tour la plus proche dans sa portée.
+     * Les tours à proximité immédiate de la cible principale (distance <= 1.5)
+     * subissent également des dégâts.
+     */
     @Override
     public void attaquer() {
         if (peutAttaquer()) {

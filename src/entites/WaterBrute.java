@@ -1,10 +1,29 @@
 package entites;
 
 import java.util.List;
-
 import outils.Omnicient;
 
+/**
+ * Représente un ennemi de type WaterBrute dans le jeu.
+ * Hérite de la classe Enemi
+ * 
+ * Cet ennmi possède des caractéristiques spécifiques, comme des points de vie (PV),
+ * une attaque (ATK), une vitesse d'attaque (ATKSpeed), une portée (Range), et une récompense.
+ * L'élément associé à cet ennemi est l'eau (Element.WATER).
+ * 
+ * L'attaque de cet ennemi cible les tours dans sa portée et inflige des dégâts à celles
+ * ayant le moins de points de vie.
+ * 
+
+ */
+
 public class WaterBrute extends Enemi {
+
+    /**
+     * Constructeur de la classe WaterBrute.
+     * Initialise les caractéristiques de l'ennemi (PV, ATK, ATKSpeed, Range, Speed, Reward)
+     * spécifiques à un WaterBrute.
+     */
     
     public WaterBrute() {
         this.PV = 30;
@@ -16,8 +35,28 @@ public class WaterBrute extends Enemi {
         this.Reward = 3;
 
     }
+     /**
+     * 
+     * 
+     * @return les points de vie maximaux.
+     */
 
     @Override
+<<<<<<< HEAD
+=======
+    public int getMaxPV() {
+        return PVmax;
+    }  
+
+    
+    /**
+     * Effectue l'attaque du WaterBrute en vérifiant si l'ennemi peut attaquer.
+     * L'attaque cible les tours qui sont dans la portée de l'ennemi.
+     * L'ennemi attaque les tours proches du cible ayant le moins de points de vie.
+     * Les tours proches reçoivent des dégâts d'attaque.
+     */
+    @Override
+>>>>>>> 5d6d35354f71ccd077c9a446355ffd45a66a445a
     public void attaquer() {
         if (peutAttaquer()) {
             List<Tour> tours = Omnicient.getPositionTours();

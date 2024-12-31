@@ -1,23 +1,32 @@
 package entites;
 
-import Map.Case;
-import outils.Omnicient;
 import Librairies.Point;
 import Librairies.StdDraw;
-
-import static outils.Omnicient.*;
-
+import Map.Case;
 import java.awt.Color;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.Comparator;
 import java.util.List;
+import outils.Omnicient;
+import static outils.Omnicient.*;
+
+/**
+ * Classe abstraite représentant un ennemi dans le jeu.
+ * Cette classe contient les propriétés et comportements de base d'un ennemi,
+ * y compris son mouvement, sa vitesse, sa récompense, et ses interactions avec d'autres entités.
+ */
 
 public abstract class Enemi extends Entite {
     protected double Speed;
     protected int Reward;
-    protected int currentIndex;
-    // Constructeur de la classe Enemi
+    protected int currentIndex;//TODO en publique jsp pas pourquoi peut poser problème
+
+    /**
+     * Constructeur de la classe Enemi.
+     * Initialise la position de l'ennemi au centre de la première case du chemin
+     * et définit l'index actuel à 0.
+     */
     public Enemi(int PV, int ATK, double ATKSpeed, int Range, Element Element, Point position, int Reward, double Speed) {
         super(PV, ATK, ATKSpeed, Range, Element);
         this.position= Omnicient.getSpawn().getCenterCase();
@@ -27,22 +36,54 @@ public abstract class Enemi extends Entite {
 
 
     // Getters et setters
+
+     /**
+     * Obtient la vitesse de déplacement de l'ennemi.
+     * 
+     * @return La vitesse de l'ennemi.
+     */
     public double getSpeed() {
         return Speed;
     }
 
-    public int getCurrentIndex() {
-        return currentIndex;
-    }
+    
+     /**
+     * Définit la vitesse de déplacement de l'ennemi.
+     * 
+     * @param Speed La nouvelle vitesse de l'ennemi.
+     */
 
     public void setSpeed(int Speed) {
         this.Speed = Speed;
     }
 
+    /**
+     * Obtient l'index actuel sur le chemin.
+     * 
+     * @return L'index actuel.
+     */
+
+    public int getCurrentIndex() {
+        return currentIndex;
+    }
+
+
+    
+/**
+     * Obtient la récompense donnée lorsque l'ennemi est vaincu.
+     * 
+     * @return La récompense de l'ennemi.
+     */
     public int getReward() {
         return Reward;
     }
 
+
+     /**
+     * Définit la récompense donnée lorsque l'ennemi est vaincu.
+     * 
+     * @param Reward La nouvelle récompense de l'ennemi.
+     */
     public void setReward(int Reward) {
         this.Reward = Reward;
     }
@@ -70,6 +111,10 @@ public abstract class Enemi extends Entite {
             Omnicient.removeEnemi(this);
         }
     }
+
+     /**
+     * Déplace l'ennemi en suivant le chemin prédéfini.
+     */
 
     public void avance(){
 
@@ -118,6 +163,9 @@ public abstract class Enemi extends Entite {
         }
     }
 
+    /**
+     * Affiche l'ennemi sur la carte.
+     */
     public void apparait(){
 
         //System.out.println("L'ennemi apparaît : " + this);
@@ -130,6 +178,9 @@ public abstract class Enemi extends Entite {
         
     }
 
+    /**
+     * Affiche la barre de vie de l'ennemi.
+     */
     public void afficherVieE() {
         if (this.getPosition() == null ) {
             System.err.println("Erreur : position invalide pour " + this);
@@ -166,11 +217,18 @@ public abstract class Enemi extends Entite {
         StdDraw.show();
     }
 
+
+
     protected LocalTime derniereAttaque = LocalTime.now();
     protected double tempsDepuisDerniereAttaque = 0.0;
 
     public abstract void attaquer();
 
+      /**
+     * Vérifie si l'ennemi peut attaquer.
+     * 
+     * @return  true si l'ennemi peut attaquer, sinon  false.
+     */
     protected boolean peutAttaquer() {
         Duration d = Duration.between(derniereAttaque, LocalTime.now());
         tempsDepuisDerniereAttaque = d.toMillis();
@@ -182,6 +240,12 @@ public abstract class Enemi extends Entite {
         return false;
     }
 
+    /**
+     * Retourne la tour la plus proche de l'ennemi.
+     * 
+     * @param tours La liste des tours.
+     * @return La tour la plus proche.
+     */
     protected Tour PlusProche(List<Tour> tours) {
         Tour plusProche = tours.get(0);
         for (Tour t : tours) {
@@ -192,10 +256,22 @@ public abstract class Enemi extends Entite {
         return plusProche;
     }
 
+     /**
+     * Retourne la tour avec le moins de points de vie.
+     * 
+     * @param tours La liste des tours.
+     * @return La tour avec le moins de PV.
+     */
+
     protected Tour MoinsDePV(List<Tour> tours) {
         return tours.stream().min(Comparator.comparingInt(Tour::getPV)).orElse(null);
     }
 
+     /**
+     * Affiche l'attaque de l'ennemi sur une tour.
+     * 
+     * @param t La tour attaquée.
+     */
     public void afficheattaque(Tour t) {
         StdDraw.setPenColor(Color.ORANGE);
         StdDraw.line(this.position.getX(), this.position.getY(), t.getPosition().getX(), t.getPosition().getY());

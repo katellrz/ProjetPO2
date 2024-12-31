@@ -2,17 +2,30 @@ package entites;
 
 import Librairies.Point;
 import Librairies.StdDraw;
-import outils.Omnicient;
-
 import java.awt.Color;
 import java.awt.Font;
-
 import java.util.List;
+import outils.Omnicient;
+
+/**
+ * Classe représentant une tour de type Archer dans le jeu.
+ * Cette tour possède des caractéristiques spécifiques comme ses PV, ATK, vitesse d'attaque, portée, et coût.
+ */
 
 public class Archer extends Tour{
 
+    /**
+     * Couleur spécifique de la tour Archer.
+     */
+
+
     private static Color couleur = new Color(107, 106, 105);
 
+     /**
+     * Constructeur pour créer une tour Archer à une position donnée.
+     *
+     * @param position la position de la tour Archer.
+     */
     public Archer(Point position){
         super(position);
         this.PV=30;
@@ -23,10 +36,24 @@ public class Archer extends Tour{
         this.Cost=20;       
     }
 
+
+      /**
+     * Retourne la couleur spécifique de la tour Archer.
+     *
+     * @return la couleur de la tour.
+     */
+
     @Override
     public Color getColor() {
         return couleur;
     }
+
+    /**
+     * Affiche l'interface graphique de la tour Archer dans la boutique.
+     * Si l'utilisateur n'a pas assez d'argent, l'option est grisée.
+     *
+     * @param Money le montant d'argent de l'utilisateur.
+     */
 
     public static void afficheTourBoutique(int Money){
 
@@ -56,6 +83,10 @@ public class Archer extends Tour{
         StdDraw.text(745, 571, "20");
 
     }
+    /**
+     * Attaque les ennemis à portée.
+     * Sélectionne l'ennemi le plus avancé à portée et effectue une attaque simple.
+     */
 
     @Override
     public void attaquer() {

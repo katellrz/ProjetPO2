@@ -3,22 +3,31 @@ package entites;
 import Librairies.Point;
 import Librairies.StdDraw;
 import Map.Case;
-
 import static Map.DetectionSouris.*;
-
 import java.awt.Color;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-
 import outils.Omnicient;
 
 
 
+
+/**
+ * La classe abstraite Tour représente une entité tour dans le jeu. 
+ * Elle fournit les méthodes et propriétés de base pour toutes les tours.
+ */
 public abstract class Tour extends Entite {
     protected int Cost;
     protected Point position;
+
+    
+    /**
+     * Constructeur de la classe Tour.
+     * 
+     * @param position La position initiale de la tour.
+     */
 
     // Constructeur de la classe TOURS
     public Tour(Point position) {
@@ -45,6 +54,9 @@ public abstract class Tour extends Entite {
     }
 
 
+    /**
+     * Place une tour sur une case constructible en fonction des interactions de l'utilisateur.
+     */
 
     public static void PlacerTour() {
         double x = StdDraw.mouseX();
@@ -90,6 +102,12 @@ public abstract class Tour extends Entite {
             }
         }
     }
+
+     /**
+     * Attend qu'une case constructible soit sélectionnée par l'utilisateur.
+     * 
+     * @return une instance de Case représentant la case sélectionnée.
+     */
     
     // Fonction pour attendre que l'utilisateur clique sur une case constructible
     private static Case attendreCaseConstructible() {
@@ -105,7 +123,11 @@ public abstract class Tour extends Entite {
         return null;
     }
     
-
+ /**
+     * Affiche la tour sur l'interface graphique.
+     * 
+     * @param tailleCase La taille de la case pour ajuster la taille de la tour.
+     */
 
     public void afficheTour(double tailleCase) {
         // Dessine la tour

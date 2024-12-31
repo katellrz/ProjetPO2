@@ -1,11 +1,22 @@
 package entites;
 //import map.Point;
 
+import Librairies.Point;
 import java.awt.Color;
 
-import Librairies.Point;
+
+/**
+ * Classe abstraite representant une entite dans le jeu.
+ * Une entite peut avoir différents éléments (FEU, EAU, TERRE, VENT) et des attributs
+ * comme les points de vie, l'attaque, la vitesse d'attaque, la portée et sa position.
+ */
+
 
 public abstract class Entite {
+
+     /**
+     * Énumération représentant les éléments possibles pour une entité.
+     */
 
     public enum Element{
         NONE,WIND,FIRE,WATER,EARTH
@@ -29,20 +40,45 @@ public abstract class Entite {
         this.ATKSpeed = ATKSpeed;
         this.Range = Range;
         this.element = Element;
+<<<<<<< HEAD
         this.PVmax = PV;
     }
 
+=======
+    } */
+    // Getters et setters
+
+    /**
+     * Obtient les points de vie actuels de l'entité.
+     * 
+     * @return Les points de vie actuels.
+     */
+>>>>>>> 5d6d35354f71ccd077c9a446355ffd45a66a445a
     public int getPV() {
         return PV;
     }
+      /**
+     * Définit les points de vie actuels de l'entité.
+     * Si les PV sont inferieurs ou egaux à zero, la méthode estMort() est appelée.
+     * 
+     * @param PV Les nouveaux points de vie.
+     */
 
     public void setPV(int PV) {
         this.PV = PV;
         estMort();
     }
 
-    public abstract void estMort();
+      /**
+     * Méthode abstraite appelee lorsque l'entité meurt.
+     * la methode doit  etre implémentee  par les sous-classes.
+     */
 
+    public abstract void estMort();
+/**
+ * 
+ * Getters et setters
+ */
     public int getATK() {
         return ATK;
     }
@@ -58,7 +94,18 @@ public abstract class Entite {
     public Element getElement() {
         return element;
     }
+<<<<<<< HEAD
 
+=======
+ /**
+     * Définit l'élément associé à l'entité.
+     * 
+     * @param Element Le nouvel élément de l'entité.
+     */
+    public void setElement(Element Element) {
+        this.element = Element;
+    }
+>>>>>>> 5d6d35354f71ccd077c9a446355ffd45a66a445a
 
    /*public Point getPosition() {
         return Position;
@@ -68,6 +115,11 @@ public abstract class Entite {
         this.Position = Position;
     }*/
 
+    /**
+     * 
+     * 
+     * @return La couleur correspondant à l'élément de l'entité.
+     */
     protected Color getColorByElement() {
         switch (this.element) {
             case FIRE:

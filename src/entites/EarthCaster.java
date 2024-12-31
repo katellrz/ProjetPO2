@@ -1,17 +1,30 @@
 package entites;
 
+import Librairies.Point;
+import Librairies.StdDraw;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.Comparator;
 import java.util.List;
-
-import Librairies.Point;
-import Librairies.StdDraw;
 import outils.Omnicient;
+
+/**
+ *  EarthCaster est une Classe représentant une tour de type EarthCaster.
+ * L'EarthCaster est une tour élémentaire terrestre spécialisée dans l'attaque
+ * de groupe, infligeant des dégâts aux ennemis proches de la cible principale.
+ */
 
 public class EarthCaster extends Tour {
 
     private static Color couleur = new Color(139,69,19);
+
+    /**
+     * Constructeur de la classe EarthCaster.
+     * Initialise une tour avec des caractéristiques spécifiques, notamment sa portée,
+     * ses points de vie, ses dégâts et son coût.
+     *
+     * @param position La position de la tour sur le plateau.
+     */
 
     public EarthCaster(Point position) {
         super(position);
@@ -25,10 +38,23 @@ public class EarthCaster extends Tour {
         
     }
 
+
+    /**
+     * Retourne la couleur associée à l'EarthCaster.
+     *
+     * @return La couleur de la tour EarthCaster.
+     */
     @Override
     public Color getColor() {
         return couleur;
     }
+
+    /**
+     * Affiche la tour EarthCaster dans la boutique.
+     * La tour est affichée différemment en fonction de l'argent disponible.
+     *
+     * @param Money La quantité d'argent disponible pour l'achat.
+     */
 
     public static void afficheTourBoutique(int Money){
 
@@ -59,7 +85,26 @@ public class EarthCaster extends Tour {
 
     }
 
+     /**
+     * Retourne les points de vie maximum de l'EarthCaster.
+     *
+     * @return Les points de vie maximum.
+     */
     @Override
+<<<<<<< HEAD
+=======
+    public int getMaxPV() {
+        return MaxPV;
+    }
+
+     /**
+     * Permet à l'EarthCaster d'attaquer les ennemis à sa portée.
+     * Cette méthode sélectionne l'ennemi avec le plus de PV comme cible principale,
+     * puis inflige des dégâts à tous les ennemis proches de cette cible principale.
+     */
+
+    @Override
+>>>>>>> 5d6d35354f71ccd077c9a446355ffd45a66a445a
     public void attaquer() {
         if (peutAttaquer()) {
             List<Enemi> cibles = MonstreAportee(Omnicient.getPositionMonstre(), this.Range);
