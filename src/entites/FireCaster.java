@@ -19,7 +19,7 @@ public class FireCaster extends Tour{
     private static Color couleur = new Color(255, 142, 97);
 
     public FireCaster(Point position){
-        super(position);
+        super(30, 10, 0.5, 2.5, Element.FIRE, position, 100);
         this.PV=30;
         this.ATK=10;
         this.ATKSpeed=0.5;
@@ -28,18 +28,6 @@ public class FireCaster extends Tour{
         this.Cost=100;       
     }
 
-<<<<<<< HEAD
-=======
-    /**
-     * Obtient les points de vie maximum de la FireCaster.
-     * 
-     * @return Les points de vie maximum.
-     */
-    @Override
-    public int getMaxPV() {
-        return MaxPV;
-    }
->>>>>>> 5d6d35354f71ccd077c9a446355ffd45a66a445a
 
 
     /**

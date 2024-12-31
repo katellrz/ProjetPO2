@@ -26,13 +26,7 @@ public class WindCaster extends Tour {
 
 
     public WindCaster(Point position) {
-        super(position);
-        this.PV=30;
-        this.ATK=5;
-        this.ATKSpeed=1.5;
-        this.Range=6;
-        this.element=Element.WIND;
-        this.Cost=50;
+        super(30, 5, 1.5, 6, Element.WIND, position, 50);
     }
 
     @Override
@@ -77,18 +71,6 @@ public class WindCaster extends Tour {
 
     }
 
-<<<<<<< HEAD
-=======
-    /**
-     * Retourne les points de vie maximaux de la tour WindCaster.
-     * 
-     * @return les points de vie maximaux.
-     */
-    @Override
-    public int getMaxPV() {
-        return MaxPV;
-    }
->>>>>>> 5d6d35354f71ccd077c9a446355ffd45a66a445a
 
 
      /**

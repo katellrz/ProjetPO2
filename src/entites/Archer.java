@@ -27,13 +27,7 @@ public class Archer extends Tour{
      * @param position la position de la tour Archer.
      */
     public Archer(Point position){
-        super(position);
-        this.PV=30;
-        this.ATK=5;
-        this.ATKSpeed=1;
-        this.Range=2;
-        this.element=Element.NONE;
-        this.Cost=20;       
+        super(30, 5, 1, 2, Element.NONE, position, 20);
     }
 
 

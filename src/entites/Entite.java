@@ -34,18 +34,14 @@ public abstract class Entite {
     
 
     // Constructeur de la classse Entite
-     public Entite(int PV, int ATK, double ATKSpeed, int Range, Element Element) {
+     public Entite(int PV, int ATK, double ATKSpeed, double Range, Element Element, Point Position) {
         this.PV = PV;
         this.ATK = ATK;
         this.ATKSpeed = ATKSpeed;
         this.Range = Range;
         this.element = Element;
-<<<<<<< HEAD
         this.PVmax = PV;
-    }
-
-=======
-    } */
+    } 
     // Getters et setters
 
     /**
@@ -53,7 +49,6 @@ public abstract class Entite {
      * 
      * @return Les points de vie actuels.
      */
->>>>>>> 5d6d35354f71ccd077c9a446355ffd45a66a445a
     public int getPV() {
         return PV;
     }
@@ -94,18 +89,6 @@ public abstract class Entite {
     public Element getElement() {
         return element;
     }
-<<<<<<< HEAD
-
-=======
- /**
-     * Définit l'élément associé à l'entité.
-     * 
-     * @param Element Le nouvel élément de l'entité.
-     */
-    public void setElement(Element Element) {
-        this.element = Element;
-    }
->>>>>>> 5d6d35354f71ccd077c9a446355ffd45a66a445a
 
    /*public Point getPosition() {
         return Position;

@@ -26,27 +26,8 @@ public class WaterBrute extends Enemi {
      */
     
     public WaterBrute() {
-        this.PV = 30;
-        this.ATK = 5;
-        this.ATKSpeed = 1;
-        this.Range = 3;
-        this.element = Element.WATER;
-        this.Speed = 1;
-        this.Reward = 3;
-
+        super(30, 5, 1, 3, Element.WATER, 3, 1);
     }
-     /**
-     * 
-     * 
-     * @return les points de vie maximaux.
-     */
-
-    @Override
-<<<<<<< HEAD
-=======
-    public int getMaxPV() {
-        return PVmax;
-    }  
 
     
     /**
@@ -56,7 +37,6 @@ public class WaterBrute extends Enemi {
      * Les tours proches reçoivent des dégâts d'attaque.
      */
     @Override
->>>>>>> 5d6d35354f71ccd077c9a446355ffd45a66a445a
     public void attaquer() {
         if (peutAttaquer()) {
             List<Tour> tours = Omnicient.getPositionTours();

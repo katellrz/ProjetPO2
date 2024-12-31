@@ -13,7 +13,7 @@ public class WaterCaster extends Tour {
     private static Color couleur = new Color(24, 108, 151);
 
     public WaterCaster(Point position) {
-        super(position);
+        super(30, 3, 1, 4, Element.WATER, position, 50);
         this.PV=30;
         this.ATK=3;
         this.ATKSpeed=1;

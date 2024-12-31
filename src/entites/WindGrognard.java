@@ -19,6 +19,7 @@ public class WindGrognard extends Enemi {
      * spécifiques au WindGrognard.
      */
     public WindGrognard() {
+        super(1, 7, 2, 5, Element.WIND, 1, 2);
         this.PV = 1;
         this.ATK = 7;
         this.ATKSpeed = 2;
@@ -29,12 +30,7 @@ public class WindGrognard extends Enemi {
 
     }
 
-    @Override
-<<<<<<< HEAD
-=======
-    public int getMaxPV() {
-        return PVmax;
-    }  
+
      /**
      * Effectue l'attaque du WindGrognard contre les tours proches dans sa portée.
      * Si des tours sont dans sa portée, l'ennemi attaque la tour ayant les moins de points de vie.
@@ -42,7 +38,6 @@ public class WindGrognard extends Enemi {
      */
 
     @Override
->>>>>>> 5d6d35354f71ccd077c9a446355ffd45a66a445a
     public void attaquer() {
         if (peutAttaquer()) {
 

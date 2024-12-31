@@ -18,13 +18,7 @@ public class FireGrognard extends Enemi {
      * Initialise les attributs specifiques de l'ennemi.
      */
     public FireGrognard() {
-        this.PV = 1;
-        this.ATK = 7;
-        this.ATKSpeed = 2;
-        this.Range = 3;
-        this.element = Element.FIRE;
-        this.Speed = 2;
-        this.Reward = 1;
+        super(1, 7, 2, 3, Element.FIRE, 1, 2);
     }
     
 

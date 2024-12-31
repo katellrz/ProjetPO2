@@ -27,15 +27,7 @@ public class EarthCaster extends Tour {
      */
 
     public EarthCaster(Point position) {
-        super(position);
-        this.PV=50;
-        this.ATK=7;
-        this.ATKSpeed=0.5;
-        this.Range=2.5;
-        this.element=Element.EARTH;
-        this.Cost=100;
-
-        
+        super(50, 7, 0.5, 2.5, Element.EARTH, position, 100);        
     }
 
 
@@ -86,25 +78,12 @@ public class EarthCaster extends Tour {
     }
 
      /**
-     * Retourne les points de vie maximum de l'EarthCaster.
-     *
-     * @return Les points de vie maximum.
-     */
-    @Override
-<<<<<<< HEAD
-=======
-    public int getMaxPV() {
-        return MaxPV;
-    }
-
-     /**
      * Permet à l'EarthCaster d'attaquer les ennemis à sa portée.
      * Cette méthode sélectionne l'ennemi avec le plus de PV comme cible principale,
      * puis inflige des dégâts à tous les ennemis proches de cette cible principale.
      */
 
     @Override
->>>>>>> 5d6d35354f71ccd077c9a446355ffd45a66a445a
     public void attaquer() {
         if (peutAttaquer()) {
             List<Enemi> cibles = MonstreAportee(Omnicient.getPositionMonstre(), this.Range);

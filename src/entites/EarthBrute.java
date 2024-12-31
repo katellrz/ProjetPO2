@@ -16,7 +16,8 @@ public class EarthBrute extends Enemi {
      */
     
     public EarthBrute() {
-        super(30, 5, 1, 5, Element.EARTH, 1, 3);
+        super(30, 5, 1, 3, Element.EARTH, 1, 3);
+        
     }
 
     @Override

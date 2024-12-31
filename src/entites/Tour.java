@@ -20,7 +20,6 @@ import outils.Omnicient;
  */
 public abstract class Tour extends Entite {
     protected int Cost;
-    protected Point position;
 
     
     /**
@@ -28,12 +27,9 @@ public abstract class Tour extends Entite {
      * 
      * @param position La position initiale de la tour.
      */
-
-    // Constructeur de la classe TOURS
-    public Tour(Point position) {
-        super();
-        this.position = position;
-        // this.Cost = cost;
+    public Tour(int PV, int ATK, double ATKSpeed, double Range, Element Element, Point position, int cost) {
+        super(PV, ATK, ATKSpeed,Range, Element, position);
+        this.Cost = cost;
         
     }
 

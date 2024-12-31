@@ -27,10 +27,10 @@ public abstract class Enemi extends Entite {
      * Initialise la position de l'ennemi au centre de la première case du chemin
      * et définit l'index actuel à 0.
      */
-    public Enemi(int PV, int ATK, double ATKSpeed, int Range, Element Element, Point position, int Reward, double Speed) {
-        super(PV, ATK, ATKSpeed, Range, Element);
-        this.position= Omnicient.getSpawn().getCenterCase();
-        this.currentIndex = 0;
+    public Enemi(int PV, int ATK, double ATKSpeed, int Range, Element Element, int Reward, double Speed) {
+        super(PV, ATK, ATKSpeed, Range, Element,Omnicient.getSpawn().getCenterCase());
+        this.Reward = Reward;
+        this.Speed = Speed;
     }
 
 
