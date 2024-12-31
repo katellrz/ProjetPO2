@@ -41,6 +41,7 @@ public abstract class Entite {
         this.Range = Range;
         this.element = Element;
         this.PVmax = PV;
+        this.position = Position;
     } 
     // Getters et setters
 

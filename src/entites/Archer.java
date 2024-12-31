@@ -90,7 +90,7 @@ public class Archer extends Tour{
                 Enemi cible = PlusAvancer(cibles);
                 if (cible != null) {
                     attaqueSimple(cible);
-                    afficheattaque(cible);
+                    
                 }
             }
         }

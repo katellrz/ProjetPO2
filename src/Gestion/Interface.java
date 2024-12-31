@@ -9,6 +9,7 @@ import entites.EarthCaster;
 import entites.FireCaster;
 import entites.WaterCaster;
 import entites.WindCaster;
+import outils.Omnicient;
 
 import java.awt.Color;
 import Librairies.Point;
@@ -81,7 +82,7 @@ public abstract class Interface{
     }
 
     public static void afficheCarte (String nom){
-        Carte c = new Carte(nom);
+        Carte c = new Carte(nom);        
         c.afficheCarte();
     }
     

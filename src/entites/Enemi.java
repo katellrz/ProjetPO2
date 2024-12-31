@@ -28,7 +28,9 @@ public abstract class Enemi extends Entite {
      * et définit l'index actuel à 0.
      */
     public Enemi(int PV, int ATK, double ATKSpeed, int Range, Element Element, int Reward, double Speed) {
-        super(PV, ATK, ATKSpeed, Range, Element,Omnicient.getSpawn().getCenterCase());
+        
+        super(PV, ATK, ATKSpeed, Range, Element,getChemin().get(0).getCenterCase());
+        System.out.println("Position de l'ennemi : " + getChemin().get(0).getCenterCase());
         this.Reward = Reward;
         this.Speed = Speed;
     }
@@ -133,7 +135,7 @@ public abstract class Enemi extends Entite {
             A = new Point(d.getCenterX()+PF,d.getCenterY());
         }
 
-        if (this.position.equals(A)||currentIndex>=path.size()-1){ // On arrète si le monstre a atteint la fin du chemin
+        if (this.position!=null&&(this.position.equals(A)||currentIndex>=path.size()-1)){ // On arrète si le monstre a atteint la fin du chemin
             System.out.println("Le monstre est arrivé à la base !");
             return;
         }
@@ -264,7 +266,13 @@ public abstract class Enemi extends Entite {
      */
 
     protected Tour MoinsDePV(List<Tour> tours) {
-        return tours.stream().min(Comparator.comparingInt(Tour::getPV)).orElse(null);
+        Tour Min = tours.get(0);
+        for (Tour t : tours) {
+            if (t.getPV() < Min.getPV()) {
+                Min = t;
+            }
+        }
+        return Min;
     }
 
      /**

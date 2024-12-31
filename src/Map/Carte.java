@@ -2,6 +2,10 @@ package Map;
 
 import Librairies.FileExtraction;
 import Map.Case.Casetype;
+
+import static outils.Omnicient.SaveToOmni;
+import static outils.Omnicient.SavetoOmniSpawn;
+
 import java.util.ArrayList;
 import java.util.List;
 import outils.Omnicient;
@@ -185,11 +189,12 @@ public class Carte {
         }
     
         for (int i = 0; i < CarteJeu.size(); i++) {
-            if (CarteJeu.get(i)==null) continue; // Vérifiez si la ligne est null
+            if (CarteJeu.get(i)==null) continue; // Vérifiez si la ligne est null TODO 
     
             for (int j = 0; j < CarteJeu.get(0).size(); j++) {
                 if (CarteJeu.get(i).get(j) != null && CarteJeu.get(i).get(j).getType() == Casetype.SPAWN) {
                     //System.out.println("trouvé");
+                    SavetoOmniSpawn(CarteJeu.get(i).get(j));
                     return CarteJeu.get(i).get(j);
                 }
             }
