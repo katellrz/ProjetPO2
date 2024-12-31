@@ -14,13 +14,8 @@ public class FireGrognard extends Enemi {
         this.element = Element.FIRE;
         this.Speed = 2;
         this.Reward = 1;
-        this.PVmax = PV;
     }
     
-    @Override
-    public int getMaxPV() {
-        return PVmax;
-    }  
 
     @Override
     public void attaquer() {

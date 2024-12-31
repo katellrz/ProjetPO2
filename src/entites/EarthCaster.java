@@ -21,7 +21,7 @@ public class EarthCaster extends Tour {
         this.Range=2.5;
         this.element=Element.EARTH;
         this.Cost=100;
-        this.MaxPV = PV;
+
         
     }
 
@@ -57,11 +57,6 @@ public class EarthCaster extends Tour {
         StdDraw.setPenColor(StdDraw.WHITE);
         StdDraw.text(883, 511, "100");
 
-    }
-
-    @Override
-    public int getMaxPV() {
-        return MaxPV;
     }
 
     @Override

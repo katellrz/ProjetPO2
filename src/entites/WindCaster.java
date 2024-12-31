@@ -21,7 +21,6 @@ public class WindCaster extends Tour {
         this.Range=6;
         this.element=Element.WIND;
         this.Cost=50;
-        this.MaxPV = PV;
     }
 
     @Override
@@ -58,10 +57,6 @@ public class WindCaster extends Tour {
 
     }
 
-    @Override
-    public int getMaxPV() {
-        return MaxPV;
-    }
 
     @Override
     public void attaquer() {

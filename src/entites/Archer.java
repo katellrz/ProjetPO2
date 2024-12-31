@@ -24,11 +24,6 @@ public class Archer extends Tour{
     }
 
     @Override
-    public int getMaxPV() {
-        return MaxPV;
-    }
-
-    @Override
     public Color getColor() {
         return couleur;
     }

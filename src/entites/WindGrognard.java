@@ -18,11 +18,6 @@ public class WindGrognard extends Enemi {
     }
 
     @Override
-    public int getMaxPV() {
-        return PVmax;
-    }  
-
-    @Override
     public void attaquer() {
         if (peutAttaquer()) {
 

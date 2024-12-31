@@ -16,12 +16,11 @@ import java.util.List;
 public abstract class Enemi extends Entite {
     protected double Speed;
     protected int Reward;
-    protected int currentIndex;//TODO en publique jsp pas pourquoi peut poser problème
-
+    protected int currentIndex;
     // Constructeur de la classe Enemi
-    public Enemi() {
-        super();
-        this.position= getChemin().get(0).getCenterCase();
+    public Enemi(int PV, int ATK, double ATKSpeed, int Range, Element Element, Point position, int Reward, double Speed) {
+        super(PV, ATK, ATKSpeed, Range, Element);
+        this.position= Omnicient.getSpawn().getCenterCase();
         this.currentIndex = 0;
     }
 
@@ -48,7 +47,6 @@ public abstract class Enemi extends Entite {
         this.Reward = Reward;
     }
 
-    
     public void setPosition(Point position) {
         this.position = position;
     }
@@ -125,36 +123,48 @@ public abstract class Enemi extends Entite {
         //System.out.println("L'ennemi apparaît : " + this);
         
         StdDraw.setPenColor(this.getColorByElement());
-        StdDraw.filledCircle(position.getX(), position.getY(), 5);
+        StdDraw.filledSquare(position.getX(), position.getY(), 5);
         StdDraw.show();     
         
-        //this.afficherVieE();
+        this.afficherVieE();
         
     }
 
     public void afficherVieE() {
-
+        if (this.getPosition() == null ) {
+            System.err.println("Erreur : position invalide pour " + this);
+            return;
+        }else if (this.PVmax <= 0){
+            System.err.println("Erreur : PV max invalide pour " + this);
+            return;
+        }
+    
         // Calculer la largeur actuelle en fonction des points de vie
-        double largeurActuelle = (double)this.getPV() /this.getMaxPV() * 50;
-
+        double largeurActuelle = Math.max(0, (double) this.getPV() / this.PVmax * 50);
+    
+        double x = this.getPosition().getX();
+        double y = this.getPosition().getY() - 25;
+    
+        // Vérifier que les coordonnées sont valides
+        if (Double.isInfinite(x) || Double.isNaN(x) || Double.isInfinite(y) || Double.isNaN(y)) {
+            System.err.println("Erreur : coordonnées invalides pour " + this + " (x=" + x + ", y=" + y + ")");
+            return;
+        }
+    
         // Dessiner le fond de la barre (gris)
         StdDraw.setPenColor(Color.LIGHT_GRAY);
-        StdDraw.filledRectangle(this.getPosition().getX(),this.getPosition().getY() - 25, 50 / 2, 7 / 2);
-
+        StdDraw.filledRectangle(x, y, 50 / 2, 7 / 2);
+    
         // Dessiner la barre de vie (verte)
         StdDraw.setPenColor(Color.GREEN);
-        StdDraw.filledRectangle(this.getPosition().getX() - (50 - largeurActuelle) / 2,this.getPosition().getY() - 25,
-                largeurActuelle / 2, 7 / 2);
-
+        StdDraw.filledRectangle(x - (50 - largeurActuelle) / 2, y, largeurActuelle / 2, 7 / 2);
+    
         // Contour de la barre (noir)
         StdDraw.setPenColor(Color.BLACK);
-        StdDraw.rectangle(this.getPosition().getX(),this.getPosition().getX() - 25, 50 / 2, 7 / 2);
-
+        StdDraw.rectangle(x, y, 50 / 2, 7 / 2);
+    
         StdDraw.show();
-
     }
-
-    public abstract int getMaxPV();
 
     protected LocalTime derniereAttaque = LocalTime.now();
     protected double tempsDepuisDerniereAttaque = 0.0;
@@ -164,7 +174,7 @@ public abstract class Enemi extends Entite {
     protected boolean peutAttaquer() {
         Duration d = Duration.between(derniereAttaque, LocalTime.now());
         tempsDepuisDerniereAttaque = d.toMillis();
-        if (tempsDepuisDerniereAttaque >= ATKSpeed) {
+        if (tempsDepuisDerniereAttaque >= ATKSpeed*1000) {
             tempsDepuisDerniereAttaque = 0.0;
             derniereAttaque = LocalTime.now();
             return true;

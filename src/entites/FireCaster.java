@@ -22,10 +22,6 @@ public class FireCaster extends Tour{
         this.Cost=100;       
     }
 
-    @Override
-    public int getMaxPV() {
-        return MaxPV;
-    }
 
     @Override
     public Color getColor() {

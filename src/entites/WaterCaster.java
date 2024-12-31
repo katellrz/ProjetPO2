@@ -20,12 +20,7 @@ public class WaterCaster extends Tour {
         this.Range=4;
         this.element=Element.WATER;
         this.Cost=50;
-        this.MaxPV = PV;
-    }
 
-     @Override
-    public int getMaxPV() {
-        return MaxPV;
     }
 
     @Override

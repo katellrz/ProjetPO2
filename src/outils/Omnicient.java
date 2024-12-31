@@ -89,10 +89,5 @@ public abstract class Omnicient {
     public static void removeTour(Tour tour) {
         positionTours.remove(tour);
     }
-
-    
-
-
-
     
 }

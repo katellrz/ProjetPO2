@@ -7,20 +7,8 @@ import outils.Omnicient;
 public class EarthBrute extends Enemi {
     
     public EarthBrute() {
-        this.PV = 30;
-        this.ATK = 5;
-        this.ATKSpeed = 1;
-        this.Range = 3;
-        this.element = Element.EARTH;
-        this.Speed = 1;
-        this.Reward = 3;
-        this.PVmax = PV;
+        super(30, 5, 1, 5, Element.EARTH, 1, 3);
     }
-
-    @Override
-    public int getMaxPV() {
-        return PVmax;
-    }  
 
     @Override
     public void attaquer() {

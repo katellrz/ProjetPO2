@@ -19,14 +19,13 @@ import outils.Omnicient;
 public abstract class Tour extends Entite {
     protected int Cost;
     protected Point position;
-    protected int MaxPV;
 
     // Constructeur de la classe TOURS
     public Tour(Point position) {
         super();
         this.position = position;
         // this.Cost = cost;
-        // this.MaxPV = PV;
+        
     }
 
     // Getters et setters
@@ -58,6 +57,7 @@ public abstract class Tour extends Entite {
                 if (c != null) {
                     Tour t = new Archer(c.getCenterCase());
                     Omnicient.SavetoOmni(t);
+                    System.out.println("Tour placée a la position : " + t.getPosition());
                 }
             } else if ((x < 987 && x > 859) && (y < 596 && y > 546)) { // WindCaster
                 System.out.println("WindCaster sélectionné");
@@ -113,32 +113,41 @@ public abstract class Tour extends Entite {
         StdDraw.setPenColor(tourColor);
         StdDraw.filledCircle(position.getX(), position.getY(), tailleCase / 4.0); // Ajuster la taille selon besoin
     
-        //this.afficherVieT();
+        this.afficherVieT();
     }
 
     public void afficherVieT() {
-
+        if (this.getPosition() == null || this.PVmax <= 0) {
+            System.err.println("Erreur : position ou PV max invalide pour " + this);
+            return;
+        }
+    
         // Calculer la largeur actuelle en fonction des points de vie
-        double largeurActuelle = (double)this.getPV() /this.getMaxPV() * 50;
-
+        double largeurActuelle = Math.max(0, (double) this.getPV() / this.PVmax * 50);
+    
+        double x = this.getPosition().getX();
+        double y = this.getPosition().getY() - 25;
+    
+        // Vérifier que les coordonnées sont valides
+        if (Double.isInfinite(x) || Double.isNaN(x) || Double.isInfinite(y) || Double.isNaN(y)) {
+            System.err.println("Erreur : coordonnées invalides pour " + this + " (x=" + x + ", y=" + y + ")");
+            return;
+        }
+    
         // Dessiner le fond de la barre (gris)
         StdDraw.setPenColor(Color.LIGHT_GRAY);
-        StdDraw.filledRectangle(this.getPosition().getX(),this.getPosition().getY() - 25, 50 / 2, 7 / 2);
-
+        StdDraw.filledRectangle(x, y, 50 / 2, 7 / 2);
+    
         // Dessiner la barre de vie (verte)
         StdDraw.setPenColor(Color.GREEN);
-        StdDraw.filledRectangle(this.getPosition().getX() - (50 - largeurActuelle) / 2,this.getPosition().getY() - 25,
-                largeurActuelle / 2, 7 / 2);
-
+        StdDraw.filledRectangle(x - (50 - largeurActuelle) / 2, y, largeurActuelle / 2, 7 / 2);
+    
         // Contour de la barre (noir)
         StdDraw.setPenColor(Color.BLACK);
-        StdDraw.rectangle(this.getPosition().getX(),this.getPosition().getX() - 25, 50 / 2, 7 / 2);
-
+        StdDraw.rectangle(x, y, 50 / 2, 7 / 2);
+    
         StdDraw.show();
-
     }
-
-    public abstract int getMaxPV();
 
     public abstract Color getColor();
 
@@ -150,7 +159,7 @@ public abstract class Tour extends Entite {
     protected boolean peutAttaquer() {
         Duration d = Duration.between(derniereAttaque, LocalTime.now());
         tempsDepuisDerniereAttaque = d.toMillis();
-        if (tempsDepuisDerniereAttaque >= ATKSpeed) {
+        if (tempsDepuisDerniereAttaque >= ATKSpeed*1000) {
             tempsDepuisDerniereAttaque = 0.0;
             derniereAttaque = LocalTime.now();
             return true;

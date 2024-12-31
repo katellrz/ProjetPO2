@@ -14,12 +14,6 @@ public class Boss extends Enemi {
         this.element = Element.FIRE;
         this.Speed = 0.5;
         this.Reward = 100;
-        this.PVmax = PV;
-    }
-
-    @Override
-    public int getMaxPV() {
-        return PVmax;
     }
 
     @Override
