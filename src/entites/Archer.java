@@ -49,7 +49,7 @@ public class Archer extends Tour{
      * @param Money le montant d'argent de l'utilisateur.
      */
 
-    public static void afficheTourBoutique(int Money){
+    public static void i{
 
         if(Money<20){
             StdDraw.setPenColor(StdDraw.GRAY);
