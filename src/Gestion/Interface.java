@@ -15,12 +15,20 @@ import java.awt.Color;
 import Librairies.Point;
 
 // _________________________________________
+/**
+ * La classe Interface est responsable de l'affichage de l'interface graphique 
+ * du jeu, en utilisant la bibliothèque StdDraw. Elle gère à la fois les 
+ * éléments statiques et dynamiques de l'interface, comme la carte, 
+ * les informations du joueur, et les tours de la boutique.
+ */
 
 public abstract class Interface{
 
 
     /**
      * Fonctionn qui a pour role d'afficher le canvas (fentre de notre jeux)
+     *  * Initialise la fenêtre de jeu en définissant sa taille et ses échelles.
+     * Configure également le double buffering pour des affichages fluides.
      */
     public static void AfficheInterface(){
 
@@ -52,7 +60,13 @@ public abstract class Interface{
     }
 
     /**
-     * Fonction qui a pour role d'afficher les elemnt suceptible de changer durant le jeux 
+     * Affiche les éléments dynamiques de l'interface, qui peuvent changer 
+     * pendant le jeu, comme la carte, les tours disponibles dans la boutique, 
+     * et les informations du joueur (argent et vie).
+     *
+     * @param nom  Le nom de la carte à afficher.
+     * @param Money  Le montant d'argent disponible pour le joueur.
+     * @param vie  Le nombre de points de vie restants pour le joueur.
      */
     public static void AfficheDynamique(String nom, int Money, int vie){
         afficheCarte(nom);
