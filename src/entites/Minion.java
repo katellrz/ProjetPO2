@@ -1,5 +1,7 @@
 package entites;
 
+import Gestion.Joueur;
+
 public class Minion extends Enemi {
     
     public Minion() {
@@ -8,7 +10,7 @@ public class Minion extends Enemi {
 
     
     @Override
-    public void attaquer() {
+    public void attaquer(Joueur Joueur) {
         // Les Minions ne peuvent pas attaquer
     }
 }

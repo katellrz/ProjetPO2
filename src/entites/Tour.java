@@ -300,11 +300,6 @@ public abstract class Tour extends Entite {
     protected void attaqueSimple(Enemi cible, Joueur Joueur) {
         if (cible != null) {
             cible.setPV(cible.getPV() - this.ATK);
-            if (cible.getPV() <= 0) {
-                Joueur.gagnerArgent(cible.getReward());
-                Omnicient.removeEnemi(cible);
-                Joueur.gagnerArgent(cible.getReward());
-            }
         }
     }
 
@@ -313,15 +308,8 @@ public abstract class Tour extends Entite {
         for (Enemi tour : Omnicient.getPositionMonstre()) {
             if (tour.getPosition().distance(t.getPosition()) <= distance) {
                 tour.setPV(tour.getPV() - this.ATK);
-                if (tour.getPV() <= 0) {
-                    toursMorte.add(tour);
-                }
                 afficheAattaqueCollateral(tour, t);
             }
-        }
-        for (Enemi tour : toursMorte) {
-            Omnicient.removeEnemi(tour);
-            Joueur.gagnerArgent(tour.getReward());
         }
     }
 
@@ -329,5 +317,8 @@ public abstract class Tour extends Entite {
         StdDraw.setPenColor(Color.ORANGE);
         StdDraw.line(t.getPosition().getX(), t.getPosition().getY(), cible.getPosition().getX(), cible.getPosition().getY());
     }
+
+
+    public void attaquer(Joueur joueur){}
 }
      

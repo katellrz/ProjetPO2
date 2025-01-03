@@ -134,8 +134,6 @@ public abstract class Entite {
     protected LocalTime derniereAttaque = LocalTime.now();
     protected double tempsDepuisDerniereAttaque = 0.0;
 
-    public abstract void attaquer(Joueur Joueur);
-
       /**
      * Vérifie si l'ennemi peut attaquer.
      * 

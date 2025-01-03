@@ -286,11 +286,15 @@ public abstract class Enemi extends Entite {
         }
     }
 
+    
+
     public void afficheAattaqueCollateral(Tour t, Tour cible) {
         StdDraw.setPenColor(Color.ORANGE);
         StdDraw.line(t.getPosition().getX(), t.getPosition().getY(), cible.getPosition().getX(), cible.getPosition().getY());
     }
 
+
+    public void attaquer(Joueur joueur){}
 
     
 }

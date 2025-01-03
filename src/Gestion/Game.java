@@ -43,9 +43,13 @@ public class Game {
         for (Tour tour : tours) {
             tour.afficheTour(getSize());
             tour.attaquer(joueur);
-            StdDraw.show();
         }
-        Tour.PlacerTour(joueur);
+        for (Enemi monstre : getPositionMonstre()) {
+            if(monstre.getPV() <= 0){
+                joueur.gagnerArgent(monstre.getReward());
+                removeEnemi(monstre);
+            }
+        }     
     }
 
     public void gestionEnemi() {
@@ -54,7 +58,11 @@ public class Game {
             monstre.avance(joueur);
             monstre.apparait();
             monstre.attaquer(joueur);
-            StdDraw.show();
+        }
+        for(Tour tour : getPositionTours()){
+            if(tour.getPV() <= 0){
+                removeTour(tour);//TODO hgere le remouve tour le problee etant que on ne peut pas remouve d'une liste au sein d'un for sur cette liste sur TOUR ET MONSTRE
+            }
         }
     }
 
@@ -67,6 +75,7 @@ public class Game {
             Update();
             Triche();
             vagueActuelle.Vaguedemonstre();
+            Tour.PlacerTour(joueur);
             Interface.AfficheStatique();
             Interface.AfficheDynamique(map, joueur.getArgent(), joueur.getVie());
             joueur.afficheInfo();
