@@ -1,5 +1,6 @@
 package entites;
 
+import Gestion.Joueur;
 import Librairies.Point;
 import Librairies.StdDraw;
 import Map.Case;
@@ -8,8 +9,6 @@ import java.awt.Color;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-
-import Gestion.Joueur;
 import outils.Omnicient;
 
 
