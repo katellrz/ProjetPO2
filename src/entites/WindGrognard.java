@@ -1,6 +1,8 @@
 package entites;
 
 import java.util.List;
+
+import Gestion.Joueur;
 import outils.Omnicient;
 
 /**

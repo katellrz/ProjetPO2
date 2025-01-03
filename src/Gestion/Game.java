@@ -69,7 +69,7 @@ public class Game {
             vagueActuelle.Vaguedemonstre();
             Interface.AfficheStatique();
             Interface.AfficheDynamique(map, joueur.getArgent(), joueur.getVie());
-            joueur.afficherInfos();
+            joueur.afficheInfo();
             StdDraw.show();
             gestionEnemi();
             gestionTour();
@@ -111,12 +111,12 @@ public class Game {
         int y = (int) StdDraw.mouseY();
 
         if (x > 712 && x < 812 && y > 0 && y < 50 && StdDraw.isMousePressed()) {
-            System.out.println("Triche Argent");
-            joueur.gagnerVie(joueur.getVie() + 1000);
+            System.out.println("Triche Vie");
+            joueur.gagnerVie(100);
             while (StdDraw.isMousePressed()) {}
         } else if (x > 812 && x < 1000 && y > 0 && y < 50 && StdDraw.isMousePressed()) {
-            System.out.println("Triche Vie");
-            joueur.gagnerArgent(joueur.getArgent() + 1000);
+            System.out.println("Triche Argent");
+            joueur.gagnerArgent( 1000);
             while (StdDraw.isMousePressed()) {}
         }
     }

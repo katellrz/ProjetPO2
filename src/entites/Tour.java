@@ -56,52 +56,9 @@ public abstract class Tour extends Entite {
      * Place une tour sur une case constructible en fonction des interactions de l'utilisateur.
      */
 
-    public static void PlacerTour() {
-        double x = StdDraw.mouseX();
-        double y = StdDraw.mouseY();
-    
-        if (StdDraw.isMousePressed()) {
-            if ((x < 849 && x > 721) && (y < 596 && y > 546)) { // Archer
-                System.out.println("Archer sélectionné");
-                Case c = attendreCaseConstructible();
-                if (c != null) {
-                    Tour t = new Archer(c.getCenterCase());
-                    Omnicient.SavetoOmni(t);
-                    System.out.println("Tour placée a la position : " + t.getPosition());
-                }
-            } else if ((x < 987 && x > 859) && (y < 596 && y > 546)) { // WindCaster
-                System.out.println("WindCaster sélectionné");
-                Case c = attendreCaseConstructible();
-                if (c != null) {
-                    Tour t = new WindCaster(c.getCenterCase());
-                    Omnicient.SavetoOmni(t);
-                }
-            } else if ((x < 849 && x > 721) && (y < 536 && y > 486)) { // WaterCaster
-                System.out.println("WaterCaster sélectionné");
-                Case c = attendreCaseConstructible();
-                if (c != null) {
-                    Tour t = new WaterCaster(c.getCenterCase());
-                    Omnicient.SavetoOmni(t);
-                }
-            } else if ((x < 987 && x > 859) && (y < 536 && y > 486)) { // EarthCaster
-                System.out.println("EarthCaster sélectionné");
-                Case c = attendreCaseConstructible();
-                if (c != null) {
-                    Tour t = new EarthCaster(c.getCenterCase());
-                    Omnicient.SavetoOmni(t);
-                }
-            } else if ((x < 849 && x > 721) && (y < 476 && y > 426)) { // FireCaster
-                System.out.println("FireCaster sélectionné");
-                Case c = attendreCaseConstructible();
-                if (c != null) {
-                    Tour t = new FireCaster(c.getCenterCase());
-                    Omnicient.SavetoOmni(t);
-                }
-            }
-        }
-    }
+   
 
-    /* public static void PlacerTour(Joueur Joueur) {
+    public static void PlacerTour(Joueur Joueur) {
         double x = StdDraw.mouseX();
         double y = StdDraw.mouseY();
     
@@ -172,7 +129,7 @@ public abstract class Tour extends Entite {
                     System.out.println("Tour placée : IceCaster à " + t.getPosition());
                 }
             }
-            // PoisonCaster
+            /* // PoisonCaster
             else if ((x < 849 && x > 721) && (y < 416 && y > 366) && Joueur.getArgent() >= 80) {
                 System.out.println("PoisonCaster sélectionné");
                 Case c = attendreCaseConstructible();
@@ -182,7 +139,7 @@ public abstract class Tour extends Entite {
                     Omnicient.SavetoOmni(t);
                     System.out.println("Tour placée : PoisonCaster à " + t.getPosition());
                 }
-            }
+            } */
             // GoldDigger
             else if ((x < 987 && x > 859) && (y < 416 && y > 366) && Joueur.getArgent() >= 20) {
                 System.out.println("GoldDigger sélectionné");
@@ -194,7 +151,7 @@ public abstract class Tour extends Entite {
                     System.out.println("Tour placée : GoldDigger à " + t.getPosition());
                 }
             }
-            // Railgun
+            /* // Railgun
             else if ((x < 849 && x > 721) && (y < 356 && y > 306) && Joueur.getArgent() >= 150) {
                 System.out.println("Railgun sélectionné");
                 Case c = attendreCaseConstructible();
@@ -204,9 +161,9 @@ public abstract class Tour extends Entite {
                     Omnicient.SavetoOmni(t);
                     System.out.println("Tour placée : Railgun à " + t.getPosition());
                 }
-            }
+            } */
         }
-    } */
+    } 
 
      /**
      * Attend qu'une case constructible soit sélectionnée par l'utilisateur.
@@ -284,6 +241,20 @@ public abstract class Tour extends Entite {
         return monstresAportee;
     }
 
+    public Enemi PlusDePV(List<Enemi> monstres) {
+        if (!monstres.isEmpty()) {
+            Enemi plusDePV = monstres.get(0);
+            for (Enemi m : monstres) {
+                if (m.getPV() > plusDePV.getPV()) {
+                    plusDePV = m;
+                }
+            }
+            return plusDePV;
+        } else {
+            return null;
+        }
+    }
+
     public Enemi PlusAvancer(List<Enemi> monstres) {
         if (!monstres.isEmpty()) {
             Enemi plusAvancer = monstres.get(0);
@@ -304,6 +275,20 @@ public abstract class Tour extends Entite {
         }
     }
 
+    public Enemi PlusProche(List<Enemi> monstres) {
+        if (!monstres.isEmpty()) {
+            Enemi plusProche = monstres.get(0);
+            for (Enemi m : monstres) {
+                if (m.getPosition().distance(this.position) < plusProche.getPosition().distance(this.position)) {
+                    plusProche = m;
+                }
+            }
+            return plusProche;
+        } else {
+            return null;
+        }
+    }
+
     public void afficheattaque(Enemi e) {
         if (e == null) {
             return;
@@ -318,8 +303,31 @@ public abstract class Tour extends Entite {
             if (cible.getPV() <= 0) {
                 Joueur.gagnerArgent(cible.getReward());
                 Omnicient.removeEnemi(cible);
+                Joueur.gagnerArgent(cible.getReward());
             }
         }
+    }
+
+    public void attaqueCollateral(Enemi t, double distance, Joueur Joueur) {
+        List<Enemi> toursMorte = new ArrayList<>();
+        for (Enemi tour : Omnicient.getPositionMonstre()) {
+            if (tour.getPosition().distance(t.getPosition()) <= distance) {
+                tour.setPV(tour.getPV() - this.ATK);
+                if (tour.getPV() <= 0) {
+                    toursMorte.add(tour);
+                }
+                afficheAattaqueCollateral(tour, t);
+            }
+        }
+        for (Enemi tour : toursMorte) {
+            Omnicient.removeEnemi(tour);
+            Joueur.gagnerArgent(tour.getReward());
+        }
+    }
+
+    public void afficheAattaqueCollateral(Enemi t, Enemi cible) {
+        StdDraw.setPenColor(Color.ORANGE);
+        StdDraw.line(t.getPosition().getX(), t.getPosition().getY(), cible.getPosition().getX(), cible.getPosition().getY());
     }
 }
      

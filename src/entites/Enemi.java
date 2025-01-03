@@ -6,6 +6,7 @@ import Map.Case;
 import java.awt.Color;
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -206,25 +207,14 @@ public abstract class Enemi extends Entite {
 
 
 
-    protected LocalTime derniereAttaque = LocalTime.now();
-    protected double tempsDepuisDerniereAttaque = 0.0;
-
-    public abstract void attaquer();
-
-      /**
-     * Vérifie si l'ennemi peut attaquer.
-     * 
-     * @return  true si l'ennemi peut attaquer, sinon  false.
-     */
-    protected boolean peutAttaquer() {
-        Duration d = Duration.between(derniereAttaque, LocalTime.now());
-        tempsDepuisDerniereAttaque = d.toMillis();
-        if (tempsDepuisDerniereAttaque >= ATKSpeed*1000) {
-            tempsDepuisDerniereAttaque = 0.0;
-            derniereAttaque = LocalTime.now();
-            return true;
+   public List<Tour> TourAportee(List<Tour> tours, double range) {
+        List<Tour> cibles = new ArrayList<>();
+        for (Tour t : tours) {
+            if (t.getPosition().distance(this.position) <= range) {
+                cibles.add(t);
+            }
         }
-        return false;
+        return cibles;
     }
 
     /**
@@ -269,6 +259,38 @@ public abstract class Enemi extends Entite {
         StdDraw.setPenColor(Color.ORANGE);
         StdDraw.line(this.position.getX(), this.position.getY(), t.getPosition().getX(), t.getPosition().getY());
     }
+
+
+    public void attaqueSimple(Tour t, Joueur Joueur) {
+        t.setPV(t.getPV() - this.ATK);
+        if (t.getPV() <= 0) {
+            Omnicient.removeTour(t);
+        }
+        afficheattaque(t);
+    }
+
+    public void attaqueCollateral(Tour t, double distance, Joueur Joueur) {
+        List<Tour> toursMorte = new ArrayList<>();
+        for (Tour tour : Omnicient.getPositionTours()) {
+            if (tour.getPosition().distance(t.getPosition()) <= distance) {
+                tour.setPV(tour.getPV() - this.ATK);
+                if (tour.getPV() <= 0) {
+                    toursMorte.add(tour);
+                }
+                afficheAattaqueCollateral(tour, t);
+            }
+        }
+        for (Tour tour : toursMorte) {
+            Omnicient.removeTour(tour);
+            
+        }
+    }
+
+    public void afficheAattaqueCollateral(Tour t, Tour cible) {
+        StdDraw.setPenColor(Color.ORANGE);
+        StdDraw.line(t.getPosition().getX(), t.getPosition().getY(), cible.getPosition().getX(), cible.getPosition().getY());
+    }
+
 
     
 }

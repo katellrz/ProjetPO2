@@ -12,6 +12,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import Gestion.Joueur;
+
 
 /**
  * Classe abstraite representant une entite dans le jeu.
@@ -127,5 +129,26 @@ public abstract class Entite {
         }
     }
 
-    public abstract void attaquer();
+    
+
+    protected LocalTime derniereAttaque = LocalTime.now();
+    protected double tempsDepuisDerniereAttaque = 0.0;
+
+    public abstract void attaquer(Joueur Joueur);
+
+      /**
+     * Vérifie si l'ennemi peut attaquer.
+     * 
+     * @return  true si l'ennemi peut attaquer, sinon  false.
+     */
+    protected boolean peutAttaquer() {
+        Duration d = Duration.between(derniereAttaque, LocalTime.now());
+        tempsDepuisDerniereAttaque = d.toMillis();
+        if (tempsDepuisDerniereAttaque >= ATKSpeed*1000) {
+            tempsDepuisDerniereAttaque = 0.0;
+            derniereAttaque = LocalTime.now();
+            return true;
+        }
+        return false;
+    }
 }

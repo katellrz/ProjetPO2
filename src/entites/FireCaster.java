@@ -85,12 +85,8 @@ public class FireCaster extends Tour{
             if (cibles == null || !cibles.isEmpty()) {
                 Enemi cible = PlusProche(cibles);
                 if (cible != null) {
-                    for (Enemi m : cibles) {
-                        if (m.getPosition().distance(cible.getPosition()) <= 0.75) {
-                            m.setPV(m.getPV() - this.ATK);
-                        }
-                    }
-                    afficheattaque(cible);
+                    this.attaqueSimple(cible, Joueur);
+                    this.attaqueCollateral(cible,0.75, Joueur);
                 }
             }
         }

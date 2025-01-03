@@ -41,6 +41,10 @@ public class Joueur {
         }
     }
 
+    public void gagnerVie(int montant) {
+        this.vie += montant;
+    }
+
     public boolean peutAcheter(int montant) {
         return argent >= montant;
     }

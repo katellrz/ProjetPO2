@@ -39,11 +39,8 @@ public class FireGrognard extends Enemi {
             if (cibles == null || !cibles.isEmpty()) {
                 Tour cible = PlusProche(cibles);
                 if (cible != null) {
-                    for (Tour t : cibles) {
-                        if (t.getPosition().distance(cible.getPosition()) <= 1.5) {
-                            t.setPV(t.getPV() - this.ATK);
-                        }
-                    }
+                    this.attaqueSimple(cible, Joueur);
+                    this.attaqueCollateral(cible,1.5, Joueur);
                 }
             }
         }

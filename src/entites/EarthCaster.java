@@ -90,14 +90,10 @@ public class EarthCaster extends Tour {
         if (peutAttaquer()) {
             List<Enemi> cibles = MonstreAportee(Omnicient.getPositionMonstre(), this.Range);
             if (cibles == null || !cibles.isEmpty()) {
-                Enemi cible = cibles.stream().max(Comparator.comparingInt(Enemi::getPV)).orElse(null);
+                Enemi cible = this.PlusDePV(cibles);
                 if (cible != null) {
-                    for (Enemi m : cibles) {
-                        if (m.getPosition().distance(cible.getPosition()) <= 1.0) {
-                            m.setPV(m.getPV() - this.ATK);
-                        }
-                    }
-                    afficheattaque(cible);
+                    this.attaqueSimple(cible, Joueur);
+                    this.attaqueCollateral(cible,1, Joueur);
                 }
             }
         }
