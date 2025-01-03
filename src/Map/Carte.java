@@ -26,6 +26,9 @@ public class Carte {
         Omnicient.SavetoOmni(Chemin);
     }
 
+    public String getNom(){
+        return this.nom;
+    }
 
     /**
      * Prend une carte dans un fichier du même nom que celle ci et convertit chacun des caratère de ce fichier en une liste de liste de case 

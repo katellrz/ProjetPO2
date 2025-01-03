@@ -22,14 +22,19 @@ public class Level {
         }
 
         this.map = fichier.get(0);
+        //fichier.remove(map);//map est une string
         this.currentWave = 1;
         this.waves = new Wave(fichier.get(currentWave));
+    }
+
+    public int NbrWaves() {
+        return fichier.size() - 1;
     }
 
     public boolean hasNextWave() {
         System.out.println("Current Wave: " + currentWave);
         System.out.println("Total Waves: " + (fichier.size() - 2));
-        return currentWave < fichier.size() - 2;
+        return currentWave < fichier.size() - 1;
     }
 
     public List<Wave> extraiWaves() {

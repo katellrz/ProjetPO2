@@ -42,6 +42,10 @@ public class LevelManager {
             System.out.println("Aucun niveau supplémentaire. Vous avez terminé tous les niveaux !");
         }
     }
+
+    public int getMaxLvl(){
+        return nbrLvls;
+    }
 }
     
 

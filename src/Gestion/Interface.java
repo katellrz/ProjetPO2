@@ -11,6 +11,8 @@ import entites.IceCaster;
 import entites.WaterCaster;
 import entites.WindCaster;
 import java.awt.Color;
+import java.awt.Font;
+
 import Librairies.Point;
 
 // _________________________________________
@@ -42,7 +44,7 @@ public abstract class Interface {
     /**
      * Fonction qui affiche les éléments dynamiques du jeu.
      */
-    public static void AfficheDynamique(Carte map, int Money, int vie) {
+    public static void AfficheDynamique(Carte map, int Money, int vie, int currentLevel, int totalLevels, int currentWave, int totalWaves) {
         map.afficheCarte();
         Archer.afficheTourBoutique(Money);
         WindCaster.afficheTourBoutique(Money);
@@ -52,6 +54,7 @@ public abstract class Interface {
         IceCaster.afficheTourBoutique(Money);
         GoldDigger.afficheTourBoutique(Money);
         BouttonTriche();
+        afficherProgression(currentLevel, totalLevels, currentWave, totalWaves);
     }
 
     //ZONE MAP_____________________________________________________________________________________________________
@@ -116,6 +119,33 @@ public abstract class Interface {
         Point halfDist = new Point(144, 12);
         StdDraw.setPenColor(Color.BLACK);
         StdDraw.rectangle(center.getX(), center.getY(), halfDist.getX(), halfDist.getY());
+    }
+
+     /**
+     * Affiche le niveau et la vague actuels ainsi que leur nombre total.
+     *
+     * @param currentLevel  Le numéro du niveau actuel.
+     * @param totalLevels   Le nombre total de niveaux.
+     * @param currentWave   Le numéro de la vague actuelle.
+     * @param totalWaves    Le nombre total de vagues pour le niveau actuel.
+     */
+    public static void afficherProgression(int currentLevel, int totalLevels, int currentWave, int totalWaves) {
+        // Position de l'affichage
+        double x = 100; // Coordonnée X pour le texte
+        double y = 700; // Coordonnée Y pour le texte
+
+        // Couleur de fond pour rendre le texte plus lisible
+        StdDraw.setPenColor(Color.LIGHT_GRAY);
+        StdDraw.filledRectangle(x + 50, y + 20, 100, 30);
+
+        // Couleur et style de texte
+        StdDraw.setPenColor(Color.BLACK);
+        Font font = new Font("Arial", Font.BOLD, 14);
+        StdDraw.setFont(font);
+
+        // Texte d'affichage
+        StdDraw.text(x, y + 30, "Niveau : " + currentLevel + " / " + totalLevels);
+        StdDraw.text(x, y, "Vague : " + currentWave + " / " + totalWaves);
     }
 
     //ZONE BOUTIQUE________________________________________________________________________________________________

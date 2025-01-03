@@ -26,12 +26,15 @@ public class Game {
         this.map = new Carte(niveauActuel.getMap());
     }
 
-    public void niveauSuivant() {
+    public void niveauSuivant(){
+        System.out.println("Changement de niveau");
+        Omnicient.ClearTours();
         levelManager.nextLvl();
         this.niveauActuel = levelManager.getCurrentLvl();
         niveauActuel.resetWave();
         this.vagueActuelle = niveauActuel.getCurrentWaves();
         this.map = new Carte(niveauActuel.getMap());
+
     }
 
     public void vagueSuivante() {
@@ -94,7 +97,7 @@ public class Game {
             vagueActuelle.Vaguedemonstre();
             Tour.PlacerTour(joueur);
             Interface.AfficheStatique();
-            Interface.AfficheDynamique(map, joueur.getArgent(), joueur.getVie());
+            Interface.AfficheDynamique(map, joueur.getArgent(), joueur.getVie(), niveauActuel.getCurrentlevel(),levelManager.getMaxLvl(), niveauActuel.getCurrentWave(), niveauActuel.NbrWaves());
             joueur.afficheInfo();
             StdDraw.show();
             gestionEnemi();
