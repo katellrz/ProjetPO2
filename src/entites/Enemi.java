@@ -4,10 +4,7 @@ import Librairies.Point;
 import Librairies.StdDraw;
 import Map.Case;
 import java.awt.Color;
-import java.time.Duration;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import Gestion.Joueur;
@@ -33,7 +30,6 @@ public abstract class Enemi extends Entite {
     public Enemi(int PV, int ATK, double ATKSpeed, int Range, Element Element, int Reward, double Speed) {
         
         super(PV, ATK, ATKSpeed, Range, Element,new Point(getChemin().get(0).getCenterCase().getX(),getChemin().get(0).getCenterCase().getY()));
-        System.out.println("Position de l'ennemi : " + getChemin().get(0).getCenterCase());
         this.Reward = Reward;
         this.Speed = Speed;
     }
@@ -99,13 +95,7 @@ public abstract class Enemi extends Entite {
             this.position.setY(x);
     }
 
-    @Override
-    public void estMort() {
-        if (PV <= 0) {
-            System.out.println("L'ennemi est mort !");
-            Omnicient.removeEnemi(this);
-        }
-    }
+
 
      /**
      * Déplace l'ennemi en suivant le chemin prédéfini.
@@ -263,26 +253,15 @@ public abstract class Enemi extends Entite {
 
     public void attaqueSimple(Tour t, Joueur Joueur) {
         t.setPV(t.getPV() - this.ATK);
-        if (t.getPV() <= 0) {
-            Omnicient.removeTour(t);
-        }
         afficheattaque(t);
     }
 
     public void attaqueCollateral(Tour t, double distance, Joueur Joueur) {
-        List<Tour> toursMorte = new ArrayList<>();
         for (Tour tour : Omnicient.getPositionTours()) {
             if (tour.getPosition().distance(t.getPosition()) <= distance) {
                 tour.setPV(tour.getPV() - this.ATK);
-                if (tour.getPV() <= 0) {
-                    toursMorte.add(tour);
-                }
                 afficheAattaqueCollateral(tour, t);
             }
-        }
-        for (Tour tour : toursMorte) {
-            Omnicient.removeTour(tour);
-            
         }
     }
 

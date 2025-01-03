@@ -2,6 +2,7 @@ package Gestion;
 
 import static outils.Omnicient.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import Librairies.StdDraw;
@@ -44,12 +45,32 @@ public class Game {
             tour.afficheTour(getSize());
             tour.attaquer(joueur);
         }
+        gestionEnemiAvctif();
+    }
+
+    public void gestionEnemiAvctif(){
+        List<Enemi> monstres = new ArrayList<>();
         for (Enemi monstre : getPositionMonstre()) {
-            if(monstre.getPV() <= 0){
+            if(monstre.getPV()<= 0){
+                monstres.add(monstre);
                 joueur.gagnerArgent(monstre.getReward());
-                removeEnemi(monstre);
             }
-        }     
+        }
+        for (Enemi monstre : monstres){
+            removeEnemi(monstre);
+        }
+    }
+
+    public void gestionToursActives(){
+        List<Tour> tours = new ArrayList<>();
+        for (Tour tour : getPositionTours()) {
+            if(tour.getPV()<= 0){
+                tours.add(tour);
+            }
+        }
+        for (Tour tour : tours){
+            removeTour(tour);
+        }
     }
 
     public void gestionEnemi() {
@@ -59,11 +80,7 @@ public class Game {
             monstre.apparait();
             monstre.attaquer(joueur);
         }
-        for(Tour tour : getPositionTours()){
-            if(tour.getPV() <= 0){
-                removeTour(tour);//TODO hgere le remouve tour le problee etant que on ne peut pas remouve d'une liste au sein d'un for sur cette liste sur TOUR ET MONSTRE
-            }
-        }
+        gestionToursActives();
     }
 
     public void start() {
@@ -86,12 +103,13 @@ public class Game {
     }
 
     public void Update() {
-        System.out.println(1);
+        
         if (vagueActuelle.getVaguefini() && Omnicient.getPositionMonstre().isEmpty()) {
-            System.out.println(2);
+            System.out.println("Changemet de vague");
             if (!niveauActuel.hasNextWave()) {
-                System.out.println(3);
+                System.out.println("changement de niveau");
                 if (levelManager.isLast()) {
+                    System.out.println("changement de niveau");
                     FinDePartie(true);
                 }
                 niveauSuivant();

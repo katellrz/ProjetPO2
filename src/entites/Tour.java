@@ -5,7 +5,6 @@ import Librairies.StdDraw;
 import Map.Case;
 import static Map.DetectionSouris.*;
 import java.awt.Color;
-import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,13 +41,6 @@ public abstract class Tour extends Entite {
 
     public Point getPosition(){
         return position;
-    }
-
-    @Override
-    public void estMort(){
-        if(this.PV <= 0){
-            Omnicient.removeTour(this);
-        }
     }
 
 
@@ -300,11 +292,11 @@ public abstract class Tour extends Entite {
     protected void attaqueSimple(Enemi cible, Joueur Joueur) {
         if (cible != null) {
             cible.setPV(cible.getPV() - this.ATK);
+            afficheattaque(cible);
         }
     }
 
     public void attaqueCollateral(Enemi t, double distance, Joueur Joueur) {
-        List<Enemi> toursMorte = new ArrayList<>();
         for (Enemi tour : Omnicient.getPositionMonstre()) {
             if (tour.getPosition().distance(t.getPosition()) <= distance) {
                 tour.setPV(tour.getPV() - this.ATK);

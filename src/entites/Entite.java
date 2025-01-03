@@ -2,17 +2,10 @@ package entites;
 //import map.Point;
 
 import Librairies.Point;
-import Librairies.StdDraw;
-import Map.Case;
-import outils.Omnicient;
-
 import java.awt.Color;
 import java.time.Duration;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 
-import Gestion.Joueur;
 
 
 /**
@@ -72,15 +65,13 @@ public abstract class Entite {
 
     public void setPV(int PV) {
         this.PV = PV;
-        estMort();
+        
     }
 
       /**
      * Méthode abstraite appelee lorsque l'entité meurt.
      * la methode doit  etre implémentee  par les sous-classes.
      */
-
-    public abstract void estMort();
 /**
  * 
  * Getters et setters

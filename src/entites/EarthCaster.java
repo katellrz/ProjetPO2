@@ -4,7 +4,6 @@ import Librairies.Point;
 import Librairies.StdDraw;
 import java.awt.Color;
 import java.awt.Font;
-import java.util.Comparator;
 import java.util.List;
 
 import Gestion.Joueur;

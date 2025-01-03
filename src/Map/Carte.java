@@ -3,7 +3,6 @@ package Map;
 import Librairies.FileExtraction;
 import Map.Case.Casetype;
 
-import static outils.Omnicient.SaveToOmni;
 import static outils.Omnicient.SavetoOmniSpawn;
 
 import java.util.ArrayList;
