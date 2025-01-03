@@ -1,138 +1,91 @@
-package Gestion;
-
-
-//IMPORT____________________________________
+// IMPORTS ____________________________________
 import Librairies.StdDraw;
 import Map.Carte;
 import entites.Archer;
 import entites.EarthCaster;
 import entites.FireCaster;
+import entites.GoldDigger;
+import entites.IceCaster;
 import entites.WaterCaster;
 import entites.WindCaster;
-import outils.Omnicient;
-
 import java.awt.Color;
 import Librairies.Point;
 
 // _________________________________________
-/**
- * La classe Interface est responsable de l'affichage de l'interface graphique 
- * du jeu, en utilisant la bibliothèque StdDraw. Elle gère à la fois les 
- * éléments statiques et dynamiques de l'interface, comme la carte, 
- * les informations du joueur, et les tours de la boutique.
- */
 
-public abstract class Interface{
-
+public abstract class Interface {
 
     /**
-     * Fonctionn qui a pour role d'afficher le canvas (fentre de notre jeux)
-     *  * Initialise la fenêtre de jeu en définissant sa taille et ses échelles.
-     * Configure également le double buffering pour des affichages fluides.
+     * Fonction qui a pour rôle d'afficher le canvas (fenêtre de notre jeu).
      */
-    public static void AfficheInterface(){
-
+    public static void AfficheInterface() {
         StdDraw.setCanvasSize(1024, 720);
         StdDraw.setXscale(-12, 1012);
         StdDraw.setYscale(-10, 710);
         StdDraw.enableDoubleBuffering();
-
-
-       
     }
 
     /**
-     * Fonction qui a pour role d'afficher les chose qui ne varie jamais (zone de jeux, coeur, piece...)
+     * Fonction qui affiche les éléments statiques (zone de jeu, cœur, pièce, etc.).
      */
-    public static void AfficheStatique(){
+    public static void AfficheStatique() {
         AfficheCadreMAP();
-
         AfficheCadrePLAYER();
         AfficheCoeur();
         AffichePiece();
-
         AfficheCadreLEVEL();
-
         AfficheCadreBOUTIQUE();
-
-        
-
     }
 
     /**
-     * Affiche les éléments dynamiques de l'interface, qui peuvent changer 
-     * pendant le jeu, comme la carte, les tours disponibles dans la boutique, 
-     * et les informations du joueur (argent et vie).
-     *
-     * @param nom  Le nom de la carte à afficher.
-     * @param Money  Le montant d'argent disponible pour le joueur.
-     * @param vie  Le nombre de points de vie restants pour le joueur.
+     * Fonction qui affiche les éléments dynamiques du jeu.
      */
-    public static void AfficheDynamique(String nom, int Money, int vie){
-        afficheCarte(nom);
-
+    public static void AfficheDynamique(Carte map, int Money, int vie) {
+        map.afficheCarte();
         Archer.afficheTourBoutique(Money);
         WindCaster.afficheTourBoutique(Money);
         WaterCaster.afficheTourBoutique(Money);
         EarthCaster.afficheTourBoutique(Money);
         FireCaster.afficheTourBoutique(Money);
-
-        afficheinfoJoueur(vie, Money);
-
+        IceCaster.afficheTourBoutique(Money);
+        GoldDigger.afficheTourBoutique(Money);
+        BouttonTriche();
     }
-    
-
-    
 
     //ZONE MAP_____________________________________________________________________________________________________
-    
-    public static void AfficheCadreMAP(){
-
-        Point center = new Point(350,350);
+    public static void AfficheCadreMAP() {
+        Point center = new Point(350, 350);
         Point halfDist = new Point(350, 350);
-
         StdDraw.setPenColor(Color.BLACK);
         StdDraw.rectangle(center.getX(), center.getY(), halfDist.getX(), halfDist.getY());
     }
 
-    public static void afficheCarte (String nom){
-        Carte c = new Carte(nom);        
-        c.afficheCarte();
-    }
-    
     //ZONE PLAYER__________________________________________________________________________________________________
-
-    public static void AfficheCadrePLAYER(){
-        
-        Point center = new Point(856,641);
+    public static void AfficheCadrePLAYER() {
+        Point center = new Point(856, 641);
         Point halfDist = new Point(144, 25);
-
         StdDraw.setPenColor(Color.BLACK);
         StdDraw.rectangle(center.getX(), center.getY(), halfDist.getX(), halfDist.getY());
     }
 
-    public static void AfficheCoeur(){
-
+    public static void AfficheCoeur() {
         int halfHeight = 20;
-        Point center = new Point(972, 641);//TODO verifier la valeur de x
-    
+        Point center = new Point(972, 641);
         StdDraw.setPenColor(new Color(223, 75, 95));
-        double[] listX = new double[]
-        {
+        double[] listX = {
             center.getX(),
-            center.getX()- halfHeight,
-            center.getX()- halfHeight,
-            center.getX()- 0.66 * halfHeight,
-            center.getX()- 0.33 * halfHeight,
+            center.getX() - halfHeight,
+            center.getX() - halfHeight,
+            center.getX() - 0.66 * halfHeight,
+            center.getX() - 0.33 * halfHeight,
             center.getX(),
             center.getX() + 0.33 * halfHeight,
             center.getX() + 0.66 * halfHeight,
             center.getX() + halfHeight,
             center.getX() + halfHeight,
         };
-        double[] listY = new double[]
-        {
-            center.getY()- halfHeight,
+        double[] listY = {
+            center.getY() - halfHeight,
             center.getY(),
             center.getY() + 0.5 * halfHeight,
             center.getY() + halfHeight,
@@ -144,62 +97,55 @@ public abstract class Interface{
             center.getY(),
         };
         StdDraw.filledPolygon(listX, listY);
-
     }
 
-    public static void AffichePiece(){
-
+    public static void AffichePiece() {
         Point centerC = new Point(740, 641);
         int radius = 20;
-
-        StdDraw.setPenColor(new Color(212, 175,55));
+        StdDraw.setPenColor(new Color(212, 175, 55));
         StdDraw.filledCircle(centerC.getX(), centerC.getY(), radius);
-        StdDraw.setPenColor(new Color(192, 192,192));
+        StdDraw.setPenColor(new Color(192, 192, 192));
         StdDraw.filledCircle(centerC.getX(), centerC.getY(), 0.7 * radius);
     }
 
-    public static void afficheinfoJoueur(int vie, int argent){
-        StdDraw.setPenColor(Color.BLACK);
-        StdDraw.text(100, 950, "Vie: " + vie);
-        StdDraw.text(300, 950, "Argent: " + argent);
-    }
-
-
-
-    //ZONE LEVEL___________________________________________________________________________________________________
-
-    public static void AfficheCadreLEVEL(){
-        
-        Point center = new Point(856,688);
+    //ZONE LEVEL____________________________________________________________________________________________________
+    public static void AfficheCadreLEVEL() {
+        Point center = new Point(856, 688);
         Point halfDist = new Point(144, 12);
-
         StdDraw.setPenColor(Color.BLACK);
         StdDraw.rectangle(center.getX(), center.getY(), halfDist.getX(), halfDist.getY());
     }
 
     //ZONE BOUTIQUE________________________________________________________________________________________________
-    
-    public static void AfficheCadreBOUTIQUE(){
-        
-        Point center = new Point(856,303);
+    public static void AfficheCadreBOUTIQUE() {
+        Point center = new Point(856, 303);
         Point halfDist = new Point(144, 303);
-
         StdDraw.setPenColor(Color.BLACK);
         StdDraw.rectangle(center.getX(), center.getY(), halfDist.getX(), halfDist.getY());
     }
 
-    public static void MessageErrCaseNonConstructible(){
-
-        Point center = new Point(856,303);
-
+    public static void MessageErrCaseNonConstructible() {
+        Point center = new Point(856, 303);
         StdDraw.setPenColor(Color.YELLOW);
         StdDraw.filledRectangle(center.getX(), center.getY(), 40, 15);
-
         StdDraw.setPenColor(Color.BLACK);
         StdDraw.rectangle(center.getX(), center.getY(), 40, 15);
         StdDraw.text(500, 500, "Case non constructible");
-
         StdDraw.show();
         StdDraw.pause(1000);
+    }
+
+    public static void BouttonTriche() {
+        Point centerVie = new Point(784, 25);
+        Point centerArgent = new Point(928, 25);
+        Point halfDist = new Point(72, 25);
+        StdDraw.setPenColor(Color.BLUE);
+        StdDraw.filledRectangle(centerVie.getX(), centerVie.getY(), halfDist.getX(), halfDist.getY());
+        StdDraw.filledRectangle(centerArgent.getX(), centerArgent.getY(), halfDist.getX(), halfDist.getY());
+        StdDraw.setPenColor(Color.BLACK);
+        StdDraw.rectangle(centerVie.getX(), centerVie.getY(), halfDist.getX(), halfDist.getY());
+        StdDraw.rectangle(centerArgent.getX(), centerArgent.getY(), halfDist.getX(), halfDist.getY());
+        StdDraw.text(centerVie.getX(), centerVie.getY(), "Vie + 100");
+        StdDraw.text(centerArgent.getX(), centerArgent.getY(), "Argent + 1000");
     }
 }

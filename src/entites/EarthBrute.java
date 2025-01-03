@@ -1,6 +1,8 @@
 package entites;
 
 import java.util.List;
+
+import Gestion.Joueur;
 import outils.Omnicient;
 
 /**
@@ -20,23 +22,15 @@ public class EarthBrute extends Enemi {
         
     }
 
-    @Override
-    public void attaquer() {
-        System.out.println("Arrive la");
-        
+    public void attaquer(Joueur Joueur) {
         if (peutAttaquer()) {
-            System.out.println("Attaque de l'EarthBrute");
             List<Tour> tours = Omnicient.getPositionTours();
-            List<Tour> cibles = tours.stream()
-                .filter(t -> t.getPosition().distance(this.position) <= this.Range)
-                .toList();
+            List<Tour> cibles = this.TourAportee(tours, this.Range);
 
-            if (!cibles.isEmpty()) {
+            if (cibles == null || !cibles.isEmpty()) {
                 Tour cible = PlusProche(cibles);
                 if (cible != null) {
-                    cible.setPV(cible.getPV() - this.ATK);
-                    System.out.println("Attaque de l'EarthBrute");
-                    afficheattaque(cible);
+                    this.attaqueSimple(cible, Joueur);
                 }
             }
         }

@@ -12,3 +12,25 @@ import outils.Omnicient;
  * 
  */
 
+
+ public class WindGrognard extends Enemi {
+
+    public WindGrognard() {
+        super(1, 7, 2, 5, Element.WIND, 1, 2);
+    }
+
+    @Override
+    public void attaquer(Joueur Joueur) {
+        if (peutAttaquer()) {
+            List<Tour> tours = Omnicient.getPositionTours();
+            List<Tour> cibles = this.TourAportee(tours, this.Range);
+
+            if (cibles == null || !cibles.isEmpty()) {
+                Tour cible = MoinsDePV(cibles);
+                if (cible != null) {
+                    this.attaqueSimple(cible, Joueur);
+                }
+            }
+        }
+    }
+}

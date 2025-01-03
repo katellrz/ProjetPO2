@@ -1,6 +1,8 @@
 package entites;
 
 import java.util.List;
+
+import Gestion.Joueur;
 import outils.Omnicient;
 
 /**
@@ -25,21 +27,18 @@ public class Boss extends Enemi {
      * selon sa puissance d'attaque (ATK).
      */
     @Override
-    public void attaquer() {
+    public void attaquer(Joueur Joueur) {
         if (peutAttaquer()) {
             List<Tour> tours = Omnicient.getPositionTours();
-            List<Tour> cibles = tours.stream()
-                .filter(t -> t.getPosition().distance(this.position) <= this.Range)
-                .toList();
+            List<Tour> cibles = this.TourAportee(tours, this.Range);
 
-            if (!cibles.isEmpty()) {
+            if (cibles == null || !cibles.isEmpty()) {
                 Tour cible = PlusProche(cibles);
                 if (cible != null) {
-                    cible.setPV(cible.getPV() - this.ATK);
-                    afficheattaque(cible);
+                    this.attaqueSimple(cible, Joueur);
                 }
             }
         }
-    }   
+    }  
 }
 

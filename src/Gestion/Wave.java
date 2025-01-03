@@ -43,6 +43,10 @@ public class Wave {
         VagueestFini=false;
     }
 
+    public boolean getVaguefini() {
+        return VagueestFini;
+    }
+
 
     public Map<Double,String> ConstruitVague(){ //il faut mieux avoir ne nom de l'enemie ou l'enemie déja creé
         Map<Double,String> vague = new TreeMap<>();

@@ -6,6 +6,7 @@ import Map.Case;
 import java.util.LinkedList;
 import java.util.List;
 import entites.Enemi;
+import entites.Entite;
 import entites.Tour;
 
 
@@ -90,5 +91,15 @@ public abstract class Omnicient {
     public static void removeTour(Tour tour) {
         positionTours.remove(tour);
     }
+
+    public static void remouveEntite(Entite entite) {
+        if (entite instanceof Enemi) {
+            removeEnemi((Enemi) entite);
+        } else if (entite instanceof Tour) {
+            removeTour((Tour) entite);
+        }
+    }
+
+    //TODO fonction de réinitialisation
     
 }

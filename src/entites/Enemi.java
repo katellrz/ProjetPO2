@@ -8,6 +8,8 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.util.Comparator;
 import java.util.List;
+
+import Gestion.Joueur;
 import outils.Omnicient;
 import static outils.Omnicient.*;
 
@@ -29,7 +31,7 @@ public abstract class Enemi extends Entite {
      */
     public Enemi(int PV, int ATK, double ATKSpeed, int Range, Element Element, int Reward, double Speed) {
         
-        super(PV, ATK, ATKSpeed, Range, Element,getChemin().get(0).getCenterCase());
+        super(PV, ATK, ATKSpeed, Range, Element,new Point(getChemin().get(0).getCenterCase().getX(),getChemin().get(0).getCenterCase().getY()));
         System.out.println("Position de l'ennemi : " + getChemin().get(0).getCenterCase());
         this.Reward = Reward;
         this.Speed = Speed;
@@ -108,50 +110,27 @@ public abstract class Enemi extends Entite {
      * Déplace l'ennemi en suivant le chemin prédéfini.
      */
 
-    public void avance(){
-
-        List<Case>path = getChemin();//On recupere le chemin dans la classe omniciente
-
-        Case d = path.get(path.size()-1);
-        Case ad =path.get(path.size()-2);
-
-        double PF = Math.sqrt((Math.pow((d.getCenterX()-ad.getCenterX()),2))+(Math.pow((d.getCenterY()-ad.getCenterY()),2)))/2;
-
-        Point A = null;
-
-        if(d.getCenterX()==ad.getCenterX()){
-            A = new Point(d.getCenterX(),d.getCenterY()+PF);
-        }else{
-            A = new Point(d.getCenterX()+PF,d.getCenterY());
-        }
-
-        if (this.position!=null&&(this.position.equals(A)||currentIndex>=path.size()-1)){ // On arrète si le monstre a atteint la fin du chemin
-            System.out.println("Le monstre est arrivé à la base !");
+     public void avance(Joueur Joueur) {
+        List<Case> path = Omnicient.getChemin();
+        if (currentIndex >= path.size() - 1 || this.position.equals(Omnicient.getBase().getCenterCase())) {
+            Joueur.perdreVie(this.ATK);
             return;
         }
 
-        // Position centrale de la prochaine case 
         Case nextCase = path.get(currentIndex + 1);
-        Point target = new Point(nextCase.getCenterX(), nextCase.getCenterY());// Position cible (centre de la case)
-
-        
-        // Calcul du vecteur de déplacement
+        Point target = new Point(nextCase.getCenterX(), nextCase.getCenterY());
         double dx = target.getX() - position.getX();
         double dy = target.getY() - position.getY();
-
         double distance = Math.sqrt(dx * dx + dy * dy);
 
-        
         if (distance <= Speed) {
-            // Atteint la cible
             position.setX(target.getX());
             position.setY(target.getY());
-            currentIndex++; // Passe à la prochaine case
+            currentIndex++;
         } else {
-            // déplace le monstre en fonction  à sa vitesse
-            double ratio = Speed / distance; // Proportion du déplacement
-            this.setX(position.getX() + dx * ratio);
-            this.setY(position.getY() + dy * ratio);
+            double ratio = Speed / distance;
+            this.position.setX(position.getX() + dx * ratio);
+            this.position.setY(position.getY() + dy * ratio);
         }
     }
 
@@ -173,7 +152,7 @@ public abstract class Enemi extends Entite {
     /**
      * Affiche la barre de vie de l'ennemi.
      */
-    public void afficherVieE() {
+    /* public void afficherVieE() {
         if (this.getPosition() == null ) {
             System.err.println("Erreur : position invalide pour " + this);
             return;
@@ -208,6 +187,22 @@ public abstract class Enemi extends Entite {
     
         StdDraw.show();
     }
+ */
+    public void afficherVieE() {
+        double largeurActuelle = Math.max(0, (double) this.getPV() / this.PVmax * 50);
+        double x = this.getPosition().getX();
+        double y = this.getPosition().getY() - 25;
+
+        StdDraw.setPenColor(Color.LIGHT_GRAY);
+        StdDraw.filledRectangle(x, y, 50 / 2, 7 / 2);
+        StdDraw.setPenColor(Color.GREEN);
+        StdDraw.filledRectangle(x - (50 - largeurActuelle) / 2, y, largeurActuelle / 2, 7 / 2);
+        StdDraw.setPenColor(Color.BLACK);
+        StdDraw.rectangle(x, y, 50 / 2, 7 / 2);
+
+        StdDraw.show();
+    }
+
 
 
 

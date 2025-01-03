@@ -9,6 +9,8 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import Gestion.Joueur;
 import outils.Omnicient;
 
 
@@ -99,6 +101,113 @@ public abstract class Tour extends Entite {
         }
     }
 
+    /* public static void PlacerTour(Joueur Joueur) {
+        double x = StdDraw.mouseX();
+        double y = StdDraw.mouseY();
+    
+        if (StdDraw.isMousePressed()) {
+            // Archer
+            if ((x < 849 && x > 721) && (y < 596 && y > 546) && Joueur.getArgent() >= 20) {
+                System.out.println("Archer sélectionné");
+                Case c = attendreCaseConstructible();
+                if (c != null) {
+                    Tour t = new Archer(c.getCenterCase());
+                    Joueur.depenserArgent(t.getCost());
+                    Omnicient.SavetoOmni(t);
+                    System.out.println("Tour placée : Archer à " + t.getPosition());
+                }
+            }
+            // WindCaster
+            else if ((x < 987 && x > 859) && (y < 596 && y > 546) && Joueur.getArgent() >= 50) {
+                System.out.println("WindCaster sélectionné");
+                Case c = attendreCaseConstructible();
+                if (c != null) {
+                    Tour t = new WindCaster(c.getCenterCase());
+                    Joueur.depenserArgent(t.getCost());
+                    Omnicient.SavetoOmni(t);
+                    System.out.println("Tour placée : WindCaster à " + t.getPosition());
+                }
+            }
+            // WaterCaster
+            else if ((x < 849 && x > 721) && (y < 536 && y > 486) && Joueur.getArgent() >= 50) {
+                System.out.println("WaterCaster sélectionné");
+                Case c = attendreCaseConstructible();
+                if (c != null) {
+                    Tour t = new WaterCaster(c.getCenterCase());
+                    Joueur.depenserArgent(t.getCost());
+                    Omnicient.SavetoOmni(t);
+                    System.out.println("Tour placée : WaterCaster à " + t.getPosition());
+                }
+            }
+            // EarthCaster
+            else if ((x < 987 && x > 859) && (y < 536 && y > 486) && Joueur.getArgent() >= 100) {
+                System.out.println("EarthCaster sélectionné");
+                Case c = attendreCaseConstructible();
+                if (c != null) {
+                    Tour t = new EarthCaster(c.getCenterCase());
+                    Joueur.depenserArgent(t.getCost());
+                    Omnicient.SavetoOmni(t);
+                    System.out.println("Tour placée : EarthCaster à " + t.getPosition());
+                }
+            }
+            // FireCaster
+            else if ((x < 849 && x > 721) && (y < 476 && y > 426) && Joueur.getArgent() >= 100) {
+                System.out.println("FireCaster sélectionné");
+                Case c = attendreCaseConstructible();
+                if (c != null) {
+                    Tour t = new FireCaster(c.getCenterCase());
+                    Joueur.depenserArgent(t.getCost());
+                    Omnicient.SavetoOmni(t);
+                    System.out.println("Tour placée : FireCaster à " + t.getPosition());
+                }
+            }
+            // IceCaster
+            else if ((x < 987 && x > 859) && (y < 476 && y > 426) && Joueur.getArgent() >= 70) {
+                System.out.println("IceCaster sélectionné");
+                Case c = attendreCaseConstructible();
+                if (c != null) {
+                    Tour t = new IceCaster(c.getCenterCase());
+                    Joueur.depenserArgent(t.getCost());
+                    Omnicient.SavetoOmni(t);
+                    System.out.println("Tour placée : IceCaster à " + t.getPosition());
+                }
+            }
+            // PoisonCaster
+            else if ((x < 849 && x > 721) && (y < 416 && y > 366) && Joueur.getArgent() >= 80) {
+                System.out.println("PoisonCaster sélectionné");
+                Case c = attendreCaseConstructible();
+                if (c != null) {
+                    Tour t = new PoisonCaster(c.getCenterCase());
+                    Joueur.depenserArgent(t.getCost());
+                    Omnicient.SavetoOmni(t);
+                    System.out.println("Tour placée : PoisonCaster à " + t.getPosition());
+                }
+            }
+            // GoldDigger
+            else if ((x < 987 && x > 859) && (y < 416 && y > 366) && Joueur.getArgent() >= 20) {
+                System.out.println("GoldDigger sélectionné");
+                Case c = attendreCaseConstructible();
+                if (c != null) {
+                    Tour t = new GoldDigger(c.getCenterCase());
+                    Joueur.depenserArgent(t.getCost());
+                    Omnicient.SavetoOmni(t);
+                    System.out.println("Tour placée : GoldDigger à " + t.getPosition());
+                }
+            }
+            // Railgun
+            else if ((x < 849 && x > 721) && (y < 356 && y > 306) && Joueur.getArgent() >= 150) {
+                System.out.println("Railgun sélectionné");
+                Case c = attendreCaseConstructible();
+                if (c != null) {
+                    Tour t = new Railgun(c.getCenterCase());
+                    Joueur.depenserArgent(t.getCost());
+                    Omnicient.SavetoOmni(t);
+                    System.out.println("Tour placée : Railgun à " + t.getPosition());
+                }
+            }
+        }
+    } */
+
      /**
      * Attend qu'une case constructible soit sélectionnée par l'utilisateur.
      * 
@@ -139,34 +248,78 @@ public abstract class Tour extends Entite {
             System.err.println("Erreur : position ou PV max invalide pour " + this);
             return;
         }
-    
-        // Calculer la largeur actuelle en fonction des points de vie
+
         double largeurActuelle = Math.max(0, (double) this.getPV() / this.PVmax * 50);
-    
         double x = this.getPosition().getX();
         double y = this.getPosition().getY() - 25;
-    
-        // Vérifier que les coordonnées sont valides
-        if (Double.isInfinite(x) || Double.isNaN(x) || Double.isInfinite(y) || Double.isNaN(y)) {
-            System.err.println("Erreur : coordonnées invalides pour " + this + " (x=" + x + ", y=" + y + ")");
-            return;
-        }
-    
-        // Dessiner le fond de la barre (gris)
+
         StdDraw.setPenColor(Color.LIGHT_GRAY);
         StdDraw.filledRectangle(x, y, 50 / 2, 7 / 2);
-    
-        // Dessiner la barre de vie (verte)
+
         StdDraw.setPenColor(Color.GREEN);
         StdDraw.filledRectangle(x - (50 - largeurActuelle) / 2, y, largeurActuelle / 2, 7 / 2);
-    
-        // Contour de la barre (noir)
+
         StdDraw.setPenColor(Color.BLACK);
         StdDraw.rectangle(x, y, 50 / 2, 7 / 2);
-    
+
         StdDraw.show();
     }
 
     public abstract Color getColor();
-     
+
+
+    protected double tempsDepuisDerniereAttaque = 0.0;
+    protected LocalTime derniereAttaque = LocalTime.now();
+
+    public List<Enemi> MonstreAportee(List<Enemi> monstres, double portee) {
+        if (monstres == null || monstres.isEmpty()) {
+            return new ArrayList<>();
+        }
+        List<Enemi> monstresAportee = new ArrayList<>();
+        for (Enemi m : monstres) {
+            if (m.getPosition().distance(this.position) / Omnicient.getSize() <= portee) {
+                monstresAportee.add(m);
+            }
+        }
+        return monstresAportee;
+    }
+
+    public Enemi PlusAvancer(List<Enemi> monstres) {
+        if (!monstres.isEmpty()) {
+            Enemi plusAvancer = monstres.get(0);
+            for (Enemi m : monstres) {
+                if (m.getCurrentIndex() > plusAvancer.getCurrentIndex()) {
+                    plusAvancer = m;
+                } else if (m.getCurrentIndex() == plusAvancer.getCurrentIndex()) {
+                    List<Case> chemin = Omnicient.getChemin();
+                    if (m.getPosition().distance(chemin.get(m.getCurrentIndex() + 1).getCenterCase()) <
+                        plusAvancer.getPosition().distance(chemin.get(plusAvancer.getCurrentIndex() + 1).getCenterCase())) {
+                        plusAvancer = m;
+                    }
+                }
+            }
+            return plusAvancer;
+        } else {
+            return null;
+        }
+    }
+
+    public void afficheattaque(Enemi e) {
+        if (e == null) {
+            return;
+        }
+        StdDraw.setPenColor(Color.BLUE);
+        StdDraw.line(this.position.getX(), this.position.getY(), e.getPosition().getX(), e.getPosition().getY());
+    }
+
+    protected void attaqueSimple(Enemi cible, Joueur Joueur) {
+        if (cible != null) {
+            cible.setPV(cible.getPV() - this.ATK);
+            if (cible.getPV() <= 0) {
+                Joueur.gagnerArgent(cible.getReward());
+                Omnicient.removeEnemi(cible);
+            }
+        }
+    }
 }
+     

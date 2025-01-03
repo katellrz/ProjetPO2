@@ -5,6 +5,8 @@ import Librairies.StdDraw;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.List;
+
+import Gestion.Joueur;
 import outils.Omnicient;
 
 /**
@@ -79,16 +81,16 @@ public class WindCaster extends Tour {
      * Si la cible existe, la méthode `attaqueSimple` est appelée pour infliger les dégâts à l'ennemi.
      */
     @Override
-    public void attaquer() {
-        List<Enemi> cibles = MonstreAportee(Omnicient.getPositionMonstre(), this.Range);
-        if (cibles == null || cibles.isEmpty()) {
-            return; // Pas de cible, arrêt de l'attaque
-        }
-
-        Enemi cible = PlusAvancer(cibles);
-        if (cible != null) {
-            attaqueSimple(cible);
-            afficheattaque(cible);
+    public void attaquer(Joueur Joueur) {
+        if (peutAttaquer()) {
+            List<Enemi> cibles = MonstreAportee(Omnicient.getPositionMonstre(), this.Range);
+            if (cibles == null || !cibles.isEmpty()) {
+                Enemi cible = PlusProche(cibles);
+                if (cible != null) {
+                    attaqueSimple(cible, Joueur);
+                    afficheattaque(cible);
+                }
+            }
         }
     }
 }

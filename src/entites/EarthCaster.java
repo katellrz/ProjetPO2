@@ -6,6 +6,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.Comparator;
 import java.util.List;
+
+import Gestion.Joueur;
 import outils.Omnicient;
 
 /**
@@ -84,10 +86,10 @@ public class EarthCaster extends Tour {
      */
 
     @Override
-    public void attaquer() {
+    public void attaquer(Joueur Joueur) {
         if (peutAttaquer()) {
             List<Enemi> cibles = MonstreAportee(Omnicient.getPositionMonstre(), this.Range);
-            if (!cibles.isEmpty()) {
+            if (cibles == null || !cibles.isEmpty()) {
                 Enemi cible = cibles.stream().max(Comparator.comparingInt(Enemi::getPV)).orElse(null);
                 if (cible != null) {
                     for (Enemi m : cibles) {

@@ -1,6 +1,8 @@
 package entites;
 
 import java.util.List;
+
+import Gestion.Joueur;
 import outils.Omnicient;
 
 /**
@@ -37,14 +39,12 @@ public class WaterBrute extends Enemi {
      * Les tours proches reçoivent des dégâts d'attaque.
      */
     @Override
-    public void attaquer() {
+    public void attaquer(Joueur Joueur) {//TODO revoir tute les methode d'attaque 
         if (peutAttaquer()) {
             List<Tour> tours = Omnicient.getPositionTours();
-            List<Tour> cibles = tours.stream()
-                .filter(t -> t.getPosition().distance(this.position) <= this.Range)
-                .toList();
+            List<Tour> cibles = this.TourAportee(tours, this.Range);
 
-            if (!cibles.isEmpty()) {
+            if (cibles == null || !cibles.isEmpty()) {
                 Tour cible = MoinsDePV(cibles);
                 if (cible != null) {
                     for (Tour t : cibles) {
@@ -52,7 +52,6 @@ public class WaterBrute extends Enemi {
                             t.setPV(t.getPV() - this.ATK);
                         }
                     }
-                    afficheattaque(cible);
                 }
             }
         }

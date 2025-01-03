@@ -5,6 +5,8 @@ import Librairies.StdDraw;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.List;
+
+import Gestion.Joueur;
 import outils.Omnicient;
 
 /**
@@ -18,14 +20,8 @@ public class FireCaster extends Tour{
 
     private static Color couleur = new Color(255, 142, 97);
 
-    public FireCaster(Point position){
+    public FireCaster(Point position) {
         super(30, 10, 0.5, 2.5, Element.FIRE, position, 100);
-        this.PV=30;
-        this.ATK=10;
-        this.ATKSpeed=0.5;
-        this.Range=2.5;
-        this.element=Element.FIRE;
-        this.Cost=100;       
     }
 
 
@@ -83,10 +79,10 @@ public class FireCaster extends Tour{
      */
 
     @Override
-    public void attaquer() {
+    public void attaquer(Joueur Joueur) {
         if (peutAttaquer()) {
             List<Enemi> cibles = MonstreAportee(Omnicient.getPositionMonstre(), this.Range);
-            if (!cibles.isEmpty()) {
+            if (cibles == null || !cibles.isEmpty()) {
                 Enemi cible = PlusProche(cibles);
                 if (cible != null) {
                     for (Enemi m : cibles) {
@@ -99,7 +95,6 @@ public class FireCaster extends Tour{
             }
         }
     }
-
 
 
 }

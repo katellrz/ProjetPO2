@@ -1,27 +1,20 @@
 package entites;
 
+import Librairies.Point;
+import Librairies.StdDraw;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.List;
 
 import Gestion.Joueur;
-import Librairies.Point;
-import Librairies.StdDraw;
 import outils.Omnicient;
 
-public class WaterCaster extends Tour {
+public class IceCaster extends Tour {
 
-    private static Color couleur = new Color(24, 108, 151);
+    private static Color couleur = new Color(173, 216, 230);
 
-    public WaterCaster(Point position) {
-        super(30, 3, 1, 4, Element.WATER, position, 50);
-        this.PV=30;
-        this.ATK=3;
-        this.ATKSpeed=1;
-        this.Range=4;
-        this.element=Element.WATER;
-        this.Cost=50;
-
+    public IceCaster(Point position) {
+        super(40, 1, 2, 5, Element.WATER, position, 70);
     }
 
     @Override
@@ -29,33 +22,30 @@ public class WaterCaster extends Tour {
         return couleur;
     }
 
-    public static void afficheTourBoutique(int Money){
-
-        if(Money<50){
+    public static void afficheTourBoutique(int Money) {
+        if (Money < 70) {
             StdDraw.setPenColor(StdDraw.GRAY);
-            StdDraw.filledRectangle(785, 511, 64, 25);
-        }else{
+            StdDraw.filledRectangle(785, 391, 64, 25);
+        } else {
             StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
-            StdDraw.filledRectangle(785, 511, 64, 25);
+            StdDraw.filledRectangle(785, 391, 64, 25);
         }
-        
-        StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.rectangle(785, 511, 64, 25);
-        StdDraw.setPenColor(couleur);
-        StdDraw.filledCircle(745, 511, 15);
-        StdDraw.setPenColor(StdDraw.BLACK);
-        Font font1 = new Font("Arial", Font.PLAIN, 17);
-        StdDraw.setFont(font1);
-        StdDraw.text(805, 521, "WaterCaster");
-            
 
-        Font font = new Font("Arial", Font.PLAIN, 10); // Arial, taille 20
+        StdDraw.setPenColor(StdDraw.BLACK);
+        StdDraw.rectangle(785, 391, 64, 25);
+        StdDraw.setPenColor(couleur);
+        StdDraw.filledCircle(745, 391, 15);
+        StdDraw.setPenColor(StdDraw.BLACK);
+        Font font1 = new Font("Arial", Font.PLAIN, 20);
+        StdDraw.setFont(font1);
+        StdDraw.text(805, 401, "IceCaster");
+
+        Font font = new Font("Arial", Font.PLAIN, 10);
         StdDraw.setFont(font);
-        StdDraw.text(805, 501, "PV : 30    ATK : 3");
+        StdDraw.text(805, 381, "PV : 40    ATK : 1");
 
         StdDraw.setPenColor(StdDraw.WHITE);
-        StdDraw.text(745, 511, "50");
-
+        StdDraw.text(745, 391, "70");
     }
 
     @Override
@@ -71,8 +61,4 @@ public class WaterCaster extends Tour {
             }
         }
     }
-
-    
-
-
 }

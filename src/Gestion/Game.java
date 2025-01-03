@@ -2,6 +2,135 @@ package Gestion;
 
 import static outils.Omnicient.*;
 
+import java.util.List;
+
+import Librairies.StdDraw;
+import Map.Carte;
+import entites.Enemi;
+import entites.Tour;
+import outils.Omnicient;
+
+public class Game {
+    private LevelManager levelManager;
+    private Level niveauActuel;
+    private Wave vagueActuelle;
+    private Joueur joueur;
+    private Carte map;
+
+    public Game() {
+        this.joueur = new Joueur();
+        this.levelManager = new LevelManager();
+        this.niveauActuel = levelManager.getCurrentLvl();
+        this.vagueActuelle = niveauActuel.getCurrentWaves();
+        this.map = new Carte(niveauActuel.getMap());
+    }
+
+    public void niveauSuivant() {
+        levelManager.nextLvl();
+        this.niveauActuel = levelManager.getCurrentLvl();
+        niveauActuel.resetWave();
+        this.vagueActuelle = niveauActuel.getCurrentWaves();
+        this.map = new Carte(niveauActuel.getMap());
+    }
+
+    public void vagueSuivante() {
+        niveauActuel.nextWave();
+        this.vagueActuelle = niveauActuel.getCurrentWaves();
+    }
+
+    public void gestionTour() {
+        List<Tour> tours = getPositionTours();
+        for (Tour tour : tours) {
+            tour.afficheTour(getSize());
+            tour.attaquer(joueur);
+            StdDraw.show();
+        }
+        Tour.PlacerTour(joueur);
+    }
+
+    public void gestionEnemi() {
+        List<Enemi> monstres = getPositionMonstre();
+        for (Enemi monstre : monstres) {
+            monstre.avance(joueur);
+            monstre.apparait();
+            monstre.attaquer(joueur);
+            StdDraw.show();
+        }
+    }
+
+    public void start() {
+        StdDraw.enableDoubleBuffering();
+        Interface.AfficheInterface();
+
+        while (true) {
+            StdDraw.clear();
+            Update();
+            Triche();
+            vagueActuelle.Vaguedemonstre();
+            Interface.AfficheStatique();
+            Interface.AfficheDynamique(map, joueur.getArgent(), joueur.getVie());
+            joueur.afficherInfos();
+            StdDraw.show();
+            gestionEnemi();
+            gestionTour();
+        }
+    }
+
+    public void Update() {
+        System.out.println(1);
+        if (vagueActuelle.getVaguefini() && Omnicient.getPositionMonstre().isEmpty()) {
+            System.out.println(2);
+            if (!niveauActuel.hasNextWave()) {
+                System.out.println(3);
+                if (levelManager.isLast()) {
+                    FinDePartie(true);
+                }
+                niveauSuivant();
+            } else {
+                vagueSuivante();
+            }
+        }
+    }
+
+    public void FinDePartie(boolean victoire) {
+        StdDraw.clear();
+        if (victoire) {
+            System.out.println("Félicitations ! Vous avez terminé tous les niveaux !");
+            StdDraw.text(500, 500, "Victoire !");
+        } else {
+            System.out.println("Game Over ! Le joueur a perdu toutes ses vies.");
+            StdDraw.text(500, 500, "Défaite !");
+        }
+        StdDraw.show();
+        StdDraw.pause(5000);
+        System.exit(0);
+    }
+
+    public void Triche() {
+        int x = (int) StdDraw.mouseX();
+        int y = (int) StdDraw.mouseY();
+
+        if (x > 712 && x < 812 && y > 0 && y < 50 && StdDraw.isMousePressed()) {
+            System.out.println("Triche Argent");
+            joueur.gagnerVie(joueur.getVie() + 1000);
+            while (StdDraw.isMousePressed()) {}
+        } else if (x > 812 && x < 1000 && y > 0 && y < 50 && StdDraw.isMousePressed()) {
+            System.out.println("Triche Vie");
+            joueur.gagnerArgent(joueur.getArgent() + 1000);
+            while (StdDraw.isMousePressed()) {}
+        }
+    }
+}
+
+
+
+
+
+
+/* package Gestion;
+
+import static outils.Omnicient.*;
+
 import Librairies.StdDraw;
 import Map.DetectionSouris;
 import entites.Enemi;
@@ -84,4 +213,4 @@ public abstract class Game {
             //}
         }
     }   
-}
+} */
