@@ -130,22 +130,17 @@ public abstract class Interface {
      * @param totalWaves    Le nombre total de vagues pour le niveau actuel.
      */
     public static void afficherProgression(int currentLevel, int totalLevels, int currentWave, int totalWaves) {
-        // Position de l'affichage
-        double x = 100; // Coordonnée X pour le texte
-        double y = 700; // Coordonnée Y pour le texte
-
-        // Couleur de fond pour rendre le texte plus lisible
-        StdDraw.setPenColor(Color.LIGHT_GRAY);
-        StdDraw.filledRectangle(x + 50, y + 20, 100, 30);
+        double x = 856; // coordonné du centre de la case 
+        double y = 686; 
 
         // Couleur et style de texte
         StdDraw.setPenColor(Color.BLACK);
-        Font font = new Font("Arial", Font.BOLD, 14);
+        Font font = new Font("Arial", Font.BOLD, 20);
         StdDraw.setFont(font);
 
         // Texte d'affichage
-        StdDraw.text(x, y + 30, "Niveau : " + currentLevel + " / " + totalLevels);
-        StdDraw.text(x, y, "Vague : " + currentWave + " / " + totalWaves);
+        StdDraw.text(x-65, y, "Niveau : " + currentLevel + "/" + totalLevels);
+        StdDraw.text(x+65, y, "Vague : " + currentWave + "/" + totalWaves);
     }
 
     //ZONE BOUTIQUE________________________________________________________________________________________________

@@ -140,45 +140,7 @@ public abstract class Enemi extends Entite {
         
     }
 
-    /**
-     * Affiche la barre de vie de l'ennemi.
-     */
-    /* public void afficherVieE() {
-        if (this.getPosition() == null ) {
-            System.err.println("Erreur : position invalide pour " + this);
-            return;
-        }else if (this.PVmax <= 0){
-            System.err.println("Erreur : PV max invalide pour " + this);
-            return;
-        }
-    
-        // Calculer la largeur actuelle en fonction des points de vie
-        double largeurActuelle = Math.max(0, (double) this.getPV() / this.PVmax * 50);
-    
-        double x = this.getPosition().getX();
-        double y = this.getPosition().getY() - 25;
-    
-        // Vérifier que les coordonnées sont valides
-        if (Double.isInfinite(x) || Double.isNaN(x) || Double.isInfinite(y) || Double.isNaN(y)) {
-            System.err.println("Erreur : coordonnées invalides pour " + this + " (x=" + x + ", y=" + y + ")");
-            return;
-        }
-    
-        // Dessiner le fond de la barre (gris)
-        StdDraw.setPenColor(Color.LIGHT_GRAY);
-        StdDraw.filledRectangle(x, y, 50 / 2, 7 / 2);
-    
-        // Dessiner la barre de vie (verte)
-        StdDraw.setPenColor(Color.GREEN);
-        StdDraw.filledRectangle(x - (50 - largeurActuelle) / 2, y, largeurActuelle / 2, 7 / 2);
-    
-        // Contour de la barre (noir)
-        StdDraw.setPenColor(Color.BLACK);
-        StdDraw.rectangle(x, y, 50 / 2, 7 / 2);
-    
-        StdDraw.show();
-    }
- */
+
     public void afficherVieE() {
         double largeurActuelle = Math.max(0, (double) this.getPV() / this.PVmax * 50);
         double x = this.getPosition().getX();
@@ -204,6 +166,7 @@ public abstract class Enemi extends Entite {
                 cibles.add(t);
             }
         }
+        System.out.println("cibles a porter : " + cibles);
         return cibles;
     }
 
@@ -220,6 +183,7 @@ public abstract class Enemi extends Entite {
                 plusProche = t;
             }
         }
+        System.out.println("plus proche : " + plusProche);
         return plusProche;
     }
 
@@ -237,6 +201,7 @@ public abstract class Enemi extends Entite {
                 Min = t;
             }
         }
+        System.out.println("moins de pv : " + Min);
         return Min;
     }
 
@@ -254,6 +219,7 @@ public abstract class Enemi extends Entite {
     public void attaqueSimple(Tour t, Joueur Joueur) {
         t.setPV(t.getPV() - this.ATK);
         afficheattaque(t);
+        System.out.println("Tour attaquée : " + t);
     }
 
     public void attaqueCollateral(Tour t, double distance, Joueur Joueur) {

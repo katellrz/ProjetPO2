@@ -39,7 +39,7 @@ public class WaterBrute extends Enemi {
      * Les tours proches reçoivent des dégâts d'attaque.
      */
     @Override
-    public void attaquer(Joueur Joueur) {//TODO revoir tute les methode d'attaque 
+    public void attaquer(Joueur Joueur) {
         if (peutAttaquer()) {
             List<Tour> tours = Omnicient.getPositionTours();
             List<Tour> cibles = this.TourAportee(tours, this.Range);

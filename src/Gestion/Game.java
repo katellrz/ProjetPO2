@@ -112,7 +112,7 @@ public class Game {
             if (!niveauActuel.hasNextWave()) {
                 System.out.println("changement de niveau");
                 if (levelManager.isLast()) {
-                    System.out.println("changement de niveau");
+                    System.out.println("fin du jeux ");
                     FinDePartie(true);
                 }
                 niveauSuivant();
