@@ -37,6 +37,7 @@ public class WaterBrute extends Enemi {
      * L'attaque cible les tours qui sont dans la portée de l'ennemi.
      * L'ennemi attaque les tours proches du cible ayant le moins de points de vie.
      * Les tours proches reçoivent des dégâts d'attaque.
+     * @param joueur 
      */
     @Override
     public void attaquer(Joueur Joueur) {

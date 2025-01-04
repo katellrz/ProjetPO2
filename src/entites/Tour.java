@@ -45,6 +45,7 @@ public abstract class Tour extends Entite {
 
     /**
      * Place une tour sur une case constructible en fonction des interactions de l'utilisateur.
+     * @param  joueur Le joueur qui place la tour.
      */
 
    
@@ -157,12 +158,12 @@ public abstract class Tour extends Entite {
     } 
 
      /**
-     * Attend qu'une case constructible soit sélectionnée par l'utilisateur.
+     * fonction qui Attend qu'une case constructible soit sélectionnée par l'utilisateur.
      * 
      * @return une instance de Case représentant la case sélectionnée.
      */
     
-    // Fonction pour attendre que l'utilisateur clique sur une case constructible
+
     private static Case attendreCaseConstructible() {
         Case c = null;
         while (c == null) {
@@ -261,6 +262,13 @@ public abstract class Tour extends Entite {
         }
     }
 
+    /**
+     * Renvoie l'ennemi le plus avance  sur le chemin.
+     * 
+     * @param monstres La liste des ennemis.
+     * @return Ennemi le plus avance.
+     */
+
     public Enemi PlusAvancer(List<Enemi> monstres) {
         if (!monstres.isEmpty()) {
             Enemi plusAvancer = monstres.get(0);
@@ -280,6 +288,12 @@ public abstract class Tour extends Entite {
             return null;
         }
     }
+    /**
+     * Renvoie l'ennemi le plus proche de la tour
+     * 
+     * @param monstres La liste des ennemis.
+     * @return Ennemi le plus proche.
+     */
 
     public Enemi PlusProche(List<Enemi> monstres) {
         if (!monstres.isEmpty()) {
@@ -295,6 +309,13 @@ public abstract class Tour extends Entite {
         }
     }
 
+
+/**
+ * Affiche une ligne entre la position de la tour et celle de l'ennemi attaqué pour representer une attaque simple.
+ *
+ * @param e L'ennemi attaqué,  Si l'ennemi est null, aucune ligne ne s' affiche.
+ */
+
     public void afficheattaque(Enemi e) {
         if (e == null) {
             return;
@@ -303,12 +324,31 @@ public abstract class Tour extends Entite {
         StdDraw.line(this.position.getX(), this.position.getY(), e.getPosition().getX(), e.getPosition().getY());
     }
 
+
+/**
+ * la methode effectue une attaque simple sur un ennemi cible,
+ * Diminue les points de vie de l'ennemi par la valeur d'attaque de la tour
+ * puis affiche une ligne pour représenter l'attaque.
+ *
+ * @param cible  L'ennemi ciblé par l'attaque.
+ * @param Joueur Le joueur qui contrôle la tour.
+ */
     protected void attaqueSimple(Enemi cible, Joueur Joueur) {
         if (cible != null) {
             cible.setPV(cible.getPV() - this.ATK);
             afficheattaque(cible);
         }
     }
+
+  /**
+ * la methode effectue une attaque collaterale sur les ennemis proches de la cible,
+ * Les ennemis situes dans un rayon donne  autour de la cible subissent des dégâts,
+ * Affiche des lignes entre les ennemis affectés pour représenter l'attaque collaterale.
+ *
+ * @param t        L'ennemi cible de l'attaque collatérale.
+ * @param distance Le rayon d'effet de l'attaque collatérale.
+ * @param Joueur   Le joueur qui contrôle la tour.
+ */
 
     public void attaqueCollateral(Enemi t, double distance, Joueur Joueur) {
         for (Enemi tour : Omnicient.getPositionMonstre()) {
@@ -317,7 +357,17 @@ public abstract class Tour extends Entite {
                 afficheAattaqueCollateral(tour, t);
             }
         }
+    
     }
+
+
+    /**
+ * Affiche une ligne entre la position d'un ennemi affecte par une attaque collatérale
+ * et celle de l'ennemi cible pour representer les dégâts infligés.
+ *
+ * @param t     L'ennemi affecté par l'attaque collatérale.
+ * @param cible L'ennemi cible initial de l'attaque collatérale.
+ */
 
     public void afficheAattaqueCollateral(Enemi t, Enemi cible) {
         StdDraw.setPenColor(Color.ORANGE);

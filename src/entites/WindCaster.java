@@ -79,6 +79,7 @@ public class WindCaster extends Tour {
      * Effectue l'attaque de la tour WindCaster en ciblant les ennemis dans sa portée.
      * La tour attaque l'ennemi le plus avancé parmi les cibles dans sa portée.
      * Si la cible existe, la méthode `attaqueSimple` est appelée pour infliger les dégâts à l'ennemi.
+     * @param joueur 
      */
     @Override
     public void attaquer(Joueur Joueur) {

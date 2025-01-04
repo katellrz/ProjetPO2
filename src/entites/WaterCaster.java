@@ -9,9 +9,29 @@ import Librairies.Point;
 import Librairies.StdDraw;
 import outils.Omnicient;
 
+
+/**
+ * Représente une tour de type WaterCaster dans le jeu,
+ * La WaterCaster est une tour élémentaire d'eau qui possède des caractéristiques spécifiques telles que
+ * une faible attaque, une portée moyenne et un coût modéré.
+ * Elle est capable d'attaquer les ennemis en les ciblant dans sa portée.
+ */
+
 public class WaterCaster extends Tour {
 
+     /**
+     * Couleur représentant la WaterCaster.
+     */
+
     private static Color couleur = new Color(24, 108, 151);
+     /**
+     * Constructeur de la classe WaterCaster.
+     * Initialise une tour WaterCaster avec des valeurs prédéfinies.
+     * 
+     * @param position La position de la tour sur le terrain.
+     */
+
+
 
     public WaterCaster(Point position) {
         super(30, 3, 1, 4, Element.WATER, position, 50);
@@ -24,10 +44,21 @@ public class WaterCaster extends Tour {
 
     }
 
+   /**
+     * @return La couleur de la WaterCaster.
+     */
     @Override
     public Color getColor() {
         return couleur;
     }
+
+    /**
+     * Affiche la  représentation de la WaterCaster dans la boutique,
+     * Permet de visualiser la tour dans l'interface utilisateur, en indiquant si elle est
+     * achetable en fonction de l'argent du joueur
+     * 
+     * @param Money Le montant d'argent disponible du joueur.
+     */
 
     public static void afficheTourBoutique(int Money){
 
@@ -58,6 +89,14 @@ public class WaterCaster extends Tour {
 
     }
 
+
+     /**
+     * Permet à la WaterCaster d'attaquer les ennemis à portée.
+     * Si des ennemis sont dans la portee de la tour, elle choisit la cible la plus avancée,
+     * lui inflige des dégâts, et affiche l'attaque.
+     * 
+     * @param Joueur Le joueur auquel appartient la tour.
+     */
     @Override
     public void attaquer(Joueur Joueur) {
         if (peutAttaquer()) {
