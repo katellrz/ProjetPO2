@@ -219,6 +219,14 @@ public abstract class Tour extends Entite {
     protected double tempsDepuisDerniereAttaque = 0.0;
     protected LocalTime derniereAttaque = LocalTime.now();
 
+    /**
+     * Renvoie les ennemis à portée de la tour.
+     * 
+     * @param monstres La liste des ennemis.
+     * @param portee   La portée de la tour.
+     * @return Liste des ennemis à portée.
+     */
+
     public List<Enemi> MonstreAportee(List<Enemi> monstres, double portee) {
         if (monstres == null || monstres.isEmpty()) {
             return new ArrayList<>();
@@ -230,6 +238,13 @@ public abstract class Tour extends Entite {
             }
         }
         return monstresAportee;
+
+    /**
+     * Renvoie l'ennemi avec le plus de points de vie à portée.
+     * 
+     * @param monstres La liste des ennemis.
+     * @return Ennemi avec le plus de PV.
+     */
     }
 
     public Enemi PlusDePV(List<Enemi> monstres) {
