@@ -14,9 +14,18 @@ public class Joueur {
         this.argent = 50;
     }
 
+    public Joueur(int vie, int argent) {
+        this.vie = vie;
+        this.argent = argent;
+    }
+
     
     public int getVie() {
         return vie;
+    }
+
+    public Joueur copier() {
+        return new Joueur(this.vie, this.argent); // Retourne une nouvelle instance avec les mêmes attributs
     }
 
     public void perdreVie(int montant) {

@@ -6,7 +6,7 @@ import Gestion.Joueur;
 public class Minion extends Enemi {
     
     public Minion() {
-        super(10, 3, 0, 4, Element.NONE, 1, 1);
+        super(10, 10, 0, 4, Element.NONE, 1, 10);//TODO: Changer les valeurs
     }
 
     

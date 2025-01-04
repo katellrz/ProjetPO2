@@ -48,6 +48,9 @@ public abstract class Entite {
     } 
     // Getters et setters
 
+
+    
+
     /**
      * Obtient les points de vie actuels de l'entité.
      * 
@@ -56,7 +59,17 @@ public abstract class Entite {
     public int getPV() {
         return PV;
     }
-      /**
+
+
+
+      public void setATKSpeed(double aTKSpeed) {
+        ATKSpeed = aTKSpeed;
+    }
+
+
+
+
+    /**
      * Définit les points de vie actuels de l'entité.
      * Si les PV sont inferieurs ou egaux à zero, la méthode estMort() est appelée.
      * 

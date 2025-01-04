@@ -1,22 +1,21 @@
 package entites;
 
-import Librairies.Point;
-import Librairies.StdDraw;
-
-import static outils.Omnicient.getPositionMonstre;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.util.List;
 
 import Gestion.Joueur;
+import Librairies.Point;
+import Librairies.StdDraw;
+import entites.Entite.Element;
+import outils.Omnicient;
 
-public class GoldDigger extends Tour {
+public class PoisonCaster extends Tour {
 
-    private static Color couleur = new Color(255, 215, 0);
+    private static Color couleur = Color.BLUE;
 
-    public GoldDigger(Point position) {
-        super(20, 1, 2, 10, Element.EARTH, position, 20);
+    public PoisonCaster(Point position) {
+        super(50, 1, 2, 5, Element.WIND, position, 80);
     }
 
     @Override
@@ -25,45 +24,45 @@ public class GoldDigger extends Tour {
     }
 
     public static void afficheTourBoutique(int Money) {
-        if (Money < 20) {
+        if (Money < 70) {
             StdDraw.setPenColor(StdDraw.GRAY);
-            StdDraw.filledRectangle(785, 331, 64, 25);
+            StdDraw.filledRectangle(923, 391, 64, 25);
         } else {
             StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
-            StdDraw.filledRectangle(785, 331, 64, 25);
+            StdDraw.filledRectangle(923, 391, 64, 25);
         }
 
         StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.rectangle(785, 331, 64, 25);
+        StdDraw.rectangle(923, 391, 64, 25);
         StdDraw.setPenColor(couleur);
-        StdDraw.filledCircle(745, 331, 15);
+        StdDraw.filledCircle(883, 391, 15);
         StdDraw.setPenColor(StdDraw.BLACK);
         Font font1 = new Font("Arial", Font.PLAIN, 20);
         StdDraw.setFont(font1);
-        StdDraw.text(805, 341, "GoldDigger");
+        StdDraw.text(940, 401, "PoisonCaster");
 
         Font font = new Font("Arial", Font.PLAIN, 10);
         StdDraw.setFont(font);
-        StdDraw.text(805, 321, "PV : 20    ATK : 1");
+        StdDraw.text(943, 381, "PV : 50    ATK : 1");
 
         StdDraw.setPenColor(StdDraw.WHITE);
-        StdDraw.text(745, 331, "20");
+        StdDraw.text(883, 391, "80");
     }
 
     @Override
     public void attaquer(Joueur Joueur) {
-        List<Enemi> monstres = getPositionMonstre();
-        if (monstres == null || !monstres.isEmpty()) {
-            List<Enemi> cibles = this.MonstreAportee(monstres, this.Range);
+        if (peutAttaquer()) {
+            List<Enemi> cibles = MonstreAportee(Omnicient.getPositionMonstre(), this.Range);
             if (cibles == null || !cibles.isEmpty()) {
-                Enemi cible = this.PlusProche(cibles);
+                Enemi cible = PlusAvancer(cibles);
                 if (cible != null) {
                     attaqueSimple(cible, Joueur);
                     afficheattaque(cible);
-                    Joueur.gagnerArgent(1);
+                    Omnicient.SavetoOmni(new Empoisoner(cible));
+
                 }
             }
         }
-        
     }
+
 }

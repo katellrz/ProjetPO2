@@ -3,8 +3,10 @@ package outils;
 
 import Map.Case;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
+
+import entites.Empoisoner;
 import entites.Enemi;
 import entites.Entite;
 import entites.Tour;
@@ -19,10 +21,10 @@ public abstract class Omnicient {
 
 
     /** Liste des ennemis presents dans le jeu. */
-    private static List<Enemi> positionMonstre = new LinkedList<>();
+    private static List<Enemi> positionMonstre = new ArrayList<>();
 
      /** Liste des tours placées sur le terrain. */
-    private static List<Tour> positionTours = new LinkedList<>();
+    private static List<Tour> positionTours = new ArrayList<>();
 
     /** Case représentant le point de spawn des ennemis. */
     private static Case Spawn;
@@ -38,6 +40,8 @@ public abstract class Omnicient {
 
       /** Taille de la carte. */
     public static int Size;
+
+    public static List<Empoisoner> empoisoners = new ArrayList<>();
      
 
     /**
@@ -81,6 +85,14 @@ public abstract class Omnicient {
      */
     public static void SavetoOmni(Tour e) {
         positionTours.add(e);
+    }
+
+    public static void SavetoOmni(Empoisoner e) {
+        empoisoners.add(e);
+    }
+
+    public static List<Empoisoner> getEmpoisoners(){
+        return empoisoners;
     }
 
     /**

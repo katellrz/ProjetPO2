@@ -1,13 +1,16 @@
 package Gestion;
 
 import static outils.Omnicient.*;
+import static Gestion.FinDePartie.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import Librairies.StdDraw;
 import Map.Carte;
+import entites.Empoisoner;
 import entites.Enemi;
+import entites.PoisonCaster;
 import entites.Tour;
 import outils.Omnicient;
 
@@ -48,6 +51,7 @@ public class Game {
             tour.afficheTour(getSize());
             tour.attaquer(joueur);
         }
+        StdDraw.show();
         gestionEnemiAvctif();
     }
 
@@ -58,6 +62,7 @@ public class Game {
                 monstres.add(monstre);
                 joueur.gagnerArgent(monstre.getReward());
             }
+            
         }
         for (Enemi monstre : monstres){
             removeEnemi(monstre);
@@ -70,6 +75,7 @@ public class Game {
             if(tour.getPV()<= 0){
                 tours.add(tour);
             }
+            StdDraw.show();
         }
         for (Tour tour : tours){
             removeTour(tour);
@@ -108,6 +114,7 @@ public class Game {
             StdDraw.clear();
             Update();
             Triche();
+            Empoisonement();
             vagueActuelle.Vaguedemonstre();
             Tour.PlacerTour(joueur);
             Interface.AfficheStatique();
@@ -116,8 +123,20 @@ public class Game {
             StdDraw.show();
             gestionEnemi();
             gestionTour();
+            FinDePartie();
         }
     }
+
+    public void Empoisonement(){
+        List<Empoisoner> monstres = getEmpoisoners();
+        System.out.println("3empoisonement collateral");
+        for (Empoisoner empoisoner : monstres) {
+            empoisoner.degatEmpoisonement();
+        }
+        
+    }
+
+    
 
     public void Update() {
         
@@ -127,7 +146,7 @@ public class Game {
                 System.out.println("changement de niveau");
                 if (levelManager.isLast()) {
                     System.out.println("fin du jeux ");
-                    FinDePartie(true);
+                    FinDePartie.afficherVictoire(); 
                 }
                 niveauSuivant();
             } else {
@@ -136,18 +155,11 @@ public class Game {
         }
     }
 
-    public void FinDePartie(boolean victoire) {
-        StdDraw.clear();
-        if (victoire) {
-            System.out.println("Félicitations ! Vous avez terminé tous les niveaux !");
-            StdDraw.text(500, 500, "Victoire !");
-        } else {
-            System.out.println("Game Over ! Le joueur a perdu toutes ses vies.");
-            StdDraw.text(500, 500, "Défaite !");
+    public void FinDePartie() {
+        if (joueur.getVie() <= 0) {
+            FinDePartie.afficherDefaite();
         }
-        StdDraw.show();
-        StdDraw.pause(5000);
-        System.exit(0);
+        
     }
 
     

@@ -57,6 +57,8 @@ public class IceCaster extends Tour {
                 if (cible != null) {
                     attaqueSimple(cible, Joueur);
                     afficheattaque(cible);
+                    cible.setSpeed(cible.getPV()*0.7);
+                    cible.setATKSpeed(cible.getPV()*0.7);
                 }
             }
         }

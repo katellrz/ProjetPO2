@@ -12,7 +12,7 @@ public class FinDePartie {
     public static void afficherVictoire() {
         StdDraw.clear();
         StdDraw.setPenColor(Color.GREEN);
-        StdDraw.filledRectangle(400, 400, 200, 100);
+        StdDraw.filledRectangle(400, 400, 200, 200);
 
         // Texte de victoire
         StdDraw.setPenColor(Color.BLACK);
@@ -99,14 +99,12 @@ public class FinDePartie {
                 
                 // Reprendre
                 if (x >= 220 && x <= 380 && y >= 270 && y <= 330) {
-                    System.out.println("Reprendre le niveau...");
-                    //TODO fonction pour reprendre 
+                    
                     break;
                 }
                 // Recommencer
                 else if (x >= 420 && x <= 580 && y >= 270 && y <= 330) {
-                    System.out.println("Recommencer depuis le début...");
-                    // Implémentez ici la logique pour recommencer le jeu
+                    
                     break;
                 }
                 // Quitter

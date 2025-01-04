@@ -7,6 +7,8 @@ import static outils.Omnicient.SavetoOmniSpawn;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import outils.Omnicient;
 
 public class Carte {
@@ -24,6 +26,10 @@ public class Carte {
         Omnicient.SaveToOmni(CarteJeu);
         this.Chemin = ConstruitChemin();
         Omnicient.SavetoOmni(Chemin);
+    }
+
+    public Carte copier() {
+        return new Carte(this.nom); // Retourne une nouvelle instance de Map
     }
 
     public String getNom(){

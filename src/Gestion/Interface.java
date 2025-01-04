@@ -8,6 +8,7 @@ import entites.EarthCaster;
 import entites.FireCaster;
 import entites.GoldDigger;
 import entites.IceCaster;
+import entites.PoisonCaster;
 import entites.WaterCaster;
 import entites.WindCaster;
 import java.awt.Color;
@@ -53,6 +54,7 @@ public abstract class Interface {
         FireCaster.afficheTourBoutique(Money);
         IceCaster.afficheTourBoutique(Money);
         GoldDigger.afficheTourBoutique(Money);
+        PoisonCaster.afficheTourBoutique(Money);
         BouttonTriche();
         afficherProgression(currentLevel, totalLevels, currentWave, totalWaves);
     }

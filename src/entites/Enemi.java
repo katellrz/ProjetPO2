@@ -47,6 +47,12 @@ public abstract class Enemi extends Entite {
         return Speed;
     }
 
+    
+    public void setSpeed(double speed) {
+        Speed = speed;
+    }
+
+
 
     /**
      * Obtient l'index actuel sur le chemin.

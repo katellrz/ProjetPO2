@@ -111,7 +111,7 @@ public abstract class Tour extends Entite {
                 }
             }
             // IceCaster
-            else if ((x < 987 && x > 859) && (y < 476 && y > 426) && Joueur.getArgent() >= 70) {
+            else if ((x < 849 && x > 721) && (y < 416 && y > 366) && Joueur.getArgent() >= 70) {
                 System.out.println("IceCaster sélectionné");
                 Case c = attendreCaseConstructible();
                 if (c != null) {
@@ -121,8 +121,8 @@ public abstract class Tour extends Entite {
                     System.out.println("Tour placée : IceCaster à " + t.getPosition());
                 }
             }
-            /* // PoisonCaster
-            else if ((x < 849 && x > 721) && (y < 416 && y > 366) && Joueur.getArgent() >= 80) {
+            // PoisonCaster
+            else if ((x < 987 && x > 859) && (y < 416 && y > 366) && Joueur.getArgent() >= 80) {
                 System.out.println("PoisonCaster sélectionné");
                 Case c = attendreCaseConstructible();
                 if (c != null) {
@@ -131,9 +131,9 @@ public abstract class Tour extends Entite {
                     Omnicient.SavetoOmni(t);
                     System.out.println("Tour placée : PoisonCaster à " + t.getPosition());
                 }
-            } */
+            }
             // GoldDigger
-            else if ((x < 987 && x > 859) && (y < 416 && y > 366) && Joueur.getArgent() >= 20) {
+            else if ((x < 849 && x > 721) && (y < 356 && y > 306) && Joueur.getArgent() >= 20) {
                 System.out.println("GoldDigger sélectionné");
                 Case c = attendreCaseConstructible();
                 if (c != null) {
