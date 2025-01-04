@@ -136,6 +136,8 @@ public class Game {
         System.exit(0);
     }
 
+    
+
     public void Triche() {
         int x = (int) StdDraw.mouseX();
         int y = (int) StdDraw.mouseY();
