@@ -104,7 +104,7 @@ public abstract class Enemi extends Entite {
      public void avance(Joueur Joueur) {
         List<Case> path = Omnicient.getChemin();
         if (currentIndex >= path.size() - 1 || this.position.equals(Omnicient.getBase().getCenterCase())) {
-            Joueur.perdreVie(this.ATK);
+            System.out.println("L'ennemi est arrivé à la base");
             return;
         }
 
@@ -162,7 +162,7 @@ public abstract class Enemi extends Entite {
    public List<Tour> TourAportee(List<Tour> tours, double range) {
         List<Tour> cibles = new ArrayList<>();
         for (Tour t : tours) {
-            if (t.getPosition().distance(this.position) <= range) {
+            if (t.getPosition().distance(this.position) <= range*getSize()) {
                 cibles.add(t);
             }
         }

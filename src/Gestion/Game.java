@@ -83,7 +83,21 @@ public class Game {
             monstre.apparait();
             monstre.attaquer(joueur);
         }
+        gestionEnemiArriver();
         gestionToursActives();
+    }
+
+    public void gestionEnemiArriver(){
+        List<Enemi> monstres = new ArrayList<>();
+        for (Enemi monstre : getPositionMonstre()) {
+            if(monstre.getPosition().equals(getBase().getCenterCase())){
+                monstres.add(monstre);
+                joueur.perdreVie(monstre.getATK());
+            }
+        }
+        for (Enemi monstre : monstres){
+            removeEnemi(monstre);
+        }
     }
 
     public void start() {

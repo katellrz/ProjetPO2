@@ -1,11 +1,17 @@
 package entites;
 
+import static outils.Omnicient.getPositionTours;
+
+import java.util.List;
+import java.util.ArrayList;
+
 import Gestion.Joueur;
+
 
 public class Minion extends Enemi {
     
     public Minion() {
-        super(10, 3, 0, 0, Element.NONE, 1, 1);
+        super(10, 3, 0, 4, Element.NONE, 1, 1);
     }
 
     

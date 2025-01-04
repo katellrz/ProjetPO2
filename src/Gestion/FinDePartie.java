@@ -100,7 +100,7 @@ public class FinDePartie {
                 // Reprendre
                 if (x >= 220 && x <= 380 && y >= 270 && y <= 330) {
                     System.out.println("Reprendre le niveau...");
-                    // Implémentez ici la logique pour reprendre le niveau
+                    //TODO fonction pour reprendre 
                     break;
                 }
                 // Recommencer
