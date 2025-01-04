@@ -8,6 +8,14 @@ import Librairies.Point;
 import Librairies.StdDraw;
 import outils.Omnicient;
 
+
+/**
+ * La classe Case représente une case individuelle dans la carte du jeu 
+ * Elle contient des informations sur son type, sa couleur, sa position, et 
+ * ses dimensions. Elle offre des fonctionnalités pour déterminer 
+ * les interactions avec la souris et pour afficher visuellement la case.
+ */
+
 public class Case {
 
     public enum Casetype {DECOR, CONSTRUCTIBLE, ROUTE, BASE, SPAWN}
@@ -20,7 +28,15 @@ public class Case {
     protected char lettre;
     protected boolean sel = false;
 
-
+/**
+     * Constructeur pour initialiser 
+     *
+     * @param c  Lettre representant le type de la case.
+     * @param rows  Ligne de la case dans la grille.
+     * @param cols  Colonne de la case dans la grille.
+     * @param centerX Coordonnée X du centre de la case.
+     * @param centerY Coordonnée Y du centre de la case.
+     */
     public Case(char c, int rows, int cols,int centerX,int centerY){
         this.lettre=c;
         this.type = TypedeCase(c);
@@ -45,11 +61,21 @@ public class Case {
         return couleur;
     }
 
+     /**
+     * Récupere la ligne de la case dans la grille.
+     * 
+     * @return Numéro de la ligne.
+     */
     public int getRows() {
         return rows;
     }
 
 
+    /**
+     * Récupere la colonne de la case dans la grille.
+     * 
+     * @return Numéro de la colonne.
+     */
     public int getCols() {
         return cols;
     }
@@ -66,6 +92,11 @@ public class Case {
     public Point getCenterCase(){
         return this.centre;
     }
+    /**
+     * Definit si la case est sélectionnée.
+     * 
+     * @param sel Booleen indiquant si la case est sélectionnée.
+     */
 
     public void setSel(boolean sel) {
         this.sel = sel;
@@ -153,12 +184,25 @@ public class Case {
         return StdDraw.mouseX() > CentreX - size / 2.0 && StdDraw.mouseX() < CentreX + size / 2.0 && StdDraw.mouseY() > CentreY - size / 2.0 && StdDraw.mouseY() < CentreY + size / 2.0;
     } */
 
+    /**
+     *
+     *
+     * @return Reprsentation textuelle de la case.
+     */
+
     @Override
     public String toString() {
         return "Case [type=" + type + ", couleur=" + couleur + ", rows=" + rows + ", cols=" + cols + " position "+centre.toString()+"]";
     }
 
-
+/**
+     * Vérifie si un point donne se trouve dans les limites de la case.
+     *
+     * @param mouseX  Coordonnée X de la souris.
+     * @param mouseY  Coordonnée Y de la souris.
+     * @param tailleCase Taille de la case.
+     * @return True si le point est dans la case, false sinon
+     */
     public boolean contains(double mouseX, double mouseY, double tailleCase) {
         return mouseX >= centre.getX() - tailleCase / 2 && mouseX <= centre.getX() + tailleCase / 2 && mouseY >= centre.getY() - tailleCase / 2
                 && mouseY <= centre.getY() + tailleCase / 2;
