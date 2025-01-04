@@ -1,10 +1,5 @@
 package entites;
 
-import static outils.Omnicient.getPositionTours;
-
-import java.util.List;
-import java.util.ArrayList;
-
 import Gestion.Joueur;
 
 

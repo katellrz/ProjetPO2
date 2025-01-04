@@ -60,7 +60,7 @@ public class Wave {
             //System.out.println("Ligne extraite : " + ligne); 
 
             String[] tab = ligne.split("\\|");
-            double temps = Double.parseDouble(tab[0]);// Long.parseLong -> transforme un String en Long la premiere case du tableux qui contient le temps auquel le monstre doit apparaitre 
+            double temps = (Double.parseDouble(tab[0])*5)-20;// Long.parseLong -> transforme un String en Long la premiere case du tableux qui contient le temps auquel le monstre doit apparaitre 
             vague.put(temps, tab[1]);/*1000 car  on met en milli seconde  ----- tab[1] contient le nom de l'enemie qui doit etre crée au tempemp tab[1] */
         }
         return vague;

@@ -166,7 +166,6 @@ public abstract class Enemi extends Entite {
                 cibles.add(t);
             }
         }
-        System.out.println("cibles a porter : " + cibles);
         return cibles;
     }
 
