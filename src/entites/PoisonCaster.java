@@ -1,27 +1,56 @@
 package entites;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.util.List;
-
 import Gestion.Joueur;
 import Librairies.Point;
 import Librairies.StdDraw;
 import entites.Entite.Element;
+import java.awt.Color;
+import java.awt.Font;
+import java.util.List;
 import outils.Omnicient;
+
+/**
+ * La classe PoisonCaster represente une tour spécialisée dans l'attaque 
+ * avec des capacités de poison , Cette tour peut attaquer des ennemis à 
+ * portée et les empoisonner.
+ */
 
 public class PoisonCaster extends Tour {
 
-    private static Color couleur = new Color(242, 211, 0);;
+    /**
+     * La couleur utilisée pour représenter cette tour dans l'interface graphique.
+     */
+ private static Color couleur = Color.BLUE;
+
+  /**
+     * Constructeur de la classe PoisonCaster.
+     *
+     * @param position La position de la tour sur le terrain.
+     */
 
     public PoisonCaster(Point position) {
         super(50, 1, 2, 5, Element.WIND, position, 80);
     }
 
+    
+
+    /**
+     * Retourne la couleur représentant la tour.
+     *
+     * @return La couleur de la tour (bleu).
+     */
+
     @Override
     public Color getColor() {
         return couleur;
     }
+
+    /**
+     * Affiche la representation graphique de la tour dans la boutique.
+     *
+     * @param Money Le montant d'argent du joueur pour determiner si la tour 
+     *              peut être achetée
+     */
 
     public static void afficheTourBoutique(int Money) {
         if (Money < 70) {
@@ -48,6 +77,13 @@ public class PoisonCaster extends Tour {
         StdDraw.setPenColor(StdDraw.WHITE);
         StdDraw.text(883, 391, "80");
     }
+
+     /**
+     * cette methode Gere l'attaque de la tour ,Si un ennemi est à portée, il est attaqué 
+     * et puis empoisonnée
+     *
+     * @param Joueur L'objet representant le joueur pour appliquer les effets de l'attaque
+     */
 
     @Override
     public void attaquer(Joueur Joueur) {
