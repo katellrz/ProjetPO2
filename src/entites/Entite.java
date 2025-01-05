@@ -32,6 +32,7 @@ public abstract class Entite {
     protected Element element;
     protected Point position;
     protected final int PVmax;
+    protected final Color color;
 
     //private Point Position;
     
@@ -45,6 +46,7 @@ public abstract class Entite {
         this.element = Element;
         this.PVmax = PV;
         this.position = Position;
+        this.color = getColorByElement();
     } 
     // Getters et setters
 
@@ -129,11 +131,9 @@ public abstract class Entite {
             case WIND:
                 return new Color(242, 211, 0);
             default:
-                return Color.BLACK;
+                return Color.GRAY;
         }
-    }
-
-    
+    }    
 
     protected LocalTime derniereAttaque = LocalTime.now();
     protected double tempsDepuisDerniereAttaque = 0.0;

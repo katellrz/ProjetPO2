@@ -185,7 +185,7 @@ public abstract class Tour extends Entite {
 
     public void afficheTour(double tailleCase) {
         // Dessine la tour
-        Color tourColor = this.getColor();
+        Color tourColor = this.color;
         StdDraw.setPenColor(tourColor);
         StdDraw.filledCircle(position.getX(), position.getY(), tailleCase / 4.0); // Ajuster la taille selon besoin
     

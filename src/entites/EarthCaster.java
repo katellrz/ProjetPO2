@@ -17,7 +17,7 @@ import outils.Omnicient;
 
 public class EarthCaster extends Tour {
 
-    private static Color couleur = new Color(139,69,19);
+    private static Color couleur = new Color(0, 167, 15);
 
     /**
      * Constructeur de la classe EarthCaster.

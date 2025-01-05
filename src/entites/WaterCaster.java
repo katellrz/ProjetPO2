@@ -23,7 +23,7 @@ public class WaterCaster extends Tour {
      * Couleur représentant la WaterCaster.
      */
 
-    private static Color couleur = new Color(24, 108, 151);
+    private static Color couleur = new Color(6, 0, 160);
      /**
      * Constructeur de la classe WaterCaster.
      * Initialise une tour WaterCaster avec des valeurs prédéfinies.

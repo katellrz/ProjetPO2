@@ -112,25 +112,34 @@ public class Game {
 
         while (true) {
             StdDraw.clear();
+
+            Interface.AfficheStatique();
+            
+            
+            //fontion pour verifier ou en est 
             Update();
             Triche();
+
+            //perette de gerer les entiter et leur action 
             Empoisonement();
             vagueActuelle.Vaguedemonstre();
             Tour.PlacerTour(joueur);
-            Interface.AfficheStatique();
-            Interface.AfficheDynamique(map, joueur.getArgent(), joueur.getVie(), niveauActuel.getCurrentlevel(),levelManager.getMaxLvl(), niveauActuel.getCurrentWave(), niveauActuel.NbrWaves());
-            joueur.afficheInfo();
-            StdDraw.show();
             gestionEnemi();
             gestionTour();
+
+
             FinDePartie();
+            Interface.AfficheDynamique(map, joueur.getArgent(), joueur.getVie(), niveauActuel.getCurrentlevel(),levelManager.getMaxLvl(), niveauActuel.getCurrentWave(), niveauActuel.NbrWaves());
+            
+            StdDraw.show();
         }
     }
 
     public void Empoisonement(){
         List<Empoisoner> monstres = getEmpoisoners();
-        System.out.println("3empoisonement collateral");
+        
         for (Empoisoner empoisoner : monstres) {
+            System.out.println("3empoisonement collateral");
             empoisoner.degatEmpoisonement();
         }
         

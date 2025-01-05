@@ -18,7 +18,7 @@ import outils.Omnicient;
 
 public class FireCaster extends Tour{
 
-    private static Color couleur = new Color(255, 142, 97);
+    private static Color couleur = new Color(184, 22, 1);
 
     public FireCaster(Point position) {
         super(30, 10, 0.5, 2.5, Element.FIRE, position, 100);

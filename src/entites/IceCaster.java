@@ -11,7 +11,7 @@ import outils.Omnicient;
 
 public class IceCaster extends Tour {
 
-    private static Color couleur = new Color(173, 216, 230);
+    private static Color couleur = new Color(6, 0, 160);
 
     public IceCaster(Point position) {
         super(40, 1, 2, 5, Element.WATER, position, 70);

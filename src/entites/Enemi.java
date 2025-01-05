@@ -138,7 +138,7 @@ public abstract class Enemi extends Entite {
 
         //System.out.println("L'ennemi apparaît : " + this);
         
-        StdDraw.setPenColor(this.getColorByElement());
+        StdDraw.setPenColor(this.color);
         StdDraw.filledSquare(position.getX(), position.getY(), 5);
         StdDraw.show();     
         

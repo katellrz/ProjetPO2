@@ -12,7 +12,7 @@ import outils.Omnicient;
 
 public class PoisonCaster extends Tour {
 
-    private static Color couleur = Color.BLUE;
+    private static Color couleur = new Color(242, 211, 0);;
 
     public PoisonCaster(Point position) {
         super(50, 1, 2, 5, Element.WIND, position, 80);
@@ -58,6 +58,7 @@ public class PoisonCaster extends Tour {
                 if (cible != null) {
                     attaqueSimple(cible, Joueur);
                     afficheattaque(cible);
+                    //TODO Corriger Poison caster
                     Omnicient.SavetoOmni(new Empoisoner(cible));
 
                 }

@@ -21,7 +21,7 @@ public class Archer extends Tour{
      */
 
 
-    private static Color couleur = new Color(107, 106, 105);
+    private static Color couleur = Color.GRAY;
 
      /**
      * Constructeur pour créer une tour Archer à une position donnée.

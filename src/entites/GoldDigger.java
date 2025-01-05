@@ -13,7 +13,7 @@ import Gestion.Joueur;
 
 public class GoldDigger extends Tour {
 
-    private static Color couleur = new Color(255, 215, 0);
+    private static Color couleur = new Color(0, 167, 15);
 
     public GoldDigger(Point position) {
         super(20, 1, 2, 10, Element.EARTH, position, 20);

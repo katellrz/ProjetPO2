@@ -24,7 +24,7 @@ import outils.Omnicient;
 
 public class WindCaster extends Tour {
 
-    private static Color couleur = new Color(167, 194, 200);
+    private static Color couleur = new Color(242, 211, 0);
 
 
     public WindCaster(Point position) {
