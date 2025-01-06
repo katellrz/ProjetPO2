@@ -88,6 +88,9 @@ public abstract class Omnicient {
      */
     public static void SavetoOmni(Tour e) {
         positionTours.add(e);
+        if(e instanceof RailGun){
+            RailGunList.add((RailGun)e);
+        }
     }
 
     public static void SavetoOmni(Empoisoner e) {
