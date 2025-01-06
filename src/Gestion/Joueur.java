@@ -58,6 +58,16 @@ public class Joueur {
         return argent >= montant;
     }
 
+    
+
+    public void setVie(int vie) {
+        this.vie = vie;
+    }
+
+    public void setArgent(int argent) {
+        this.argent = argent;
+    }
+
     public String toStingVie(){
         return Integer.toString(vie);
     }

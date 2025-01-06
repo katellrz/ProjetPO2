@@ -232,11 +232,6 @@ public abstract class Omnicient {
     public static void resetLvl(){
         positionMonstre.clear();
         positionTours.clear();
-        Spawn=null;
-        Base=null;
-        Chemin.clear();
-        Carte.clear();
-        Size=0;
     }
 
     /**

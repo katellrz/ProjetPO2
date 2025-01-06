@@ -169,12 +169,20 @@ public abstract class Tour extends Entite {
         while (c == null) {
             if (StdDraw.isMousePressed()) {
                 c = DetectionSourisCase(StdDraw.mouseX(), StdDraw.mouseY());
-                if (c != null && c.getType() == Case.Casetype.CONSTRUCTIBLE) {
+                if (c != null && c.getType() == Case.Casetype.CONSTRUCTIBLE && caseDispo(c)) {
                     return c;
                 }
             }
         }
         return null;
+    }
+
+    public static boolean caseDispo(Case c ){
+        List<Tour> tours = Omnicient.getPositionTours();
+        for(Tour tour : tours ){
+            if (tour.getPosition().equals(c.getCenterCase())) return false;
+        }
+        return true;
     }
     
  /**
