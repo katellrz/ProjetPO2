@@ -11,6 +11,7 @@ import entites.Enemi;
 import entites.Entite;
 import entites.RailGun;
 import entites.Tour;
+import entites.Buffer;
 
 /**
  * La classe Omnicient est une classe utilitaire abstraite qui centralise et gère les données globales
@@ -45,6 +46,8 @@ public abstract class Omnicient {
     public static List<Empoisoner> empoisoners = new ArrayList<>();
 
     public static List<RailGun> RailGunList = new ArrayList<>();
+
+    public static List<Buffer> Buffer = new ArrayList<>();
      
 
     /**
@@ -75,6 +78,9 @@ public abstract class Omnicient {
     public static void SavetoOmni(Enemi ennemie) {
         if (ennemie != null) {
             positionMonstre.add(ennemie); // Ajouter l'ennemi à la liste
+            if(ennemie instanceof Buffer){
+                Buffer.add((Buffer))
+            }
         } else {
             System.out.println("Ennemi non ajouté, valeur nulle.");
         }

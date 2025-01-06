@@ -117,6 +117,10 @@ public class Game {
         }
     }
 
+    public void gestionBuffer(){
+        
+    }
+
     
 
     public void Update() {

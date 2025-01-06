@@ -28,11 +28,11 @@ public class GestionEntite {
         gestionEnemiAvctif(joueur);
     }
 
-    public void gestionEnemiAvctif(Joueur joueur){
+    private void gestionEnemiAvctif(Joueur joueur){
         List<Enemi> monstres = new ArrayList<>();
         for (Enemi monstre : getPositionMonstre()) {
             if(monstre.getPV()<= 0){
-                monstres.add(monstre);
+                monstres.add(monstre);//TODO bomb
                 joueur.gagnerArgent(monstre.getReward());
             }
             
