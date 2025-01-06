@@ -10,6 +10,7 @@ import entites.Empoisoner;
 import entites.Enemi;
 import entites.Entite;
 import entites.RailGun;
+import entites.Termiernator;
 import entites.Tour;
 import entites.Buffer;
 
@@ -48,6 +49,8 @@ public abstract class Omnicient {
     public static List<RailGun> RailGunList = new ArrayList<>();
 
     public static List<Buffer> Buffer = new ArrayList<>();
+
+    public static List<entites.Termiernator> Termiernator = new ArrayList<>();
 
     public static int MerchantATKTour = 1;
     public static int MerchantSpeedEnemi = 1;
@@ -88,6 +91,9 @@ public abstract class Omnicient {
         return MerchantSpeedEnemi<=5;
     }
 
+    public static List<Termiernator> getTermiernator(){
+        return Termiernator;
+    }
     
      
 
@@ -118,15 +124,14 @@ public abstract class Omnicient {
      */
     public static void SavetoOmni(Enemi ennemie) {
 
-        
         ennemie.setSpeed(ennemie.getSpeed()*0.9*MerchantSpeedEnemi);            
         
-
         positionMonstre.add(ennemie); // Ajouter l'ennemi à la liste
         if(ennemie instanceof Buffer){
             Buffer.add((Buffer)ennemie);
+        }else if(ennemie instanceof Termiernator){
+            Termiernator.add((Termiernator)ennemie);
         }
-    
     }
 
 
@@ -270,6 +275,11 @@ public abstract class Omnicient {
      */
     public static void removeEnemi(Enemi ennemi) {
         positionMonstre.remove(ennemi);
+        if(ennemi instanceof Buffer){
+            Buffer.remove(ennemi);
+        }else if(ennemi instanceof Termiernator){
+            Termiernator.remove(ennemi);
+        }
     }
 
     /**
@@ -306,6 +316,9 @@ public abstract class Omnicient {
         positionMonstre.clear();
         positionTours.clear();
         RailGunList.clear();
+        Termiernator.clear();
+        RailGunList.clear();
+        Buffer.clear();
     }
 
     /**
@@ -321,6 +334,6 @@ public abstract class Omnicient {
         return RailGunList;
     }
 
-    //TODO fonction de réinitialisation
+    
     
 }

@@ -7,8 +7,6 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.print.attribute.standard.JobMediaSheetsSupported;
-
 import Librairies.StdDraw;
 import Map.DetectionSouris;
 import entites.Bomb;
@@ -153,12 +151,12 @@ public class GestionEntite {
                 joueur.depenserArgent(200);
                 System.out.println("1");
                 return;
-            }else if(x>272&&x<752&&y>365&&y<415&&StdDraw.isMousePressed()&&joueur.peutAcheter(300)){
+            }else if(x>272&&x<752&&y>365&&y<415&&StdDraw.isMousePressed()&& joueur.peutAcheter(300) ){
                 Omnicient.MerchantSpeedEnemi();
                 joueur.depenserArgent(300);
                 System.out.println("2");
                 return;
-            }else if(x>272&&x<752&&y>305&&y<355&&StdDraw.isMousePressed()&&joueur.peutAcheter(200)){
+            }else if(x>272&&x<752&&y>305&&y<355&&StdDraw.isMousePressed() &&joueur.peutAcheter(200)){
                 Omnicient.MerchantATKspeedTour();
                 joueur.depenserArgent(200);
                 System.out.println("3");
@@ -171,12 +169,12 @@ public class GestionEntite {
         }
     }
 
-    public static void main(String[] args) throws Exception {
+    /* public static void main(String[] args) throws Exception {
         Interface.AfficheInterface();
         GestionEntite e = new GestionEntite();
         Joueur j = new Joueur();
         e.AfichePropMerchant(j);
-    }
+    } */
 
 
     public void Empoisonement(){

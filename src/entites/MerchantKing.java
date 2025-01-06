@@ -1,7 +1,6 @@
 package entites;
 
 import Gestion.Joueur;
-import entites.Entite.Element;
 
 public class MerchantKing extends Enemi {
 

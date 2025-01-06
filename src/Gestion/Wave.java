@@ -8,12 +8,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import Librairies.FileExtraction;      
+import Librairies.FileExtraction;
+import entites.Bomb;
 import entites.Boss;
+import entites.Buffer;
 import entites.EarthBrute;
 import entites.Enemi;
 import entites.FireGrognard;
+import entites.Healer;
+import entites.MerchantKing;
 import entites.Minion;
+import entites.Termiernator;
 import entites.WaterBrute;
 import entites.WindGrognard;
 
@@ -81,6 +86,16 @@ public class Wave {
                 return new WaterBrute();
             case "Boss":
                 return new Boss();
+            case "Termiernator":
+                return new Termiernator();
+            case "MerchantKing":
+                return new MerchantKing();
+            case "Buffer":
+                return new Buffer();
+            case "Healer":
+                return new Healer();
+            case "Bomb":
+                return new Bomb();
             default:
                 return null;
         }
