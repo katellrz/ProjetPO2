@@ -6,7 +6,7 @@ import Gestion.Joueur;
 import outils.Omnicient;
 
 /**
- * Classe representant un ennemi de type FireGrognard.
+ * cette Classe represente  un ennemi de type FireGrognard
  * Le FireGrognard est un ennemi utilisant l'élément FEU pour attaquer les tours
  * à portée. Il possède des caractéristiques spécifiques comme ses points de vie (PV),
  * attaque (ATK), vitesse d'attaque, portée, vitesse de déplacement, et récompense.

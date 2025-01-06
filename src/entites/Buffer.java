@@ -8,8 +8,8 @@ import outils.Omnicient;
 
 public class Buffer extends Enemi{
     /**
-     * Constructeur par défaut de la classe EarthBrute.
-     * Initialise les caractéristiques de l'EarthBrute avec des valeurs spécifiques.
+     * Constructeur par défaut de la classe EarthBrute
+     * Initialise les caractéristiques de l'EarthBrute avec des valeurs spécifiques
      */
     
     public Buffer() {

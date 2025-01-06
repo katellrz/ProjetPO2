@@ -4,6 +4,12 @@ import static outils.Omnicient.getPositionTours;
 
 import java.util.List;
 
+
+/**
+ * 
+ * La Bomb est un ennemi specialisé dans les attaques explosives avec des dégâts collatéraux
+ */
+
 public class Bomb  extends  Enemi{
 
     public Bomb()
@@ -14,7 +20,11 @@ public class Bomb  extends  Enemi{
 
 
 
-
+/**
+     * 
+     * La Bomb effectue une attaque simple sur une cible et inflige des dégâts collatéraux 
+     * aux cibles proches
+     */
 
     public void attaquer(){
         if(peutAttaquer()){

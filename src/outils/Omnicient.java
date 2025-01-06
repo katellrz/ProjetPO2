@@ -2,16 +2,14 @@ package outils;
 
 
 import Map.Case;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import entites.Buffer;
 import entites.Empoisoner;
 import entites.Enemi;
 import entites.Entite;
 import entites.RailGun;
 import entites.Tour;
-import entites.Buffer;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * La classe Omnicient est une classe utilitaire abstraite qui centralise et gère les données globales
@@ -225,7 +223,7 @@ public abstract class Omnicient {
     /**
      * Supprime une tour de la liste des tours.
      * 
-     * @param tour La tour à supprimer.
+     * @param tour La tour à supprimer
      */
 
     public static void removeTour(Tour tour) {
@@ -249,7 +247,7 @@ public abstract class Omnicient {
     }
 
     /**
-     * Réinitialise toutes les données du niveau.
+     * Réinitialise toutes les données du niveau
      */
 
     public static void resetLvl(){

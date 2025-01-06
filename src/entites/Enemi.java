@@ -12,7 +12,7 @@ import outils.Omnicient;
 import static outils.Omnicient.*;
 
 /**
- * Classe abstraite représentant un ennemi dans le jeu.
+ * Classe abstraite representant un ennemi dans le jeu
  * Cette classe contient les propriétés et comportements de base d'un ennemi,
  * y compris son mouvement, sa vitesse, sa récompense, et ses interactions avec d'autres entités.
  */
@@ -86,9 +86,9 @@ public abstract class Enemi extends Entite {
 
 
      /**
-     * Définit la récompense donnée lorsque l'ennemi est vaincu.
+     * Définit la récompense donnée lorsque l'ennemi est vaincu
      * 
-     * @param Reward La nouvelle récompense de l'ennemi.
+     * @param Reward La nouvelle récompense de l'ennemi
      */
     public void setReward(int Reward) {
         this.Reward = Reward;
@@ -113,7 +113,7 @@ public abstract class Enemi extends Entite {
 
 
      /**
-     * Déplace l'ennemi en suivant le chemin prédéfini.
+     * Déplace l'ennemi en suivant le chemin prédéfini
      */
 
      public void avance(Joueur Joueur) {
@@ -141,7 +141,7 @@ public abstract class Enemi extends Entite {
     }
 
     /**
-     * Affiche l'ennemi sur la carte.
+     * Affiche l'ennemi sur la carte
      */
     public void apparait(){
 
