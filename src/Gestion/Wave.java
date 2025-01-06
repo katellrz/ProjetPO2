@@ -24,11 +24,23 @@ import entites.WindGrognard;
 
 
 
+/**
+ * cette  Classe represente  une vague d'ennemis dans le jeu,
+ * Chaque vague est caracterisée par un nom, une liste ordonnée d'ennemis à générer
+ * avec un moment specifique d'apparition, et un état indiquant si la vague est terminée
+ */
 public class Wave {
 
+     /** Nom de la vague */
     private String nom;
+
+    /** Map contenant les ennemis à générer et leur moment d'apparition */
     private Map<Double ,String> vague;
+
+    /** indique si la vague est terminée */
     public boolean VagueestFini;
+
+     /** Heure de début de la vague */
     public LocalTime time;
 
 
@@ -40,18 +52,37 @@ public class Wave {
         this.time=LocalTime.now();
     }
 
+
+     /**
+     * Marque la vague comme terminée
+     */
     public void setVaguefini(){
         VagueestFini=true;
     }
 
+
+     /**
+     * Marque la vague comme non terminée
+     */
     public void setVagueStart(){
         VagueestFini=false;
     }
 
+
+   /**
+     * @return true si la vague est terminée, false sinon
+     */
     public boolean getVaguefini() {
         return VagueestFini;
     }
 
+
+      /**
+     * cette methode Construit une vague à partir d'un fichier,
+     * Le fichier doit contenir les ennemis et leurs moments d'apparition
+     *
+     * @return une map contenant les moments (en secondes) et les noms des ennemis
+     */
 
     public Map<Double,String> ConstruitVague(){ //il faut mieux avoir ne nom de l'enemie ou l'enemie déja creé
         Map<Double,String> vague = new TreeMap<>();
@@ -71,6 +102,13 @@ public class Wave {
         return vague;
     }
 
+
+     /**
+     * cette methode Cree un ennemi à partir de son nom,
+     *
+     * @param enemie le nom de l'ennemi
+     * @return une instance de l'ennemi correspondant, ou null si le nom est invalide
+     */
 
     public static Enemi creeEnemi (String enemie){
         switch (enemie) {
@@ -101,6 +139,11 @@ public class Wave {
         }
     }
 
+     /**
+     * cette methode gere l'apparition des ennemis dans la vague
+     *et  Vérifie si le temps actuel dépasse le moment d'apparition du prochain ennemi
+     * et le genère si sa vaut la peine 
+     */
     public void Vaguedemonstre(){
         
         Duration d = Duration.between(time, LocalTime.now());

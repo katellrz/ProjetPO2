@@ -1,19 +1,27 @@
 package entites;
 
+import Gestion.Joueur;
 import Librairies.Point;
 import Librairies.StdDraw;
-
-import static outils.Omnicient.getPositionMonstre;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.util.List;
+import static outils.Omnicient.getPositionMonstre;
 
-import Gestion.Joueur;
+/**
+ * cette Classe represente  une tour de type GoldDigger,
+ * La GoldDigger est une tour de type terre specialisée dans l'attaque des ennemis à portée,
+ * tout en permettant au joueur de gagner de l'argent supplémentaire  a chaque attaque  qui est réussie
+ */
 
 public class GoldDigger extends Tour {
 
     private static Color couleur = new Color(0, 167, 15);
+     /**
+     * Constructeur de la classe GoldDigger
+
+     * @param position la position de la tour sur la carte.
+     */
 
     public GoldDigger(Point position) {
         super(20, 1, 2, 10, Element.EARTH, position, 20);
@@ -24,6 +32,14 @@ public class GoldDigger extends Tour {
         return couleur;
     }
 
+
+
+    /**
+     * Affiche la GoldDigger dans la boutique de tours avec ses caractéristiques,
+     * La couleur change en fonction de l'argent disponible du joueur
+     *
+     * @param Money l'argent actuel du joueur
+     */
     public static void afficheTourBoutique(int Money) {
         if (Money < 20) {
             StdDraw.setPenColor(StdDraw.GRAY);
@@ -50,6 +66,13 @@ public class GoldDigger extends Tour {
         StdDraw.text(745, 331, "20");
     }
 
+    /**
+     * methode attaque Permet à la GoldDigger d'attaquer les ennemis à portée
+     * Identifie l'ennemi le plus proche parmi ceux à portée, applique des dégâts,
+     * et augmente l'argent du joueur de 1 pour chaque attaque réussie
+     *
+     * @param Joueur le joueur associé (utilisé pour la gestion des gains d'argent).
+     */
     @Override
     public void attaquer(Joueur Joueur) {
         List<Enemi> monstres = getPositionMonstre();

@@ -1,27 +1,59 @@
 package entites;
 
+import Gestion.Joueur;
 import Librairies.Point;
 import Librairies.StdDraw;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.List;
-
-import Gestion.Joueur;
 import outils.Omnicient;
+
+
+/**
+ * cette Classe represente une tour de type IceCaster,
+ * IceCaster est une tour élémentaire de type eau capable d'attaquer les ennemis à portée 
+ * tout en ralentissant leur vitesse et leur cadence d'attaque en fonction de leurs PV restants
+ */
 
 public class IceCaster extends Tour {
 
     private static Color couleur = new Color(6, 0, 160);
 
+     /**
+     * Constructeur de la classe IceCaster.
+     * Initialise une tour IceCaster 
+     * - PV : 40
+     * - Dégâts : 1
+     * - Vitesse d'attaque : 2
+     * - Portée : 5
+     * - Élément : WATER
+     * - Position : elle est specifier au moment de l'instanciation
+     * - Coût : 70
+     *
+     * @param position la position de la tour sur la carte
+     */
+
     public IceCaster(Point position) {
         super(40, 1, 2, 5, Element.WATER, position, 70);
     }
 
+
+    /**
+     * elle Retourne la couleur spécifique utilisée pour représenter l'IceCaster
+     *
+     * @return la couleur de l'IceCaster.
+     */
     @Override
     public Color getColor() {
         return couleur;
     }
 
+     /**
+     * cette methode affiche l'IceCaster dans la boutique de tours avec ses caractéristiques,
+     * La couleur change en fonction de l'argent disponible du joueur
+     *
+     * @param Money l'argent actuel du joueur.
+     */
     public static void afficheTourBoutique(int Money) {
         if (Money < 70) {
             StdDraw.setPenColor(StdDraw.GRAY);
@@ -48,6 +80,14 @@ public class IceCaster extends Tour {
         StdDraw.text(745, 391, "70");
     }
 
+     /**
+     * cette methode Permet à l'IceCaster d'attaquer les ennemis à portée
+     * Identifie l'ennemi le plus avancé parmi ceux à portée, applique des degâts,
+     * reduit leur vitesse de deplacement et leur cadence d'attaque proportionnellement
+     *  a  leurs PV restants.
+     *
+     * @param Joueur le joueur associé et utilisé dans les interactions de combat
+     */
     @Override
     public void attaquer(Joueur Joueur) {
         if (peutAttaquer()) {

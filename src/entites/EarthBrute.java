@@ -1,8 +1,7 @@
 package entites;
 
-import java.util.List;
-
 import Gestion.Joueur;
+import java.util.List;
 import outils.Omnicient;
 
 /**
@@ -14,13 +13,21 @@ public class EarthBrute extends Enemi {
 
     /**
      * Constructeur par défaut de la classe EarthBrute.
-     * Initialise les caractéristiques de l'EarthBrute avec des valeurs spécifiques.
+     * Initialise les caractéristiques de l'EarthBrute avec des valeurs spécifiques
      */
     
     public EarthBrute() {
         super(30, 5, 1, 3, Element.EARTH, 1, 3);
         
     }
+
+    /**
+     * Permet à l'EarthBrute d'attaquer un joueur s'il peut attaquer,
+     * cette  méthode recherche les tours ennemies à portée, sélectionne la plus proche,
+     * et effectue une attaque simple sur cette cible.
+     *
+     * @param Joueur le joueur ciblé par l'attaque.
+     */
 
     public void attaquer(Joueur Joueur) {
         if (peutAttaquer()) {
