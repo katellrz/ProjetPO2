@@ -44,14 +44,6 @@ public class WaterCaster extends Tour {
 
     }
 
-   /**
-     * @return La couleur de la WaterCaster.
-     */
-    @Override
-    public Color getColor() {
-        return couleur;
-    }
-
     /**
      * Affiche la  représentation de la WaterCaster dans la boutique,
      * Permet de visualiser la tour dans l'interface utilisateur, en indiquant si elle est

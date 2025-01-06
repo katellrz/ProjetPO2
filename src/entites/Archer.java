@@ -39,10 +39,6 @@ public class Archer extends Tour{
      * @return la couleur de la tour.
      */
 
-    @Override//TODO  reverifier les histoire de couleur 
-    public Color getColor() {
-        return couleur;
-    }
 
     
 

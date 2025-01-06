@@ -232,9 +232,6 @@ public abstract class Tour extends Entite {
         StdDraw.show();
     }
 
-    public abstract Color getColor();
-
-
     protected double tempsDepuisDerniereAttaque = 0.0;
     protected LocalTime derniereAttaque = LocalTime.now();
 
