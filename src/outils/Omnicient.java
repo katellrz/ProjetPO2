@@ -46,6 +46,47 @@ public abstract class Omnicient {
     public static List<RailGun> RailGunList = new ArrayList<>();
 
     public static List<Buffer> Buffer = new ArrayList<>();
+
+    public static int MerchantATKTour = 1;
+    public static int MerchantSpeedEnemi = 1;
+    public static int MerchantATKspeedTour = 1;
+
+    public static void MerchantATKspeedTour(){//TODO
+        if(MerchantATKSpeedTourPos())
+        MerchantATKspeedTour++;
+        for (Tour e : positionTours){
+            e.setATKspeed(e.getATKspeed()*1.1);
+        }
+    }
+    public static boolean MerchantATKSpeedTourPos(){
+        return MerchantATKspeedTour<=5;
+    }
+
+    public static void MerchantATKTour(){
+        if(MerchantATKTourPos()){
+            MerchantATKTour++;
+            for (Tour e : positionTours){
+                e.setATK((int)(e.getATK()*1.1));
+            }
+        }
+    }
+    public static boolean MerchantATKTourPos(){
+        return MerchantATKTour<=5;
+    }
+
+    public static void  MerchantSpeedEnemi(){
+        if(MerchantSpeedEnemiPos())
+        MerchantSpeedEnemi++;
+        for (Enemi e : positionMonstre){
+            e.setSpeed(e.getSpeed()*1.1);
+        }
+
+    }
+    public static boolean MerchantSpeedEnemiPos(){
+        return MerchantSpeedEnemi<=5;
+    }
+
+    
      
 
     /**
@@ -74,14 +115,16 @@ public abstract class Omnicient {
      * @param ennemie L'ennemi à ajouter
      */
     public static void SavetoOmni(Enemi ennemie) {
-        if (ennemie != null) {
-            positionMonstre.add(ennemie); // Ajouter l'ennemi à la liste
-            if(ennemie instanceof Buffer){
-                Buffer.add((Buffer)ennemie);
-            }
-        } else {
-            System.out.println("Ennemi non ajouté, valeur nulle.");
+
+        
+        ennemie.setSpeed(ennemie.getSpeed()*0.9*MerchantSpeedEnemi);            
+        
+
+        positionMonstre.add(ennemie); // Ajouter l'ennemi à la liste
+        if(ennemie instanceof Buffer){
+            Buffer.add((Buffer)ennemie);
         }
+    
     }
 
 
@@ -91,6 +134,10 @@ public abstract class Omnicient {
      * @param e La tour à ajouter.
      */
     public static void SavetoOmni(Tour e) {
+
+        e.setATKspeed(e.getATKspeed()*1.1*MerchantATKspeedTour);
+        e.setATK((int)(e.getATK()*1.1*MerchantATKTour));
+
         positionTours.add(e);
         if(e instanceof RailGun){
             RailGunList.add((RailGun)e);
@@ -209,6 +256,9 @@ public abstract class Omnicient {
     public static List<RailGun> GetRailGunList(){
         return RailGunList;
     }
+
+
+    
 
 
     /**

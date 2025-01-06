@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.print.attribute.standard.JobMediaSheetsSupported;
+
 import Librairies.StdDraw;
 import Map.DetectionSouris;
 import entites.Bomb;
@@ -89,7 +91,7 @@ public class GestionEntite {
                 joueur.perdreVie(monstre.getATK());
 
                 if(monstres instanceof MerchantKing){
-
+                    AfichePropMerchant(joueur);
                 }
             }
         }
@@ -98,35 +100,82 @@ public class GestionEntite {
         }
     }
 
-    private void AfichePropMerchant(){
+    private void AfichePropMerchant(Joueur j){
 
         StdDraw.setPenColor(Color.PINK);
         StdDraw.filledRectangle(512,360,250,125);
         StdDraw.setPenColor(Color.BLACK);
         StdDraw.rectangle(512,360,250,125);
 
-        StdDraw.setPenColor(Color.LIGHT_GRAY);
+        if(j.peutAcheter(200)){
+            StdDraw.setPenColor(Color.LIGHT_GRAY);
+        }else{ 
+            StdDraw.setPenColor(Color.GRAY);
+        }
 
         StdDraw.filledRectangle(512,450,240,25);
-        StdDraw.filledRectangle(512,390,240,25);
         StdDraw.filledRectangle(512,330,240,25);
+       
+
+        if(j.peutAcheter(300)){
+            StdDraw.setPenColor(Color.LIGHT_GRAY);
+        }else{ 
+            StdDraw.setPenColor(Color.GRAY);
+        }
+
+        StdDraw.filledRectangle(512,390,240,25);
+
+        StdDraw.setPenColor(Color.LIGHT_GRAY);
         StdDraw.filledRectangle(512,270,240,25);
 
         StdDraw.setPenColor(Color.BLACK);
         Font font1 = new Font("Arial", Font.PLAIN, 17);
         StdDraw.setFont(font1);
         StdDraw.text(512,450, " +10% de puissance d’attaque sur toutes les Tours. Côut 200.");
-        StdDraw.text(512,390, " -10% de vitesse de d´eplacement chez les ennemis. Côut 300");
+        StdDraw.text(512,390, " -10% de vitesse de déplacement chez les ennemis. Côut 300");
         StdDraw.text(512,330,"  +10% de vitesse d’attaque sur les Tours. Côut 200.");
         StdDraw.text(512,270," Aucun bonus. + 30 pièces.");
 
         StdDraw.show();
+
+        selectionPropMerchant(j);
+    }
+
+    private void selectionPropMerchant(Joueur joueur){
+
+        while(true){
+
+            double x=StdDraw.mouseX();
+            double y=StdDraw.mouseY();
+
+            if(x>272&&x<752&&y>425&&y<475&&StdDraw.isMousePressed()&&joueur.peutAcheter(200)){
+                Omnicient.MerchantATKTour();
+                joueur.depenserArgent(200);
+                System.out.println("1");
+                return;
+            }else if(x>272&&x<752&&y>365&&y<415&&StdDraw.isMousePressed()&&joueur.peutAcheter(300)){
+                Omnicient.MerchantSpeedEnemi();
+                joueur.depenserArgent(300);
+                System.out.println("2");
+                return;
+            }else if(x>272&&x<752&&y>305&&y<355&&StdDraw.isMousePressed()&&joueur.peutAcheter(200)){
+                Omnicient.MerchantATKspeedTour();
+                joueur.depenserArgent(200);
+                System.out.println("3");
+                return;
+            }else if(x>272&&x<752&&y>245&&y<295&&StdDraw.isMousePressed()){
+                joueur.gagnerArgent(30);
+                System.out.println("4");
+                return;
+            }
+        }
     }
 
     public static void main(String[] args) throws Exception {
         Interface.AfficheInterface();
         GestionEntite e = new GestionEntite();
-        e.AfichePropMerchant();
+        Joueur j = new Joueur();
+        e.AfichePropMerchant(j);
     }
 
 
