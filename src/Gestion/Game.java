@@ -107,9 +107,12 @@ public class Game {
     }
 
     public void ClickEnemi(){
+        //System.out.println("ici");
         if(StdDraw.isMousePressed()&&DetectionSouris.DetectionZone(StdDraw.mouseX(),StdDraw.mouseY()).equals("Zone Map")){
+            //System.out.println("ici2");
             for (RailGun r : Omnicient.GetRailGunList()){
                 r.attaqueClick();
+                System.out.println("ici");
             }
         }
     }

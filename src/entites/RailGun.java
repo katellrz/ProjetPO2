@@ -84,6 +84,8 @@ public class RailGun extends Tour {
     }
 
     public void attaqueClick(){
+
+        System.out.println("arrive la ");
         double x = StdDraw.mouseX();
         double y = StdDraw.mouseY();
 

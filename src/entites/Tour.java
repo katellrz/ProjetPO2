@@ -150,6 +150,7 @@ public abstract class Tour extends Entite {
                 if (c != null) {
                     Tour t = new RailGun(c.getCenterCase());
                     Joueur.depenserArgent(t.getCost());
+                    //TODO add railgun
                     Omnicient.SavetoOmni(t);
                     System.out.println("Tour placée : Railgun à " + t.getPosition());
                 }
