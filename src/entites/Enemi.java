@@ -163,11 +163,23 @@ public abstract class Enemi extends Entite {
     }
 
 
+    //TODO recevoir soin
+
 
 
    public List<Tour> TourAportee(List<Tour> tours, double range) {
         List<Tour> cibles = new ArrayList<>();
         for (Tour t : tours) {
+            if (t.getPosition().distance(this.position) <= range*getSize()) {
+                cibles.add(t);
+            }
+        }
+        return cibles;
+    }
+
+    public List<Enemi>Aportee(List<Enemi> tours, double range) {
+        List<Enemi> cibles = new ArrayList<>();
+        for (Enemi t : tours) {
             if (t.getPosition().distance(this.position) <= range*getSize()) {
                 cibles.add(t);
             }
@@ -202,6 +214,17 @@ public abstract class Enemi extends Entite {
     protected Tour MoinsDePV(List<Tour> tours) {
         Tour Min = tours.get(0);
         for (Tour t : tours) {
+            if (t.getPV() < Min.getPV()) {
+                Min = t;
+            }
+        }
+        System.out.println("moins de pv : " + Min);
+        return Min;
+    }
+
+    protected Enemi MoinsDePVE(List<Enemi> tours) {
+        Enemi Min = tours.get(0);
+        for (Enemi t : tours) {
             if (t.getPV() < Min.getPV()) {
                 Min = t;
             }

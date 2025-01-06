@@ -14,17 +14,15 @@ public class Healer extends Enemi  {
 public void attaquer(Joueur joueur) {
     if (peutAttaquer()) { 
        
-        List<Enemi> ennemis = Omnicient.getPositionEnnemis();
+        List<Enemi> ennemis = Omnicient.getPositionMonstre();
         // ici on Filtre les ennemis qui sont dans la portee du Healer
-        List<Enemi> cibles = this.EnnemisAportee(ennemis, this.Range);
-
+        List<Enemi> cibles = Aportee(ennemis, Range);
         if (cibles != null && !cibles.isEmpty()) {
             
-            Enemi cible = MoinsDePV(cibles);
+            Enemi cible = MoinsDePVE(cibles);
             if (cible != null) {
                 //ppermet d'aplliquer les soins à l'ennemi cible
                 cible.recevoirSoins(5); 
-                System.out.println("Healer soigne l'ennemi " + cible.getNom() + " de 5 PV.");
             }
         }
     }
