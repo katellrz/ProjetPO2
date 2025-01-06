@@ -75,15 +75,17 @@ public class GoldDigger extends Tour {
      */
     @Override
     public void attaquer(Joueur Joueur) {
-        List<Enemi> monstres = getPositionMonstre();
-        if (monstres == null || !monstres.isEmpty()) {
-            List<Enemi> cibles = this.MonstreAportee(monstres, this.Range);
-            if (cibles == null || !cibles.isEmpty()) {
-                Enemi cible = this.PlusProche(cibles);
-                if (cible != null) {
-                    attaqueSimple(cible, Joueur);
-                    afficheattaque(cible);
-                    Joueur.gagnerArgent(1);
+        if(this.peutAttaquer()){
+            List<Enemi> monstres = getPositionMonstre();
+            if (monstres == null || !monstres.isEmpty()) {
+                List<Enemi> cibles = this.MonstreAportee(monstres, this.Range);
+                if (cibles == null || !cibles.isEmpty()) {
+                    Enemi cible = this.PlusProche(cibles);
+                    if (cible != null) {
+                        attaqueSimple(cible, Joueur);
+                        afficheattaque(cible);
+                        Joueur.gagnerArgent(1);
+                    }
                 }
             }
         }

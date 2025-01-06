@@ -81,6 +81,7 @@ public class Game {
             entite.gestionTour(joueur);
             entite.Empoisonement();
             entite.gestionBuffer();
+            entite.gestionTermiernator();
 
             FinDePartie();
             

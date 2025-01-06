@@ -15,6 +15,7 @@ import entites.Empoisoner;
 import entites.Enemi;
 import entites.MerchantKing;
 import entites.RailGun;
+import entites.Termiernator;
 import entites.Tour;
 import outils.Omnicient;
 
@@ -37,6 +38,7 @@ public class GestionEntite {
         for (Enemi monstre : getPositionMonstre()) {
             if(monstre.getPV()<= 0){
                 monstres.add(monstre);
+                System.out.println("Monstre "+monstre+" estMort");
                 joueur.gagnerArgent(monstre.getReward());
                 if( monstre instanceof Bomb){
                     DegatKamicase((Bomb)monstre);
@@ -45,6 +47,14 @@ public class GestionEntite {
         }
         for (Enemi monstre : monstres){
             removeEnemi(monstre);
+        }
+    }
+
+    public void gestionTermiernator(){
+        List<Termiernator> l = Omnicient.getTermiernator();
+
+        for(Termiernator t : l){
+            t.affichagebulle();
         }
     }
 
