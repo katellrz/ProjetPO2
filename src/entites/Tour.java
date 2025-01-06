@@ -143,17 +143,17 @@ public abstract class Tour extends Entite {
                     System.out.println("Tour placée : GoldDigger à " + t.getPosition());
                 }
             }
-            /* // Railgun
-            else if ((x < 849 && x > 721) && (y < 356 && y > 306) && Joueur.getArgent() >= 150) {
+            // Railgun
+            else if ((x < 987 && x > 859) && (y < 476 && y > 426) && Joueur.getArgent() >= 150) {
                 System.out.println("Railgun sélectionné");
                 Case c = attendreCaseConstructible();
                 if (c != null) {
-                    Tour t = new Railgun(c.getCenterCase());
+                    Tour t = new RailGun(c.getCenterCase());
                     Joueur.depenserArgent(t.getCost());
                     Omnicient.SavetoOmni(t);
                     System.out.println("Tour placée : Railgun à " + t.getPosition());
                 }
-            } */
+            } 
         }
     } 
 

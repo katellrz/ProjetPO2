@@ -20,7 +20,7 @@ public class PoisonCaster extends Tour {
     /**
      * La couleur utilisée pour représenter cette tour dans l'interface graphique.
      */
- private static Color couleur = Color.BLUE;
+ private static Color couleur = new Color(242, 211, 0);
 
   /**
      * Constructeur de la classe PoisonCaster.
@@ -66,7 +66,7 @@ public class PoisonCaster extends Tour {
         StdDraw.setPenColor(couleur);
         StdDraw.filledCircle(883, 391, 15);
         StdDraw.setPenColor(StdDraw.BLACK);
-        Font font1 = new Font("Arial", Font.PLAIN, 20);
+        Font font1 = new Font("Arial", Font.PLAIN, 15);
         StdDraw.setFont(font1);
         StdDraw.text(940, 401, "PoisonCaster");
 
@@ -96,6 +96,7 @@ public class PoisonCaster extends Tour {
                     afficheattaque(cible);
                     //TODO Corriger Poison caster
                     Omnicient.SavetoOmni(new Empoisoner(cible));
+                    System.out.println("Nouvel ennemi empoisoner : "+cible);
 
                 }
             }
