@@ -38,7 +38,7 @@ public class GoldDigger extends Tour {
         StdDraw.setPenColor(couleur);
         StdDraw.filledCircle(745, 331, 15);
         StdDraw.setPenColor(StdDraw.BLACK);
-        Font font1 = new Font("Arial", Font.PLAIN, 20);
+        Font font1 = new Font("Arial", Font.PLAIN, 17);
         StdDraw.setFont(font1);
         StdDraw.text(805, 341, "GoldDigger");
 

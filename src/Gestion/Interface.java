@@ -9,6 +9,7 @@ import entites.FireCaster;
 import entites.GoldDigger;
 import entites.IceCaster;
 import entites.PoisonCaster;
+import entites.RailGun;
 import entites.WaterCaster;
 import entites.WindCaster;
 import java.awt.Color;
@@ -55,6 +56,7 @@ public abstract class Interface {
         IceCaster.afficheTourBoutique(Money);
         GoldDigger.afficheTourBoutique(Money);
         PoisonCaster.afficheTourBoutique(Money);
+        RailGun.afficheTourBoutique(Money);
         BouttonTriche();
         afficherProgression(currentLevel, totalLevels, currentWave, totalWaves);
     }

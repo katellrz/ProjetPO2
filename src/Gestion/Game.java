@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import Librairies.StdDraw;
 import Map.Carte;
+import Map.DetectionSouris;
 import entites.Empoisoner;
 import entites.Enemi;
 import entites.PoisonCaster;
+import entites.RailGun;
 import entites.Tour;
 import outils.Omnicient;
 import outils.Reprise;
@@ -78,14 +80,15 @@ public class Game {
             //fontion pour verifier ou en est 
             Update();
             Triche();
+            ClickEnemi();
 
             //perette de gerer les entiter et leur action 
-            Empoisonement();
+            
             vagueActuelle.Vaguedemonstre();
             Tour.PlacerTour(joueur);
             entite.gestionEnemi(joueur);
             entite.gestionTour(joueur);
-
+            Empoisonement();
 
             FinDePartie();
             
@@ -98,10 +101,17 @@ public class Game {
         List<Empoisoner> monstres = getEmpoisoners();
         
         for (Empoisoner empoisoner : monstres) {
-            System.out.println("3empoisonement collateral");
             empoisoner.degatEmpoisonement();
         }
         
+    }
+
+    public void ClickEnemi(){
+        if(StdDraw.isMousePressed()&&DetectionSouris.DetectionZone(StdDraw.mouseX(),StdDraw.mouseY()).equals("Zone Map")){
+            for (RailGun r : Omnicient.GetRailGunList()){
+                r.attaqueClick();
+            }
+        }
     }
 
     

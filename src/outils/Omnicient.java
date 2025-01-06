@@ -9,6 +9,7 @@ import java.util.List;
 import entites.Empoisoner;
 import entites.Enemi;
 import entites.Entite;
+import entites.RailGun;
 import entites.Tour;
 
 /**
@@ -42,6 +43,8 @@ public abstract class Omnicient {
     public static int Size;
 
     public static List<Empoisoner> empoisoners = new ArrayList<>();
+
+    public static List<RailGun> RailGunList = new ArrayList<>();
      
 
     /**
@@ -192,6 +195,10 @@ public abstract class Omnicient {
         return Carte;
     }
 
+    public static List<RailGun> GetRailGunList(){
+        return RailGunList;
+    }
+
 
     /**
      * Supprime un ennemi de la liste des ennemis.
@@ -210,6 +217,9 @@ public abstract class Omnicient {
 
     public static void removeTour(Tour tour) {
         positionTours.remove(tour);
+        if(tour instanceof RailGun){
+            RailGunList.remove(tour);
+        }
     }
 
      /**
@@ -232,6 +242,7 @@ public abstract class Omnicient {
     public static void resetLvl(){
         positionMonstre.clear();
         positionTours.clear();
+        RailGunList.clear();
     }
 
     /**
@@ -240,6 +251,11 @@ public abstract class Omnicient {
 
     public static void ClearTours(){
         positionTours.clear();
+        RailGunList.clear();
+    }
+
+    public static List<RailGun> getRailGunList() {
+        return RailGunList;
     }
 
     //TODO fonction de réinitialisation
