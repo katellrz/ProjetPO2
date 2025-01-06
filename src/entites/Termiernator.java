@@ -2,7 +2,6 @@ package entites;
 
 import static outils.Omnicient.getPositionTours;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.time.Duration;
 import java.time.LocalTime;
