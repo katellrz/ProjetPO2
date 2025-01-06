@@ -37,6 +37,9 @@ public abstract class Enemi extends Entite {
         this.ATKSpeedNonBuffer = ATKSpeed;
     }
 
+    /**
+     * Permet de gerer les effet des ennemie de type buffer
+     */
     public void effetBuffer(){
         if (buffer&&ATKSpeed==ATKSpeedNonBuffer){
             System.out.println("agit");
@@ -83,16 +86,6 @@ public abstract class Enemi extends Entite {
      */
     public int getReward() {
         return Reward;
-    }
-
-
-     /**
-     * Définit la récompense donnée lorsque l'ennemi est vaincu
-     * 
-     * @param Reward La nouvelle récompense de l'ennemi
-     */
-    public void setReward(int Reward) {
-        this.Reward = Reward;
     }
 
     public void setPosition(Point position) {
@@ -157,7 +150,7 @@ public abstract class Enemi extends Entite {
     }
 
 
-    public void afficherVieE() {
+    private void afficherVieE() {
         double largeurActuelle = Math.max(0, (double) this.getPV() / this.PVmax * 50);
         double x = this.getPosition().getX();
         double y = this.getPosition().getY() - 25;
@@ -173,6 +166,8 @@ public abstract class Enemi extends Entite {
     }
 
 
+    /** permet au Enemie de recevoir des soin par le healer */
+
     public void recevoirSoins(int soin){
         if(PV+soin>PVmax){
             this.PV = PVmax;
@@ -182,7 +177,12 @@ public abstract class Enemi extends Entite {
     }
 
 
-
+    /**
+     * permet de detecter les entité a aporter 
+     * @param tours List presente sur la map
+     * @param range Largeur de l'attaque
+     * @return Une liste d'entite a la porter de l'entité attaquante
+     */
    public List<Tour> TourAportee(List<Tour> tours, double range) {
         List<Tour> cibles = new ArrayList<>();
         for (Tour t : tours) {
@@ -192,6 +192,8 @@ public abstract class Enemi extends Entite {
         }
         return cibles;
     }
+
+
 
     public List<Enemi>Aportee(List<Enemi> tours, double range) {
         List<Enemi> cibles = new ArrayList<>();
@@ -238,9 +240,14 @@ public abstract class Enemi extends Entite {
         return Min;
     }
 
-    protected Enemi MoinsDePVE(List<Enemi> tours) {
-        Enemi Min = tours.get(0);
-        for (Enemi t : tours) {
+    /**
+     * PErmet de detecter l'ennemie avec les mmoin de Pv 
+     * @param e une liste  dans laquelle se trouve toutes les entte concerner 
+     * @return l'entite avec le moin de PV
+     */
+    protected Enemi MoinsDePVE(List<Enemi> e) {
+        Enemi Min = e.get(0);
+        for (Enemi t : e) {
             if (t.getPV() < Min.getPV()) {
                 Min = t;
             }
@@ -266,6 +273,12 @@ public abstract class Enemi extends Entite {
         System.out.println("Tour attaquée : " + t);
     }
 
+    /**
+     * Permet de detecter les enemies qui vont avoir une attque collatéralle
+     * @param t l'entiter qui est viser par l'attaque simple a partir de laquelle on calcule les degat des entités collatérales
+     * @param distance la distence sur laquelle est l'attaque
+     * 
+     */
     public void attaqueCollateral(Tour t, double distance, Joueur Joueur) {
         for (Tour tour : Omnicient.getPositionTours()) {
             if (tour.getPosition().distance(t.getPosition()) <= distance) {
@@ -276,7 +289,11 @@ public abstract class Enemi extends Entite {
     }
 
     
-
+    /**
+     * Permet de tracer des rait entre la tour viser et les tour anxe de l'attaque
+     * @param t tour viser 
+     * @param cible tours anexe
+     */
     public void afficheAattaqueCollateral(Tour t, Tour cible) {
         StdDraw.setPenColor(Color.ORANGE);
         StdDraw.line(t.getPosition().getX(), t.getPosition().getY(), cible.getPosition().getX(), cible.getPosition().getY());

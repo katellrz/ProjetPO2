@@ -138,7 +138,7 @@ public abstract class Entite {
     }    
 
     protected LocalTime derniereAttaque = LocalTime.now();
-    protected double tempsDepuisDerniereAttaque = 0.0;
+    
 
       /**
      * Vérifie si l'ennemi peut attaquer.
@@ -147,7 +147,7 @@ public abstract class Entite {
      */
     protected boolean peutAttaquer() {
         Duration d = Duration.between(derniereAttaque, LocalTime.now());
-        tempsDepuisDerniereAttaque = d.toMillis();
+        double tempsDepuisDerniereAttaque = d.toMillis();
         if (tempsDepuisDerniereAttaque >= ATKSpeed*1000) {
             tempsDepuisDerniereAttaque = 0.0;
             derniereAttaque = LocalTime.now();

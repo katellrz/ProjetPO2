@@ -56,24 +56,10 @@ public void attaquer(Joueur joueur) {
             }
         }
     }
+}
+}
     
-}
-
- /**
-     * Permet à cet ennemi de recevoir des soins,
-     * Si les points de vie après soin dépassent le maximum, ils sont ajustés à la limite maximale
-     */
-public void recevoirSoins()
-{
-      if(PV + 5 >PVmax)
-      {
-        PV=PVmax;
-      }
-else
-    PV+=5;   
-}
 
 
-}
 
     

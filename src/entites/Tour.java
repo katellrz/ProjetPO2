@@ -6,7 +6,6 @@ import Librairies.StdDraw;
 import Map.Case;
 import static Map.DetectionSouris.*;
 import java.awt.Color;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import outils.Omnicient;
@@ -210,7 +209,7 @@ public abstract class Tour extends Entite {
         this.afficherVieT();
     }
 
-    public void afficherVieT() {
+    private void afficherVieT() {
         if (this.getPosition() == null || this.PVmax <= 0) {
             System.err.println("Erreur : position ou PV max invalide pour " + this);
             return;
@@ -232,8 +231,6 @@ public abstract class Tour extends Entite {
         StdDraw.show();
     }
 
-    protected double tempsDepuisDerniereAttaque = 0.0;
-    protected LocalTime derniereAttaque = LocalTime.now();
 
     /**
      * Renvoie les ennemis à portée de la tour.
@@ -243,7 +240,7 @@ public abstract class Tour extends Entite {
      * @return Liste des ennemis à portée.
      */
 
-    public List<Enemi> MonstreAportee(List<Enemi> monstres, double portee) {
+    protected List<Enemi> MonstreAportee(List<Enemi> monstres, double portee) {
         if (monstres == null || monstres.isEmpty()) {
             return new ArrayList<>();
         }
@@ -263,7 +260,7 @@ public abstract class Tour extends Entite {
      */
     }
 
-    public Enemi PlusDePV(List<Enemi> monstres) {
+    protected Enemi PlusDePV(List<Enemi> monstres) {
         if (!monstres.isEmpty()) {
             Enemi plusDePV = monstres.get(0);
             for (Enemi m : monstres) {
@@ -284,7 +281,7 @@ public abstract class Tour extends Entite {
      * @return Ennemi le plus avance.
      */
 
-    public Enemi PlusAvancer(List<Enemi> monstres) {
+     protected Enemi PlusAvancer(List<Enemi> monstres) {
         if (!monstres.isEmpty()) {
             Enemi plusAvancer = monstres.get(0);
             for (Enemi m : monstres) {
@@ -310,7 +307,7 @@ public abstract class Tour extends Entite {
      * @return Ennemi le plus proche.
      */
 
-    public Enemi PlusProche(List<Enemi> monstres) {
+     protected Enemi PlusProche(List<Enemi> monstres) {
         if (!monstres.isEmpty()) {
             Enemi plusProche = monstres.get(0);
             for (Enemi m : monstres) {
@@ -331,7 +328,7 @@ public abstract class Tour extends Entite {
  * @param e L'ennemi attaqué,  Si l'ennemi est null, aucune ligne ne s' affiche.
  */
 
-    public void afficheattaque(Enemi e) {
+    protected void afficheattaque(Enemi e) {
         if (e == null) {
             return;
         }
@@ -390,6 +387,7 @@ public abstract class Tour extends Entite {
     }
 
 
-    public void attaquer(Joueur joueur){}
+    public abstract void attaquer(Joueur joueur);
+    
 }
      

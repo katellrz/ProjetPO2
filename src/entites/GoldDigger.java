@@ -35,6 +35,7 @@ public class GoldDigger extends Tour {
      *
      * @param Money l'argent actuel du joueur
      */
+
     public static void afficheTourBoutique(int Money) {
         if (Money < 20) {
             StdDraw.setPenColor(StdDraw.GRAY);

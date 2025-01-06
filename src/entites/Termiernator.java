@@ -43,11 +43,12 @@ public class Termiernator extends Enemi {
 
     private LocalTime LastBulle = LocalTime.now();
     private boolean Bulle = false;
-
+    
+    /** gere quand est ce que doit être afficher la bulle */
     public void affichagebulle(){
         
         Duration d = Duration.between(LastBulle, LocalTime.now());
-        tempsDepuisDerniereAttaque = d.toMillis();
+        double tempsDepuisDerniereAttaque = d.toMillis();
         if(Bulle){            
             if (tempsDepuisDerniereAttaque >= 5*1000) {
                 Bulle=false;
@@ -66,11 +67,12 @@ public class Termiernator extends Enemi {
 
     }
 
+    /** gere l'interface graphique de l'affichage de la bulle  */
     public void afficheBulle(){
 
         double x = this.position.getX()+5;
         double y = this.position.getY()+10;
-        double taille = 10;
+        //double taille = 10;
 
         /* StdDraw.setPenColor(new Color(173, 216, 230, 150)); // Bleu clair transparent
         StdDraw.filledCircle(x, y, taille / 2);
