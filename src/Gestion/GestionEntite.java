@@ -1,18 +1,22 @@
 package Gestion;
 
-import static outils.Omnicient.getBase;
-import static outils.Omnicient.getPositionMonstre;
-import static outils.Omnicient.getPositionTours;
-import static outils.Omnicient.getSize;
-import static outils.Omnicient.removeEnemi;
-import static outils.Omnicient.removeTour;
+import static outils.Omnicient.*;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
 
 import Librairies.StdDraw;
+import Map.DetectionSouris;
+import entites.Bomb;
+import entites.Buffer;
+import entites.Empoisoner;
 import entites.Enemi;
+import entites.MerchantKing;
+import entites.RailGun;
 import entites.Tour;
+import outils.Omnicient;
 
 public class GestionEntite {
 
@@ -32,13 +36,24 @@ public class GestionEntite {
         List<Enemi> monstres = new ArrayList<>();
         for (Enemi monstre : getPositionMonstre()) {
             if(monstre.getPV()<= 0){
-                monstres.add(monstre);//TODO bomb
+                monstres.add(monstre);
                 joueur.gagnerArgent(monstre.getReward());
-            }
-            
+                if( monstre instanceof Bomb){
+                    DegatKamicase((Bomb)monstre);
+                }
+            }            
         }
         for (Enemi monstre : monstres){
             removeEnemi(monstre);
+        }
+    }
+
+    private void DegatKamicase(Bomb b){
+        List<Tour> t = getPositionTours();
+        List<Tour> victime = b.TourAportee(t, 1.5);
+        for (Tour to : victime){
+            to.setPV(to.getPV()-10*b.getATK());
+            gestionToursActives();
         }
     }
 
@@ -72,11 +87,82 @@ public class GestionEntite {
             if(monstre.getPosition().equals(getBase().getCenterCase())){
                 monstres.add(monstre);
                 joueur.perdreVie(monstre.getATK());
+
+                if(monstres instanceof MerchantKing){
+
+                }
             }
         }
         for (Enemi monstre : monstres){
             removeEnemi(monstre);
         }
     }
+
+    private void AfichePropMerchant(){
+
+        StdDraw.setPenColor(Color.PINK);
+        StdDraw.filledRectangle(512,360,250,125);
+        StdDraw.setPenColor(Color.BLACK);
+        StdDraw.rectangle(512,360,250,125);
+
+        StdDraw.setPenColor(Color.LIGHT_GRAY);
+
+        StdDraw.filledRectangle(512,450,240,25);
+        StdDraw.filledRectangle(512,390,240,25);
+        StdDraw.filledRectangle(512,330,240,25);
+        StdDraw.filledRectangle(512,270,240,25);
+
+        StdDraw.setPenColor(Color.BLACK);
+        Font font1 = new Font("Arial", Font.PLAIN, 17);
+        StdDraw.setFont(font1);
+        StdDraw.text(512,450, " +10% de puissance d’attaque sur toutes les Tours. Côut 200.");
+        StdDraw.text(512,390, " -10% de vitesse de d´eplacement chez les ennemis. Côut 300");
+        StdDraw.text(512,330,"  +10% de vitesse d’attaque sur les Tours. Côut 200.");
+        StdDraw.text(512,270," Aucun bonus. + 30 pièces.");
+
+        StdDraw.show();
+    }
+
+    public static void main(String[] args) throws Exception {
+        Interface.AfficheInterface();
+        GestionEntite e = new GestionEntite();
+        e.AfichePropMerchant();
+    }
+
+
+    public void Empoisonement(){
+        List<Empoisoner> monstres = getEmpoisoners();
+        
+        for (Empoisoner empoisoner : monstres) {
+            empoisoner.degatEmpoisonement();
+        }
+        
+    }
+
+    public void ClickEnemi(){
+        //System.out.println("ici");
+        if(StdDraw.isMousePressed()&&DetectionSouris.DetectionZone(StdDraw.mouseX(),StdDraw.mouseY()).equals("Zone Map")){
+            //System.out.println("ici2");
+            for (RailGun r : Omnicient.GetRailGunList()){
+                r.attaqueClick();
+                System.out.println("ici");
+            }
+        }
+    }
+
+    public void gestionBuffer(){
+        List<Buffer> buffer = Omnicient.getBuffer();
+        List<Enemi> monstre = getPositionMonstre();
+
+        for (Buffer b : buffer){
+            List <Enemi> cibles = b.Aportee(monstre,b.getRange());
+
+            for (Enemi e : cibles){
+                e.buffer=true;
+                e.effetBuffer();
+            }
+        }
+    }
+
 
 }

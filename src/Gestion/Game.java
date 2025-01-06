@@ -1,17 +1,8 @@
 package Gestion;
 
-import static outils.Omnicient.*;
 
-
-import java.util.ArrayList;
-import java.util.List;
 import Librairies.StdDraw;
 import Map.Carte;
-import Map.DetectionSouris;
-import entites.Empoisoner;
-import entites.Enemi;
-import entites.PoisonCaster;
-import entites.RailGun;
 import entites.Tour;
 import outils.Omnicient;
 import outils.Reprise;
@@ -80,7 +71,7 @@ public class Game {
             //fontion pour verifier ou en est 
             Update();
             Triche();
-            ClickEnemi();
+            entite.ClickEnemi();
 
             //perette de gerer les entiter et leur action 
             
@@ -88,37 +79,14 @@ public class Game {
             Tour.PlacerTour(joueur);
             entite.gestionEnemi(joueur);
             entite.gestionTour(joueur);
-            Empoisonement();
+            entite.Empoisonement();
+            entite.gestionBuffer();
 
             FinDePartie();
             
             
             StdDraw.show();
         }
-    }
-
-    public void Empoisonement(){
-        List<Empoisoner> monstres = getEmpoisoners();
-        
-        for (Empoisoner empoisoner : monstres) {
-            empoisoner.degatEmpoisonement();
-        }
-        
-    }
-
-    public void ClickEnemi(){
-        //System.out.println("ici");
-        if(StdDraw.isMousePressed()&&DetectionSouris.DetectionZone(StdDraw.mouseX(),StdDraw.mouseY()).equals("Zone Map")){
-            //System.out.println("ici2");
-            for (RailGun r : Omnicient.GetRailGunList()){
-                r.attaqueClick();
-                System.out.println("ici");
-            }
-        }
-    }
-
-    public void gestionBuffer(){
-        
     }
 
     

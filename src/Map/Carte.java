@@ -7,8 +7,6 @@ import static outils.Omnicient.SavetoOmniSpawn;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
 import outils.Omnicient;
 
 public class Carte {

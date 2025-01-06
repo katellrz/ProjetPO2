@@ -3,7 +3,6 @@ package entites;
 import Gestion.Joueur;
 import Librairies.Point;
 import Librairies.StdDraw;
-import entites.Entite.Element;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.List;

@@ -79,7 +79,7 @@ public abstract class Omnicient {
         if (ennemie != null) {
             positionMonstre.add(ennemie); // Ajouter l'ennemi à la liste
             if(ennemie instanceof Buffer){
-                Buffer.add((Buffer))
+                Buffer.add((Buffer)ennemie);
             }
         } else {
             System.out.println("Ennemi non ajouté, valeur nulle.");
@@ -192,6 +192,10 @@ public abstract class Omnicient {
 
     public static List<Case> getChemin() {
         return Chemin;
+    }
+
+    public static List<Buffer> getBuffer(){
+        return Buffer;
     }
 
     /**

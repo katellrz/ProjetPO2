@@ -9,7 +9,6 @@ import java.util.List;
 import Gestion.Joueur;
 import Librairies.Point;
 import Librairies.StdDraw;
-import outils.Omnicient;
 
 public class RailGun extends Tour {
 
