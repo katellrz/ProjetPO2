@@ -26,6 +26,19 @@ public void attaquer(Joueur joueur) {
             }
         }
     }
+    
 }
-   
+public void recevoirSoins()
+{
+      if(PV + 5 >PVmax)
+      {
+        PV=PVmax;
+      }
+else
+    PV+=5;   
 }
+
+
+}
+
+    
