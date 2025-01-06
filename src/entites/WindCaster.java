@@ -31,11 +31,6 @@ public class WindCaster extends Tour {
         super(30, 5, 1.5, 6, Element.WIND, position, 50);
     }
 
-    @Override
-    public Color getColor() {
-        return couleur;
-    }
-
     
      /**
      * Affiche la représentation de la tour WindCaster dans la boutique du jeu.

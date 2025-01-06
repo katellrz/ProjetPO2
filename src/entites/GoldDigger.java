@@ -27,11 +27,6 @@ public class GoldDigger extends Tour {
         super(20, 1, 2, 10, Element.EARTH, position, 20);
     }
 
-    @Override
-    public Color getColor() {
-        return couleur;
-    }
-
 
 
     /**
@@ -75,15 +70,17 @@ public class GoldDigger extends Tour {
      */
     @Override
     public void attaquer(Joueur Joueur) {
-        List<Enemi> monstres = getPositionMonstre();
-        if (monstres == null || !monstres.isEmpty()) {
-            List<Enemi> cibles = this.MonstreAportee(monstres, this.Range);
-            if (cibles == null || !cibles.isEmpty()) {
-                Enemi cible = this.PlusProche(cibles);
-                if (cible != null) {
-                    attaqueSimple(cible, Joueur);
-                    afficheattaque(cible);
-                    Joueur.gagnerArgent(1);
+        if(this.peutAttaquer()){
+            List<Enemi> monstres = getPositionMonstre();
+            if (monstres == null || !monstres.isEmpty()) {
+                List<Enemi> cibles = this.MonstreAportee(monstres, this.Range);
+                if (cibles == null || !cibles.isEmpty()) {
+                    Enemi cible = this.PlusProche(cibles);
+                    if (cible != null) {
+                        attaqueSimple(cible, Joueur);
+                        afficheattaque(cible);
+                        Joueur.gagnerArgent(1);
+                    }
                 }
             }
         }

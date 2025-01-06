@@ -5,7 +5,7 @@ import Gestion.Joueur;
 public class MerchantKing extends Enemi {
 
     public MerchantKing() {
-        super(100, 0, 0, 0, Element.EARTH, -10, 2);
+        super(100, 0, 0, 0, Element.EARTH, -10, 6);
     }
 
     

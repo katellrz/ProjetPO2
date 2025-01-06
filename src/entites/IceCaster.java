@@ -37,17 +37,6 @@ public class IceCaster extends Tour {
         super(40, 1, 2, 5, Element.WATER, position, 70);
     }
 
-
-    /**
-     * elle Retourne la couleur spécifique utilisée pour représenter l'IceCaster
-     *
-     * @return la couleur de l'IceCaster.
-     */
-    @Override
-    public Color getColor() {
-        return couleur;
-    }
-
      /**
      * cette methode affiche l'IceCaster dans la boutique de tours avec ses caractéristiques,
      * La couleur change en fonction de l'argent disponible du joueur

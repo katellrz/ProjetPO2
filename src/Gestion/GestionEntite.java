@@ -8,6 +8,7 @@ import entites.Empoisoner;
 import entites.Enemi;
 import entites.MerchantKing;
 import entites.RailGun;
+import entites.Termiernator;
 import entites.Tour;
 import java.awt.Color;
 import java.awt.Font;
@@ -51,14 +52,24 @@ public class GestionEntite {
         for (Enemi monstre : getPositionMonstre()) {
             if(monstre.getPV()<= 0){
                 monstres.add(monstre);
+                System.out.println("Monstre "+monstre+" estMort");
                 joueur.gagnerArgent(monstre.getReward());
                 if( monstre instanceof Bomb){
                     DegatKamicase((Bomb)monstre);
-                }
-            }            
+                }  
+            }          
         }
-        for (Enemi monstre : monstres){
-            removeEnemi(monstre);
+        for (Enemi e : monstres){
+            removeEnemi(e);
+        }
+    }
+    
+
+    public void gestionTermiernator(){
+        List<Termiernator> l = Omnicient.getTermiernator();
+
+        for(Termiernator t : l){
+            t.affichagebulle();
         }
     }
 
@@ -102,8 +113,9 @@ public class GestionEntite {
             if(monstre.getPosition().equals(getBase().getCenterCase())){
                 monstres.add(monstre);
                 joueur.perdreVie(monstre.getATK());
-
+                System.out.println("ARRive ici ");
                 if(monstres instanceof MerchantKing){
+                    System.out.println("ARRive la ");
                     AfichePropMerchant(joueur);
                 }
             }
@@ -195,12 +207,12 @@ public class GestionEntite {
         }
     }
 
-    /* public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
         Interface.AfficheInterface();
         GestionEntite e = new GestionEntite();
         Joueur j = new Joueur();
         e.AfichePropMerchant(j);
-    } */
+    }
 
 
 
@@ -241,6 +253,8 @@ public class GestionEntite {
 
         for (Buffer b : buffer){
             List <Enemi> cibles = b.Aportee(monstre,b.getRange());
+
+            System.out.println("buffer");
 
             for (Enemi e : cibles){
                 e.buffer=true;

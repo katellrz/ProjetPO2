@@ -31,18 +31,6 @@ public class PoisonCaster extends Tour {
         super(50, 1, 2, 5, Element.WIND, position, 80);
     }
 
-    
-
-    /**
-     * Retourne la couleur représentant la tour.
-     *
-     * @return La couleur de la tour (bleu).
-     */
-
-    @Override
-    public Color getColor() {
-        return couleur;
-    }
 
     /**
      * Affiche la representation graphique de la tour dans la boutique.

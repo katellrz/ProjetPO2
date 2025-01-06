@@ -2,7 +2,7 @@ package entites;
 
 import static outils.Omnicient.getPositionTours;
 
-import java.awt.Color;
+import java.awt.Font;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.List;
@@ -33,6 +33,7 @@ public class Termiernator extends Enemi {
                 Tour cible = tours.get(randomInt);
 
                 this.attaqueSimple(cible, Joueur);
+                System.out.println("Termiernator "+this.PV + " a attaquer :"+cible);
 
             }
         }
@@ -71,10 +72,13 @@ public class Termiernator extends Enemi {
         double y = this.position.getY()+10;
         double taille = 10;
 
-        StdDraw.setPenColor(new Color(173, 216, 230, 150)); // Bleu clair transparent
+        /* StdDraw.setPenColor(new Color(173, 216, 230, 150)); // Bleu clair transparent
         StdDraw.filledCircle(x, y, taille / 2);
         StdDraw.setPenColor(new Color(135, 206, 250)); // Bleu clair
-        StdDraw.circle(x, y, taille / 2);
+        StdDraw.circle(x, y, taille / 2); */
+
+        Font f = new Font("Arial", Font.PLAIN, 10);
+        StdDraw.setFont(f);
 
         StdDraw.text(x, y, "L'examen final approche");
     }

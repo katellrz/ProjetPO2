@@ -25,17 +25,6 @@ public class FireCaster extends Tour{
     }
 
 
-
-    /**
-     * Obtient la couleur spécifique de la FireCaster.
-     * 
-     * @return La couleur de la FireCaster.
-     */
-    @Override
-    public Color getColor() {
-        return couleur;
-    }
-
      /**
      * Affiche les informations de la FireCaster dans la boutique.
      * 

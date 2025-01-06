@@ -33,16 +33,6 @@ public class EarthCaster extends Tour {
 
 
     /**
-     * Retourne la couleur associée à l'EarthCaster.
-     *
-     * @return La couleur de la tour EarthCaster.
-     */
-    @Override
-    public Color getColor() {
-        return couleur;
-    }
-
-    /**
      * Affiche la tour EarthCaster dans la boutique.
      * La tour est affichée différemment en fonction de l'argent disponible.
      *

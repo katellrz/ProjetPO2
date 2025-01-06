@@ -42,14 +42,17 @@ public void attaquer(Joueur joueur) {
     if (peutAttaquer()) { 
        
         List<Enemi> ennemis = Omnicient.getPositionMonstre();
+        
         // ici on Filtre les ennemis qui sont dans la portee du Healer
         List<Enemi> cibles = Aportee(ennemis, Range);
+        cibles.remove(this);
         if (cibles != null && !cibles.isEmpty()) {
             
             Enemi cible = MoinsDePVE(cibles);
             if (cible != null) {
                 //permet d'aplliquer les soins à l'ennemi cible
                 cible.recevoirSoins(5); 
+                System.out.println(cible + " a recus des soin ");;
             }
         }
     }
