@@ -42,13 +42,22 @@ public abstract class Tour extends Entite {
         return position;
     }
 
+    public void setATK(int v){//TODO diag de classe
+        this.ATK=v;
+    }
+
+    public double getATKspeed(){
+        return ATKSpeed;
+    }
+
+    public void setATKspeed(double v){
+        ATKSpeed = v;
+    }
 
     /**
      * Place une tour sur une case constructible en fonction des interactions de l'utilisateur.
      * @param  joueur Le joueur qui place la tour.
-     */
-
-   
+     */   
 
     public static void PlacerTour(Joueur Joueur) {
         double x = StdDraw.mouseX();
