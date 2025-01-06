@@ -172,7 +172,13 @@ public abstract class Enemi extends Entite {
     }
 
 
-    //TODO recevoir soin
+    public void recevoirSoins(int soin){
+        if(PV+soin>PVmax){
+            this.PV = PVmax;
+        }else{
+            this.PV+=soin;
+        }
+    }
 
 
 

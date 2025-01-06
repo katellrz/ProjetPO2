@@ -83,6 +83,8 @@ public abstract class Entite {
         
     }
 
+    
+
       /**
      * Méthode abstraite appelee lorsque l'entité meurt.
      * la methode doit  etre implémentee  par les sous-classes.
