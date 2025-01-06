@@ -3,6 +3,10 @@ package Gestion;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * La classe LevelManager gere les niveaux du jeu ,Elle permet de charger les niveaux, 
+ * de suivre le niveau actuel et de passer au niveau suivant.
+ */
 public class LevelManager {
     private List<Level> levels;
     private int nbrLvls;

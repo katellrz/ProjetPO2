@@ -1,13 +1,5 @@
 package Gestion;
 
-import static outils.Omnicient.*;
-
-import java.time.Duration;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
 import Librairies.FileExtraction;
 import entites.Bomb;
 import entites.Boss;
@@ -21,6 +13,12 @@ import entites.Minion;
 import entites.Termiernator;
 import entites.WaterBrute;
 import entites.WindGrognard;
+import java.time.Duration;
+import java.time.LocalTime;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import static outils.Omnicient.*;
 
 
 

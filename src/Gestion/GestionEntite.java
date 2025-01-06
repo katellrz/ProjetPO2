@@ -1,12 +1,5 @@
 package Gestion;
 
-import static outils.Omnicient.*;
-
-import java.awt.Color;
-import java.awt.Font;
-import java.util.ArrayList;
-import java.util.List;
-
 import Librairies.StdDraw;
 import Map.DetectionSouris;
 import entites.Bomb;
@@ -16,11 +9,27 @@ import entites.Enemi;
 import entites.MerchantKing;
 import entites.RailGun;
 import entites.Tour;
+import java.awt.Color;
+import java.awt.Font;
+import java.util.ArrayList;
+import java.util.List;
 import outils.Omnicient;
+import static outils.Omnicient.*;
 
+
+/**
+ * La classe GestionEntite gere les entités du jeu, telles que les tours, les ennemis, et les interactions avec les joueurs,
+ * Elle s'occupe des actions comme l'attaque, la gestion des monstres, l'affichage des informations sur les ennemis,
+ * et la gestion des objets speciaux comme les bombes ou les marchands
+ */
 public class GestionEntite {
 
     public GestionEntite(){}
+
+     /**
+     * se charge de l'action des tours dans le jeu, y compris l'affichage et l'attaque des ennemis
+     * @param joueur Le joueur actuel qui contrôle les tours
+     */
 
     public void gestionTour(Joueur joueur) {
         List<Tour> tours = getPositionTours();
@@ -32,6 +41,11 @@ public class GestionEntite {
         gestionEnemiAvctif(joueur);
     }
 
+
+    /**
+     * Gère les ennemis actifs et les interactions avec eux récompenses, dégâts..
+     * @param joueur Le joueur actuel qui interagit avec les ennemis
+     */
     private void gestionEnemiAvctif(Joueur joueur){
         List<Enemi> monstres = new ArrayList<>();
         for (Enemi monstre : getPositionMonstre()) {
@@ -47,6 +61,7 @@ public class GestionEntite {
             removeEnemi(monstre);
         }
     }
+
 
     private void DegatKamicase(Bomb b){
         List<Tour> t = getPositionTours();
@@ -98,6 +113,12 @@ public class GestionEntite {
         }
     }
 
+
+    /**
+     * Affiche les propositions du marchand (MerchantKing) avec des options d'achat pour le joueur
+     * @param j Le joueur qui peut acheter des améliorations ou obtenir de l'argent
+     */
+
     private void AfichePropMerchant(Joueur j){
 
         StdDraw.setPenColor(Color.PINK);
@@ -139,6 +160,11 @@ public class GestionEntite {
         selectionPropMerchant(j);
     }
 
+
+       /**
+     * Permet au joueur de selectionner une proposition du marchand
+     * @param joueur c'est le joueur qui interagit avec le marchand
+     */
     private void selectionPropMerchant(Joueur joueur){
 
         while(true){
@@ -177,6 +203,11 @@ public class GestionEntite {
     } */
 
 
+
+    /**
+     * Gere l'effet d'empoisonnement infligé par des ennemis de type Empoisoner
+     */
+
     public void Empoisonement(){
         List<Empoisoner> monstres = getEmpoisoners();
         
@@ -185,6 +216,9 @@ public class GestionEntite {
         }
         
     }
+      /**
+     * Permet de gerer l'attaque des ennemis en cliquant sur la carte avec un RailGun
+     */
 
     public void ClickEnemi(){
         //System.out.println("ici");
@@ -196,6 +230,10 @@ public class GestionEntite {
             }
         }
     }
+
+     /**
+     * Gere les effets de buffer appliqués aux ennemis
+     */
 
     public void gestionBuffer(){
         List<Buffer> buffer = Omnicient.getBuffer();

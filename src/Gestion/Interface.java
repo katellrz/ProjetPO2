@@ -1,6 +1,7 @@
 package Gestion;
 
 // IMPORTS ____________________________________
+import Librairies.Point;
 import Librairies.StdDraw;
 import Map.Carte;
 import entites.Archer;
@@ -15,10 +16,14 @@ import entites.WindCaster;
 import java.awt.Color;
 import java.awt.Font;
 
-import Librairies.Point;
-
 // _________________________________________
 
+/**
+ * Cette Classe represente  l'interface graphique du jeu
+ * Elle contient les méthodes permettant d'afficher les éléments statiques et dynamiques de l'interface du jeu
+ * Les elements statiques incluent les cadres et informations de base (coeur, argent, niveau, )
+ * tandis que les elements dynamiques incluent les informations du jeu comme la carte, les tours et les informations de progression.
+ */
 public abstract class Interface {
 
     /**
@@ -147,14 +152,23 @@ public abstract class Interface {
         StdDraw.text(x+65, y, "Vague : " + currentWave + "/" + totalWaves);
     }
 
+   
     //ZONE BOUTIQUE________________________________________________________________________________________________
+
+    /**
+     * Affiche le cadre de la boutique ou  le joueur peut acheter des tours
+     */
     public static void AfficheCadreBOUTIQUE() {
+
         Point center = new Point(856, 303);
         Point halfDist = new Point(144, 303);
         StdDraw.setPenColor(Color.BLACK);
         StdDraw.rectangle(center.getX(), center.getY(), halfDist.getX(), halfDist.getY());
     }
 
+    /**
+     * Affiche un message d'erreur lorsque le joueur tente de construire dans une case non constructible
+     */
     public static void MessageErrCaseNonConstructible() {
         Point center = new Point(856, 303);
         StdDraw.setPenColor(Color.YELLOW);
@@ -165,6 +179,10 @@ public abstract class Interface {
         StdDraw.show();
         StdDraw.pause(1000);
     }
+
+    /**
+     * Affiche des boutons de triche permettant d'ajouter de la vie et de l'argent au joueur
+     */
 
     public static void BouttonTriche() {
         Point centerVie = new Point(784, 25);

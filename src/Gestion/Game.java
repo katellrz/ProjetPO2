@@ -7,6 +7,12 @@ import entites.Tour;
 import outils.Omnicient;
 import outils.Reprise;
 
+/**
+ * La classe Game represente la logique principale du jeu, 
+ * en gerant la progression du joueur à travers les niveaux, 
+ * les vagues, et les interactions avec les entites.
+ */
+
 public class Game {
     private LevelManager levelManager;
     private Level niveauActuel;
@@ -29,6 +35,10 @@ public class Game {
         this.fin = new FinDePartie();
     }
 
+      /**
+     * Passe au niveau suivant et réinitialise les composants nécessaires
+     */
+
     public void niveauSuivant(){
         System.out.println("Changement de niveau");
         Omnicient.ClearTours();
@@ -40,6 +50,12 @@ public class Game {
         this.StatLevel= new Reprise(joueur.getArgent(), joueur.getVie());
     }
 
+
+     /**
+     * Reinitialise le niveau et la vague actuels, et permet au joueur de continuer à partir de son état précedent
+     *
+     * @param joueur L'objet joueur à utiliser pour reinitialiser l'état du jeu.
+     */
     public void recomencerNiveau(Joueur joueur){
         niveauActuel.resetWave();
         Omnicient.resetLvl();
@@ -49,11 +65,17 @@ public class Game {
 
 
 
+    
+
     public void vagueSuivante() {
         niveauActuel.nextWave();
         this.vagueActuelle = niveauActuel.getCurrentWaves();
     }
 
+
+     /**
+     * Démarre le jeu en configurant la fenêtre du jeu et en lançant la boucle principale du jeu.
+     */
 
     public void start() {
         StdDraw.enableDoubleBuffering();
@@ -73,7 +95,7 @@ public class Game {
             Triche();
             entite.ClickEnemi();
 
-            //perette de gerer les entiter et leur action 
+            //permette de gerer les entites et leur action 
             
             vagueActuelle.Vaguedemonstre();
             Tour.PlacerTour(joueur);
@@ -91,6 +113,9 @@ public class Game {
 
     
 
+     /**
+     * Met  a  jour l'état du jeu, y compris le passage aux vagues ou niveaux suivants si nécessaire
+     */
     public void Update() {
         
         if (vagueActuelle.getVaguefini() && Omnicient.getPositionMonstre().isEmpty()) {
@@ -108,6 +133,10 @@ public class Game {
         }
     }
 
+     /**
+     * Vérifie si le joueur a perdu et lui propose de recommencer le niveau si sa vie atteint zéro
+     */
+
     public void FinDePartie() {
         if (joueur.getVie() <= 0) {
             boolean Retenter = fin.afficherDefaite();
@@ -119,6 +148,10 @@ public class Game {
         
     }
 
+
+    /**
+     * Active la fonctionnalite de triche permettant au joueur de gagner de la vie ou de l'argent
+     */
     public void Triche() {
         int x = (int) StdDraw.mouseX();
         int y = (int) StdDraw.mouseY();

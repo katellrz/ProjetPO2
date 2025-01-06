@@ -1,8 +1,14 @@
 package Gestion;
 
+import Librairies.StdDraw;
 import java.awt.Font;
 
-import Librairies.StdDraw;
+
+/**
+ * La classe Joueur représente un joueur dans le jeu
+ *  Elle gère les attributs de vie et d'argent, 
+ * ainsi que les méthodes permettant de les modifier.
+ */
 
 public class Joueur {
     private int vie;
@@ -13,6 +19,13 @@ public class Joueur {
         this.vie = 100;
         this.argent = 50;
     }
+
+    /**
+     * Constructeur permettant d'initialiser la vie et l'argent du joueur avec des valeurs qui sont specifiques
+     *
+     * @param vie    La vie du joueur.
+     * @param argent L'argent du joueur.
+     */
 
     public Joueur(int vie, int argent) {
         this.vie = vie;
@@ -77,6 +90,9 @@ public class Joueur {
     }
 
 
+    /**
+     * Affiche les informations du joueur (vie et argent) à l'écran
+     */
     public void afficheInfo() {
         StdDraw.setPenColor(StdDraw.BLACK);
         Font front = new Font("Arial", Font.PLAIN, 30);
