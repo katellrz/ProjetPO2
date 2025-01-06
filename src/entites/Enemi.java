@@ -21,6 +21,8 @@ public abstract class Enemi extends Entite {
     protected double Speed;
     protected int Reward;
     protected int currentIndex;//TODO en publique jsp pas pourquoi peut poser problème
+    public boolean buffer;
+    private final double ATKSpeedNonBuffer;
 
     /**
      * Constructeur de la classe Enemi.
@@ -32,9 +34,16 @@ public abstract class Enemi extends Entite {
         super(PV, ATK, ATKSpeed, Range, Element,new Point(getChemin().get(0).getCenterCase().getX(),getChemin().get(0).getCenterCase().getY()));
         this.Reward = Reward;
         this.Speed = Speed;
+        this.ATKSpeedNonBuffer = ATKSpeed;
     }
 
-
+    public void effetBuffer(){
+        if (buffer&&ATKSpeed==ATKSpeedNonBuffer){
+            this.ATKSpeed = this.ATKSpeed*1.5;
+        }else if (!buffer&&ATKSpeed!=ATKSpeedNonBuffer){
+            ATKSpeed = ATKSpeedNonBuffer;
+        }
+    }
 
     // Getters et setters
 
